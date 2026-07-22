@@ -1,4 +1,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+
 <style>
   :root{
     --sun:#fee77e; --cream:#fdfaf3; --honey:#fdd76a; --wheat:#fadf93;
