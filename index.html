@@ -6,7 +6,7 @@
 <title>Sharon Alana Soleil · Freedom to Flow™</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?...&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
   
 </head>
@@ -22,7 +22,7 @@
       Sharon Alana Soleil
     </div>
     <nav class="nav-links" id="navmenu" aria-label="Main">
-      <a href="#assess">Over Syndrome<span class="tm">™</span> Quiz</a>
+      <a href="over-syndrome-quiz.html">Over Syndrome<span class="tm">™</span> Quiz</a>
       <a href="#speaking">Speaking</a>
       <a href="#ways">Ways to Work Together</a>
       <a href="#flow">Freedom to Flow<span class="tm">™</span></a>
@@ -46,7 +46,7 @@
     <h1>Don’t Wait Until “Someday” <br class="brk">to Enjoy What Matters Most Today</h1>
     <p class="lead hero-sub">Helping other people comes naturally.<br class="brk">Helping yourself? That’s another story.</p>
     <div class="hero-cta">
-      <a class="btn" href="#assess">Show me what’s getting in my way</a>
+      <a class="btn" href="over-syndrome-quiz.html">Show me what’s getting in my way</a>
       <a class="btn btn-ghost" href="#call">Book a free 30-minute call</a>
     </div>
     <p class="trigger">Sixty seconds. Get your result and the pattern breakdown by email.</p>
@@ -470,119 +470,6 @@
   </div>
 </footer>
 
-<script>
-  /* nav */
-  (function(){
-    const h=document.querySelector('header'), t=document.getElementById('navtoggle');
-    const close=()=>{h.classList.remove('open');t.setAttribute('aria-expanded','false');t.setAttribute('aria-label','Open menu');};
-    t.addEventListener('click',()=>{
-      const open=h.classList.toggle('open');
-      t.setAttribute('aria-expanded',String(open));
-      t.setAttribute('aria-label',open?'Close menu':'Open menu');
-    });
-    document.querySelectorAll('#navmenu a').forEach(a=>a.addEventListener('click',close));
-    document.addEventListener('keydown',e=>{
-      if(e.key==='Escape'&&h.classList.contains('open')){close();t.focus();}
-    });
-    document.addEventListener('click',e=>{
-      if(h.classList.contains('open')&&!h.contains(e.target)) close();
-    });
-    matchMedia('(min-width:981px)').addEventListener('change',e=>{if(e.matches) close();});
-  })();
-
-  const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.14});
-  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-
-
-  /* pressure pattern check */
-  const statements=[
-    {k:'think', t:'At 11pm I’m still replaying a conversation.'},
-    {k:'think', t:'I’m kinder to a stranger than I am to myself.'},
-    {k:'give', t:'My yes is out before I check if I have the room.'},
-    {k:'give', t:'Everyone comes to me. I go to no one.'},
-    {k:'achieve', t:'Rest is something I have to earn first.'},
-    {k:'achieve', t:'I hit the goal. By that evening it has moved.'},
-    {k:'extend', t:'I take on what I don’t have room for, then make it work.'},
-    {k:'extend', t:'Once things calm down, I’ll make time for what matters.'},
-    {k:'indep', t:'Asking for help feels harder than just doing it myself.'},
-    {k:'indep', t:'I’m the one who holds it together. I don’t get to fall apart.'}
-  ];
-  const results={
-    give:{ t:'Overgiving', q:'I’d rather be tired than let someone down.',
-      b:'The generosity is real. The pattern is that your own name never makes the list. Somewhere along the way, being needed started doing the job that being known is supposed to do.',
-      c:'<b>What it costs:</b> the energy for the people and passions you would actually choose.', n:'Start with The Power of Your Presence.', o:'The Power of Your Presence, 3 hours, one to one.'},
-    achieve:{ t:'Overachieving', q:'I’ll relax after this next thing.',
-      b:'The finish line has moved for so long you stopped expecting to reach it. You’re excellent at this. That’s why nobody has questioned it, including you.',
-      c:'<b>What it costs:</b> the enjoyment of everything you already built.', n:'Your Present Paths tends to fit this one.', o:'Your Present Paths, 8 weeks, hybrid group.'},
-    extend:{ t:'Overextending', q:'I’ll find a way. I always find a way.',
-      b:'You take on what you don’t have room for, and then you make it work. You always do. Which is exactly why nobody treats the room you don’t have as real, including you.',
-      c:'<b>What it costs:</b> the margin that would let you enjoy any of it.', n:'The Real MVP Mentorship is built for this.', o:'The Real MVP Mentorship, 12 months, one to one.'},
-    think:{ t:'Overthinking', q:'I should have handled that better.',
-      b:'The loudest voice in your life is the one nobody else can hear. It gets unlimited airtime and no supervision. You’d never speak to a friend this way.',
-      c:'<b>What it costs:</b> your confidence in your own judgment, one small doubt at a time.', n:'Go With Your Flow Privé gets you out of the room.', o:'Go With Your Flow Privé, a private retreat.'},
-    indep:{ t:'Over-independent', q:'I’ve got it. I always have.',
-      b:'You learned early that the surest way not to be let down was to need no one. It made you dependable. It also made you alone in a way most people never notice, because you are so good at carrying it.',
-      c:'<b>What it costs:</b> the support that is sitting right there, if you would let it in.', n:'Your Present Paths puts you back in a room of people.', o:'Your Present Paths, 8 weeks, hybrid group.'},
-    all:{ t:'Over Syndrome™, all five at once', q:'Where did the time go?',
-      b:'Overthinking, overgiving, overachieving, overextending, over-independent. Together. This is what most people call burnout right before they push through it again. Four ways of coping that each made sense alone, never meant to run at the same time.',
-      c:'<b>What it costs:</b> the answer to “where did the time go?”', n:'Start with a call. We’ll find the first thread to pull.', o:'The What Matters Most Call, 30 minutes.'}
-  };
-
-  const wrapEl=document.getElementById('stmts');
-  statements.forEach((s,i)=>{
-    const b=document.createElement('button');
-    b.className='stmt'; b.type='button'; b.setAttribute('aria-pressed','false'); b.dataset.k=s.k;
-    b.innerHTML='<span class="box"></span><span>'+s.t+'</span>';
-    b.addEventListener('click',()=>{
-      b.setAttribute('aria-pressed', b.getAttribute('aria-pressed')==='true'?'false':'true');
-      tally();
-    });
-    wrapEl.appendChild(b);
-  });
-
-  const revealBtn=document.getElementById('reveal');
-  const countEl=document.getElementById('count');
-  const answerEl=document.getElementById('answer');
-
-  function selected(){return [...document.querySelectorAll('.stmt[aria-pressed="true"]')]}
-  function tally(){
-    const n=selected().length;
-    revealBtn.disabled = n===0;
-    countEl.textContent = n===0 ? 'Nothing selected yet' : n+' of 10 selected';
-    answerEl.classList.remove('show');
-  }
-
-  revealBtn.addEventListener('click',()=>{
-    const counts={think:0,give:0,achieve:0,extend:0,indep:0};
-    selected().forEach(s=>counts[s.dataset.k]++);
-    const scored=Object.entries(counts).filter(([,v])=>v>0);
-    const top=Math.max(...Object.values(counts));
-    const leaders=scored.filter(([,v])=>v===top);
-    const strongEverywhere = scored.length>=4 && top>=2;
-    const key = strongEverywhere || leaders.length>2 ? 'all' : leaders[0][0];
-    const d=results[key];
-    document.getElementById('a-title').textContent=d.t;
-    document.getElementById('a-quote').textContent='“'+d.q+'”';
-    document.getElementById('a-body').textContent=d.b;
-    document.getElementById('a-cost').innerHTML=d.c+' <span style="opacity:.7">Where to start: '+d.o+'</span>';
-    document.getElementById('a-note').textContent=d.n;
-    answerEl.classList.add('show');
-    answerEl.scrollIntoView({behavior:'smooth',block:'center'});
-  });
-
-  document.getElementById('form').addEventListener('submit',(e)=>{
-    e.preventDefault();
-    const email=document.getElementById('email'), note=document.getElementById('formnote');
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){
-      email.setAttribute('aria-invalid','true');
-      note.textContent='That email looks incomplete. Check it and send again.';
-      email.focus(); return;
-    }
-    email.removeAttribute('aria-invalid');
-    document.getElementById('submit').innerHTML='Sent';
-    note.textContent='Got it. Sharon will send times to '+email.value.trim()+', usually within one business day.';
-    email.disabled=true;
-  });
-</script>
+<script src="script.js"></script>
 </body>
 </html>
