@@ -279,6 +279,10 @@ footer p{color:rgba(253,250,243,.7)}
   position:absolute;left:3.5%;bottom:8%;width:212px;z-index:4;
   box-shadow:0 26px 60px rgba(28,58,19,.22);border-radius:4px;
 }
+/* a placeholder with a real photo in it: drop the dashed outline and wash */
+.ph.has-img{outline:none}
+.ph.has-img::after{content:none}
+.ph.has-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .ph-inset .ph-in{padding:16px;gap:6px}
 .ph-inset .ph-title{font-size:14px}
 .ph-inset .ph-note{font-size:11px}
