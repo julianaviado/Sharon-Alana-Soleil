@@ -42,3 +42,22 @@
     email.disabled=true;
   });
 })();
+
+/* footer newsletter */
+(function(){
+  const form=document.getElementById('newsform');
+  if(!form) return;
+  form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const email=document.getElementById('newsemail'), note=document.getElementById('newsnote');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){
+      email.setAttribute('aria-invalid','true');
+      note.textContent='That email looks incomplete. Check it and send again.';
+      email.focus(); return;
+    }
+    email.removeAttribute('aria-invalid');
+    document.getElementById('newssubmit').textContent='Joined';
+    note.textContent='You’re in. The newsletter will land at '+email.value.trim()+'.';
+    email.disabled=true;
+  });
+})();
