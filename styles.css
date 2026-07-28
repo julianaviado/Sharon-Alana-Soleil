@@ -176,6 +176,15 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .recog-state.dim{color:rgba(28,58,19,.45);margin-top:14px;max-width:44ch}
 .recog .say{margin-top:30px}
 
+/* persona carousel: auto-scrolling row of image cards with role badges */
+.personas{margin-top:clamp(36px,4.5vw,60px);overflow:hidden;position:relative}
+.personas-track{display:flex;gap:16px;width:max-content;animation:persona-scroll 45s linear infinite}
+.personas:hover .personas-track{animation-play-state:paused}
+@keyframes persona-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.persona{position:relative;flex:none;width:clamp(220px,24vw,300px);margin:0}
+.persona .ph{--ratio:3/4;border-radius:20px}
+.persona-role{position:absolute;left:12px;bottom:12px;z-index:3;background:rgba(252,252,247,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:99px;padding:8px 16px;font-size:14px;font-weight:500;letter-spacing:-.01em;color:var(--ink)}
+
 /* lexicon */
 
 /* the method: faded lead-in, big claim, three cards (Fixa 'designed differently') */
