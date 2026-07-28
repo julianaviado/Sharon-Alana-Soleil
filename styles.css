@@ -163,6 +163,16 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 
 /* lexicon */
 
+/* the method: faded lead-in, big claim, three cards (Fixa 'designed differently') */
+.diff-head{font-size:clamp(22px,2.4vw,32px);line-height:1.15;letter-spacing:-.02em;font-weight:500;color:rgba(28,58,19,.5);max-width:22ch}
+.diff-title{margin-top:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:clamp(40px,5vw,60px)}
+@media(max-width:900px){.grid3{grid-template-columns:1fr}}
+.dcard{background:rgba(28,58,19,.05);border-radius:24px;padding:clamp(28px,3vw,40px);min-height:350px;display:flex;flex-direction:column;justify-content:space-between;gap:48px}
+.dcard>svg{flex:none;width:40px;height:40px;color:var(--soft)}
+.dcard p{font-size:15.5px;line-height:1.5;color:rgba(28,58,19,.55);margin-top:12px;max-width:40ch}
+@media(max-width:900px){.dcard{min-height:230px}}
+
 /* flow list */
 .flow{display:grid;grid-template-columns:1fr 1.02fr;gap:clamp(32px,5vw,64px);align-items:center}
 @media(max-width:900px){.flow{grid-template-columns:1fr}}
