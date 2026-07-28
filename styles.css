@@ -194,8 +194,8 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 /* lexicon */
 
 /* the method: faded lead-in, big claim, three cards (Fixa 'designed differently') */
-.diff-head{font-size:clamp(22px,2.4vw,32px);line-height:1.15;letter-spacing:-.02em;font-weight:500;color:rgba(28,58,19,.5);max-width:22ch}
-.diff-title{margin-top:12px}
+.diff-head{font-size:clamp(22px,2.4vw,32px);line-height:1.15;letter-spacing:-.02em;font-weight:500;color:rgba(28,58,19,.5)}
+.diff-title{margin-top:12px;font-family:var(--body);font-weight:500;letter-spacing:-.03em;line-height:1.05;font-size:clamp(28px,4.1vw,58px)}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:clamp(40px,5vw,60px)}
 @media(max-width:900px){.grid3{grid-template-columns:1fr}}
 .dcard{background:rgba(28,58,19,.05);border-radius:24px;padding:clamp(28px,3vw,40px);min-height:350px;display:flex;flex-direction:column;justify-content:space-between;gap:48px}
