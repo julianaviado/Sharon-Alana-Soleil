@@ -112,7 +112,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 65%;z-index:0}
 .hero.has-bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.4);z-index:1}
 .hero.has-bg .wrap{position:relative;z-index:2}
-.hero.has-bg h1{color:var(--cream)}
+.hero.has-bg h1{color:var(--cream);font-size:clamp(34px,4.4vw,62px);max-width:22ch;margin-left:auto;margin-right:auto}
 .hero.has-bg .hero-sub{color:rgba(246,243,236,.85)}
 .hero.has-bg .trigger{color:rgba(246,243,236,.7)}
 .hero.has-bg .eyebrow{background:rgba(246,243,236,.14);color:rgba(246,243,236,.85)}
@@ -147,6 +147,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .band-img .eyebrow{background:rgba(246,243,236,.16);color:rgba(246,243,236,.88)}
 .band-img h2{color:var(--cream)}
 .band-img .recog-state{color:var(--cream)}
+.band-img .recog-state.dim{color:rgba(246,243,236,.75)}
 .band-img .lead{color:rgba(246,243,236,.85)}
 .band-img .trigger{color:rgba(246,243,236,.72)}
 .band-yellow{background-color:var(--gold);color:var(--ink)}
@@ -196,6 +197,12 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .recog-state{margin-top:26px;font-size:clamp(23px,2.6vw,32px);line-height:1.3;letter-spacing:-.02em;font-weight:500;color:var(--ink);max-width:38ch}
 .recog-state.dim{color:rgba(54,48,42,.45);margin-top:14px;max-width:44ch}
 .recog .say{margin-top:30px}
+
+/* persona grid: four static cards */
+.persona-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(36px,4.5vw,60px)}
+@media(max-width:900px){.persona-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.persona-grid{grid-template-columns:1fr}}
+.persona-grid .persona{width:auto}
 
 /* persona carousel: auto-scrolling row of image cards with role badges */
 .personas{margin-top:clamp(36px,4.5vw,60px);overflow:hidden;position:relative}
@@ -385,6 +392,11 @@ footer p{color:rgba(253,250,243,.7)}
 .d-word .tm{font-size:.3em;vertical-align:.9em;letter-spacing:.02em}
 .d-term i{font-family:var(--display);font-style:italic;font-size:17px;color:var(--ink-60);letter-spacing:.01em}
 .d-def{margin:22px auto 0;font-size:clamp(19px,2.1vw,26px);line-height:1.42;color:var(--ink);max-width:42ch}
+/* compact callout variant of the definition entry */
+.define.compact{margin:clamp(26px,3vw,38px) 0 0;max-width:640px;padding:clamp(24px,3vw,36px);text-align:left;border-radius:20px}
+.define.compact .d-term{justify-content:flex-start;padding-bottom:12px}
+.define.compact .d-word{font-size:clamp(28px,3.4vw,44px)}
+.define.compact .d-def{margin:16px 0 0;font-size:clamp(16px,1.6vw,19px);max-width:52ch}
 
 /* four sub-entries, same anatomy as the Over Syndrome entry above */
 .legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--hair-jade);
