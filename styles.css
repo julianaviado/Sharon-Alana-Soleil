@@ -215,6 +215,11 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
   font-size:clamp(26px,2.4vw,36px);font-weight:600;line-height:1.02;letter-spacing:-.03em;color:var(--ink);text-align:left;text-wrap:balance}
 .persona .ph .ph-in{margin-top:auto;padding-bottom:20px}
 .persona .ph{align-items:flex-end}
+.persona.has-photo .ph::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(0,0,0,.5),rgba(0,0,0,0) 44%,rgba(0,0,0,0) 60%,rgba(0,0,0,.48))}
+.persona.has-photo .persona-role{color:var(--cream)}
+.persona.has-photo .ph-tag{color:rgba(246,243,236,.75)}
+.persona.has-photo .ph-note{color:rgba(246,243,236,.88)}
 
 /* lexicon */
 
