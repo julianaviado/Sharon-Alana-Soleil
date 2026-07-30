@@ -10,10 +10,10 @@
   --btn-hover:#f6f3ec;      /* hover = snow bg / green text */
   --jade:#3d5b34;           /* soft green, checkmarks and rules on light */
   --jade-light:#a4b0a1;     /* faded green, icons on the dark green */
-  --gold:#f3e29a;           /* light yellow, ONLY as filled chips + on dark grounds */
-  --on-dark:#f3e29a;
+  --gold:#c9a75a;           /* gold chrome, filled chips + accents on dark grounds */
+  --on-dark:#d3b366;
   --terra:#3d5b34;          /* soft green, links and trademarks */
-  --wheat:#f3e29a;
+  --wheat:#c9a75a;
   --wash-sun:#ece4da;       /* Yellowish White, soft block */
   --wash-honey:#ece4da;
   --wash-amber:#ece4da;     /* Foam White, warm block */
@@ -286,7 +286,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
 .tag{font-size:11px;border:1px solid var(--ink-30);border-radius:100px;padding:4px 11px;color:var(--ink-60)}
 /* the one yellow: a small filled chip, dark text inside. the Seed accent. */
-.tag.chip{background:var(--gold);border-color:var(--gold);color:var(--dark);font-weight:600;letter-spacing:.01em}
+.tag.chip{background:linear-gradient(135deg,#e0c47e 0%,#b68d3f 100%);border-color:#b68d3f;color:var(--dark);font-weight:600;letter-spacing:.01em}
 .card h3{font-size:clamp(19px,1.8vw,22px);letter-spacing:-.02em}
 .card .sub{font-family:var(--body);font-style:italic;font-size:17px;letter-spacing:-.015em;color:var(--ink);margin-top:6px}
 .card p{font-size:14.5px;margin-top:10px;flex:1}
@@ -342,7 +342,7 @@ footer p{color:rgba(253,250,243,.7)}
 .foot-news input{flex:1 1 200px;min-width:0;padding:12px 18px;border-radius:99px;border:1px solid rgba(246,243,236,.35);background:rgba(246,243,236,.1);color:var(--cream);font-size:14px;font-family:var(--body)}
 .foot-news input::placeholder{color:rgba(246,243,236,.55)}
 .foot-news input:focus-visible{outline:2px solid var(--on-dark);outline-offset:2px}
-.foot-news .btn-news{background:var(--gold);color:var(--dark);border-color:var(--gold);padding:12px 22px}
+.foot-news .btn-news{background:linear-gradient(135deg,#e0c47e 0%,#b68d3f 100%);color:var(--dark);border-color:#b68d3f;padding:12px 22px}
 .foot-news .btn-news:hover{background:var(--cream);color:var(--dark);border-color:var(--cream)}
 .foot-news .news-note{font-size:13px;color:rgba(246,243,236,.7);flex-basis:100%}
 .foot-news .news-note:empty{display:none}
