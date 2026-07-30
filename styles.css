@@ -211,7 +211,10 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 @keyframes persona-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .persona{position:relative;flex:none;width:clamp(220px,24vw,300px);margin:0}
 .persona .ph{--ratio:3/4;border-radius:20px}
-.persona-role{position:absolute;left:12px;bottom:12px;z-index:3;background:rgba(246,243,236,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:99px;padding:8px 16px;font-size:14px;font-weight:500;letter-spacing:-.01em;color:var(--ink)}
+.persona-role{position:absolute;top:16px;left:16px;right:16px;z-index:3;
+  font-size:clamp(26px,2.4vw,36px);font-weight:600;line-height:1.02;letter-spacing:-.03em;color:var(--ink);text-align:left;text-wrap:balance}
+.persona .ph .ph-in{margin-top:auto;padding-bottom:20px}
+.persona .ph{align-items:flex-end}
 
 /* lexicon */
 
