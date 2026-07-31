@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=17">
+<link rel="stylesheet" href="styles.css?v=18">
   
 </head>
 <body>
@@ -234,20 +234,11 @@
 <!-- TESTIMONIALS -->
 <section class="band band-cream">
   <div class="wrap">
-    <div class="narrow rv" style="text-align:center">
+    <div class="rv" style="text-align:center">
       <p class="eyebrow">In their words</p>
-      <h2 style="margin-top:14px">What happens when <em>presence</em> replaces pressure</h2>
+      <h2 style="margin-top:14px">What happens when<br><em>presence</em> replaces pressure</h2>
       <p class="lead" style="margin-top:16px">Reclaim the time and energy to be present for loved ones</p>
     </div>
-    <figure class="ph rv" style="--ratio:21/9;margin-top:44px">
-      <div class="ph-in">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="6" width="19" height="13.5" rx="2" stroke="currentColor" stroke-width="1.1"/><path d="M8.5 6 10 3.5h4L15.5 6" stroke="currentColor" stroke-width="1.1"/><circle cx="12" cy="12.75" r="3.6" stroke="currentColor" stroke-width="1.1"/></svg>
-        <span class="ph-tag">Image 09 · optional</span>
-        <span class="ph-title">Texture band</span>
-        <span class="ph-note">Wet sand, water pulling back, shot straight down. No horizon, no figure. Background only, so the quotes stay the loudest thing here.</span>
-        <span class="ph-dim">21:9 · 2400×1030</span>
-      </div>
-    </figure>
     <div class="tgrid rv">
       <article class="tcard">
         <h3>Reclaiming my confidence</h3>
@@ -315,13 +306,23 @@
 
 <footer>
   <div class="wrap">
+    <div class="foot-news" style="margin:0 0 clamp(40px,5vw,56px)">
+      <strong>Join the newsletter</strong>
+      <form id="newsform" novalidate>
+        <input type="email" id="newsemail" placeholder="you@email.com" aria-label="Email address" autocomplete="email" required>
+        <button class="btn btn-news" type="submit" id="newssubmit">Join</button>
+      </form>
+      <p class="news-consent">By signing up you consent to receive emails from Sharon.</p>
+      <span class="news-note" id="newsnote" role="status" aria-live="polite"></span>
+    </div>
+
     <div class="foot-grid">
       <div>
-        <div class="mark" style="font-size:24px">
+        <div class="mark" style="font-size:24px;color:var(--cream)">
       Sharon Alana Soleil
         </div>
         <p style="font-size:14px;margin-top:12px;max-width:36ch">Personal coaching for burned-out professionals and overwhelmed caregivers, so the people others count on get their time and energy back.</p>
-        <p style="font-size:13px;margin-top:10px;color:var(--ink-60)"><b style="color:var(--ink)">Remote, anywhere in the United States.</b></p>
+        <p style="font-size:13px;margin-top:10px;color:rgba(246,243,236,.75)"><b style="color:var(--cream)">Remote, anywhere in the United States.</b></p>
         <div class="socials">
           <a href="#call" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="#f6f3ec" aria-hidden="true"><path d="M13 22v-9h3l.5-4H13V6.5c0-1 .3-1.5 1.7-1.5H17V1.2C16.6 1.1 15.3 1 13.9 1 10.9 1 9 2.8 9 6.1V9H6v4h3v9h4z"/></svg></a>
           <a href="#call" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f6f3ec" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#f6f3ec" stroke="none"/></svg></a>
@@ -343,15 +344,6 @@
           <a href="#call">Book Your Free Call</a><a href="#call">hello@sharonalanasoleil.com</a><a href="speaking.html">Speaking enquiries</a><a href="coaching.html#answers">Answers to questions</a>
         </div>
       </div>
-    </div>
-
-    <div class="foot-news">
-      <strong>Join the newsletter</strong>
-      <form id="newsform" novalidate>
-        <input type="email" id="newsemail" placeholder="you@email.com" aria-label="Email address" autocomplete="email" required>
-        <button class="btn btn-news" type="submit" id="newssubmit">Join</button>
-      </form>
-      <span class="news-note" id="newsnote" role="status" aria-live="polite"></span>
     </div>
 
     <div class="note-box">
