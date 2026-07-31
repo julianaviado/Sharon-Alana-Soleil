@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=19">
+<link rel="stylesheet" href="styles.css?v=20">
   
 </head>
 <body>
@@ -284,13 +284,18 @@
 <footer>
   <div class="wrap">
     <div class="foot-news" style="margin:0 0 clamp(40px,5vw,56px)">
-      <strong>Join the newsletter</strong>
-      <form id="newsform" novalidate>
-        <input type="email" id="newsemail" placeholder="you@email.com" aria-label="Email address" autocomplete="email" required>
-        <button class="btn btn-news" type="submit" id="newssubmit">Join</button>
-      </form>
-      <p class="news-consent">By signing up you consent to receive emails from Sharon.</p>
-      <span class="news-note" id="newsnote" role="status" aria-live="polite"></span>
+      <div class="news-copy">
+        <strong>Join the newsletter</strong>
+        <p class="news-benefits">One short note a month: a pressure pattern to notice, one small step back to yourself, and first word on new workshops and retreats.</p>
+      </div>
+      <div class="news-fields">
+        <form id="newsform" novalidate>
+          <input type="email" id="newsemail" placeholder="you@email.com" aria-label="Email address" autocomplete="email" required>
+          <button class="btn btn-news" type="submit" id="newssubmit">Join</button>
+        </form>
+        <p class="news-consent">By signing up you consent to receive emails from Sharon.</p>
+        <span class="news-note" id="newsnote" role="status" aria-live="polite"></span>
+      </div>
     </div>
 
     <div class="foot-grid">
