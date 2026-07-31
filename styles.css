@@ -308,6 +308,10 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
   border:1px solid rgba(211,179,102,.55);background:rgba(211,179,102,.14)}
 .win-list li::after{content:"";position:absolute;left:5.5px;top:.68em;width:7px;height:3.5px;
   border-left:1.8px solid var(--on-dark);border-bottom:1.8px solid var(--on-dark);transform:rotate(-45deg)}
+/* same list on light bands */
+.win-list-light li{color:var(--ink-60)}
+.win-list-light li::before{border-color:rgba(61,91,52,.45);background:rgba(61,91,52,.08)}
+.win-list-light li::after{border-left-color:var(--jade);border-bottom-color:var(--jade)}
 .work-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,4vw,60px);margin-top:clamp(40px,5vw,60px);align-items:start}
 @media(max-width:900px){.work-grid{grid-template-columns:1fr}}
 .work-menu{display:flex;flex-direction:column;gap:8px}
