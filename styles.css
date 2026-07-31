@@ -38,6 +38,20 @@
   --type-helper:clamp(.875rem, .8rem + .3vw, 1rem);  /* 14px → 16px */
 }
 *{box-sizing:border-box;margin:0;padding:0}
+/* ---------- entry screen ---------- */
+.preload{position:fixed;inset:0;z-index:999;background:var(--dark);display:grid;place-items:center;padding:24px;
+  animation:preload-out .5s ease 2.85s forwards}
+.preload-line{position:absolute;max-width:20ch;text-align:center;font-family:var(--body);font-weight:700;
+  font-size:clamp(1.75rem, 1.1rem + 2.6vw, 3.25rem);line-height:1.14;letter-spacing:-.022em;color:var(--cream);opacity:0}
+.preload-1{animation:preload-1 1.8s ease forwards}
+.preload-2{animation:preload-2 1.3s ease 1.55s forwards}
+@keyframes preload-1{0%{opacity:0;transform:translateY(10px)}25%{opacity:1;transform:none}72%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-8px)}}
+@keyframes preload-2{0%{opacity:0;transform:translateY(10px)}35%{opacity:1;transform:none}100%{opacity:1;transform:none}}
+@keyframes preload-out{to{opacity:0;visibility:hidden}}
+html.preloading,html.preloading body{overflow:hidden}
+/* already seen this session, or reduced motion: never show it */
+html.preloaded .preload{display:none}
+@media(prefers-reduced-motion:reduce){.preload{display:none}}
 html{scroll-behavior:smooth;overflow-x:clip}
 body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:clip}
 .wrap{max-width:1200px;margin:0 auto;padding:0 28px}

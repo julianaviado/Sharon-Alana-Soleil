@@ -1,3 +1,13 @@
+/* entry screen: clear it once the sequence finishes, remember for this session */
+(function(){
+  const el=document.getElementById('preload'), root=document.documentElement;
+  const done=()=>{root.classList.remove('preloading');if(el&&el.parentNode)el.remove();};
+  if(!el||root.classList.contains('preloaded')){done();return;}
+  try{sessionStorage.setItem('sas-entry','1');}catch(e){}
+  el.addEventListener('animationend',e=>{if(e.animationName==='preload-out')done();});
+  setTimeout(done,4200); /* safety net if the animation never fires */
+})();
+
 /* nav */
 (function(){
   const h=document.querySelector('header'), t=document.getElementById('navtoggle');
