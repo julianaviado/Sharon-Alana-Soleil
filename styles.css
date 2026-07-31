@@ -237,6 +237,15 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .dcard>svg{flex:none;width:40px;height:40px;color:var(--soft)}
 .dcard p{font-size:15.5px;line-height:1.5;color:rgba(54,48,42,.55);margin-top:12px;max-width:40ch}
 @media(max-width:900px){.dcard{min-height:230px}}
+/* five-up variant of the same cards */
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:clamp(40px,5vw,60px)}
+@media(max-width:1120px){.grid5{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid5{grid-template-columns:1fr}}
+.grid5 .dcard{min-height:300px;padding:clamp(22px,2.2vw,30px);gap:36px}
+.grid5 .dcard>svg{width:30px;height:30px}
+@media(max-width:1120px){.grid5 .dcard{min-height:230px}}
+.step-n{font-family:var(--body);font-size:12px;letter-spacing:.16em;font-weight:600;color:var(--soft)}
+.step-word{text-transform:uppercase;letter-spacing:.07em}
 
 /* flow list */
 .flow{display:grid;grid-template-columns:1fr 1.02fr;gap:clamp(32px,5vw,64px);align-items:center}
