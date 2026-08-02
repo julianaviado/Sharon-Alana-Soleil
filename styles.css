@@ -4,15 +4,15 @@
   /* Seed's real design tokens (from their production CSS) */
   --cream:#f6f3ec;          /* Snow White, the ground */
   --paper:#f6f4f0;
-  --dark:#1c3a13;           /* Seed Green. text, buttons, dark blocks, footer */
-  --soft:#3d5b34;           /* Soft Green, subtle marks */
-  --btn:#1c3a13;            /* pill button, snow label, INVERTS on hover */
+  --dark:#3b2a20;           /* Espresso. text, buttons, dark blocks, footer */
+  --soft:#6f4e37;           /* Coffee, subtle marks */
+  --btn:#3b2a20;            /* pill button, snow label, INVERTS on hover */
   --btn-hover:#f6f3ec;      /* hover = snow bg / green text */
-  --jade:#3d5b34;           /* soft green, checkmarks and rules on light */
-  --jade-light:#a4b0a1;     /* faded green, icons on the dark green */
+  --jade:#6f4e37;           /* coffee, checkmarks and rules on light */
+  --jade-light:#c2a68c;     /* faded tan, icons on the espresso */
   --gold:#c9a75a;           /* gold chrome, filled chips + accents on dark grounds */
   --on-dark:#d3b366;
-  --terra:#3d5b34;          /* soft green, links and trademarks */
+  --terra:#6f4e37;          /* coffee, links and trademarks */
   --wheat:#c9a75a;
   --wash-sun:#ece4da;       /* Yellowish White, soft block */
   --wash-honey:#ece4da;
@@ -29,7 +29,7 @@
   --body:'Instrument Sans', system-ui, sans-serif;
   --wonk:normal;
   /* AAA type scale. rem + vw hybrids so browser text-resize keeps scaling (WCAG 1.4.4) */
-  --heading:#1e3a2b;                                 /* 10.8:1 on cream */
+  --heading:#3b2a20;                                 /* 11.1:1 on cream */
   --ink-sub:rgba(54,48,42,.86);                      /* 7.3:1 on cream */
   --type-h1:clamp(2.75rem, 1.9rem + 2.7vw, 4.25rem); /* 44px → 68px */
   --type-sub:clamp(1.25rem, 1.05rem + .65vw, 1.625rem); /* 20px → 26px */
@@ -310,7 +310,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
   border-left:1.8px solid var(--on-dark);border-bottom:1.8px solid var(--on-dark);transform:rotate(-45deg)}
 /* same list on light bands */
 .win-list-light li{color:var(--ink-60)}
-.win-list-light li::before{border-color:rgba(61,91,52,.45);background:rgba(61,91,52,.08)}
+.win-list-light li::before{border-color:rgba(111,78,55,.45);background:rgba(111,78,55,.08)}
 .win-list-light li::after{border-left-color:var(--jade);border-bottom-color:var(--jade)}
 .work-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,4vw,60px);margin-top:clamp(40px,5vw,60px);align-items:start}
 @media(max-width:900px){.work-grid{grid-template-columns:1fr}}
