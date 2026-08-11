@@ -483,6 +483,10 @@ footer p{color:rgba(253,250,243,.7)}
 .d-term i{font-family:var(--display);font-style:italic;font-size:17px;color:var(--ink-60);letter-spacing:.01em}
 .d-def{margin:22px auto 0;font-size:clamp(19px,2.1vw,26px);line-height:1.42;color:var(--ink);max-width:42ch}
 /* compact callout variant of the definition entry */
+/* on a photo the frosted card needs a near-solid ground to keep the ink legible */
+.band-img .define{margin-top:0;background:rgba(252,252,247,.95);border-color:rgba(252,252,247,.8);box-shadow:0 26px 64px rgba(28,58,19,.3)}
+/* all the text lives inside the card here, so the photo needs less scrim */
+#define::before{background:rgba(0,0,0,.22)}
 .define.compact{margin:clamp(26px,3vw,38px) 0 0;max-width:640px;padding:clamp(24px,3vw,36px);text-align:left;border-radius:20px}
 .define.compact .d-term{justify-content:flex-start;padding-bottom:12px}
 .define.compact .d-word{font-size:clamp(28px,3.4vw,44px)}
