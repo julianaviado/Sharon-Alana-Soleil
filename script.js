@@ -34,6 +34,22 @@
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 })();
 
+/* the header floats over the film hero and settles into its glass once the hero is past */
+(function(){
+  const hero=document.querySelector('.hero.has-video'), head=document.querySelector('header');
+  if(!hero||!head) return;
+  let queued=false;
+  const flip=()=>{
+    queued=false;
+    /* the hero still sits under the bar while its bottom edge is below the bar */
+    head.classList.toggle('on-hero',hero.getBoundingClientRect().bottom>head.offsetHeight);
+  };
+  const onScroll=()=>{ if(!queued){ queued=true; requestAnimationFrame(flip); } };
+  flip();
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',onScroll);
+})();
+
 /* hero video. Nothing loads until we know the visitor wants motion and can afford
    the bytes, and the loop can always be stopped, since it runs past five seconds. */
 (function(){
