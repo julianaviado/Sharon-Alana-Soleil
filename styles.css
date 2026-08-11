@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap');
 
 :root{
   /* Seed's real design tokens (from their production CSS) */
@@ -22,10 +22,8 @@
   --hair-jade:#778971;      /* faded-green-60 */
   --hair:rgba(28,58,19,.14);
   --ink:#1c3a13; --ink-60:rgba(28,58,19,.86); --ink-30:rgba(28,58,19,.55);
-  /* Times New Roman Condensed renders for anyone who has the cut installed.
-     Everyone else: Times New Roman, then Tinos (metric-compatible), narrowed. */
-  --display:'Times New Roman Condensed','TimesNewRomanCondensed','Times New Roman Condensed MT',
-            'Times New Roman','Tinos',Times,'Liberation Serif',serif;
+  /* Instrument Serif for display, Instrument Sans for everything else */
+  --display:'Instrument Serif','Times New Roman',Times,'Liberation Serif',serif;
   --body:'Instrument Sans', system-ui, sans-serif;
   --wonk:normal;
   /* AAA type scale. rem + vw hybrids so browser text-resize keeps scaling (WCAG 1.4.4) */
@@ -67,7 +65,8 @@ h3{font-family:var(--body);font-weight:600;line-height:1.3;letter-spacing:-.02em
 em{font-style:italic}
 
 /* every display surface gets the condensed width where the cut exists */
-h1,h2,.mark,.d-word,.d-term i,.brand{font-stretch:condensed;font-synthesis-weight:none}
+/* Instrument Serif ships one weight, so never let the browser fake a bolder one */
+h1,h2,.mark,.d-word,.d-term i,.brand{font-synthesis-weight:none}
 .brand{font-family:var(--display);font-weight:400;letter-spacing:-.028em}
 p{color:var(--ink-60)}
 .lead{font-size:clamp(18px,1.6vw,21px);line-height:1.58}
@@ -244,7 +243,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
   display:flex;flex-direction:column;justify-content:flex-end;gap:12px}
 /* the five columns are a fixed 216px inside .wrap, so the name is sized to the
    longest one-word label rather than to the viewport; it grows once they stack */
-.pcard-name{font-size:20px;font-weight:600;line-height:1.05;letter-spacing:-.03em;color:var(--ink);
+.pcard-name{font-size:24px;font-weight:600;line-height:1.05;letter-spacing:-.03em;color:var(--ink);
   overflow-wrap:break-word;hyphens:auto}
 @media(max-width:1080px){.pcard-name{font-size:clamp(24px,2.6vw,30px)}}
 .pcard-state{font-size:14.5px;line-height:1.46;color:rgba(28,58,19,.82)}
@@ -501,7 +500,7 @@ footer p{color:rgba(253,250,243,.7)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.define{background:var(--paper)}header{background:rgba(252,252,247,.97)}}
 .define{max-width:820px;margin:clamp(26px,3vw,38px) auto 0;background:rgba(252,252,247,.55);-webkit-backdrop-filter:blur(37.5px) saturate(1.3);backdrop-filter:blur(37.5px) saturate(1.3);border:1px solid rgba(252,252,247,.6);box-shadow:0 4px 30px rgba(28,58,19,.06);border-radius:24px;padding:clamp(38px,4.4vw,58px) clamp(28px,4vw,56px);text-align:center}
 .d-term{display:flex;align-items:baseline;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid var(--hair-jade);padding-bottom:18px}
-.d-word{font-family:var(--display);font-stretch:condensed;font-weight:400;font-size:clamp(36px,4.8vw,66px);line-height:1;letter-spacing:-.034em;margin:0}
+.d-word{font-family:var(--display);font-weight:400;font-size:clamp(36px,4.8vw,66px);line-height:1;letter-spacing:-.034em;margin:0}
 /* the define card is always a light glass surface, even inside photo bands */
 .define .d-word{color:var(--ink)}
 .d-word .tm{font-size:.3em;vertical-align:.9em;letter-spacing:.02em}
