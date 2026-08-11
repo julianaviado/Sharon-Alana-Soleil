@@ -34,6 +34,55 @@
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 })();
 
+/* hero video. Nothing loads until we know the visitor wants motion and can afford
+   the bytes, and the loop can always be stopped, since it runs past five seconds. */
+(function(){
+  const v=document.getElementById('herovid'), btn=document.getElementById('vidtoggle');
+  if(!v||!btn) return;
+  const label=document.getElementById('vidlabel');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  const conn=navigator.connection||navigator.webkitConnection||{};
+  const thin=conn.saveData===true||/(^|-)2g$/.test(conn.effectiveType||'');
+  let wired=false;
+
+  function wire(){
+    if(wired) return;
+    const small=matchMedia('(max-width:700px)').matches;
+    const add=(src,type)=>{const s=document.createElement('source');s.src=src;s.type=type;v.appendChild(s);};
+    add(small?v.dataset.webmSmall:v.dataset.webm,'video/webm');
+    add(small?v.dataset.mp4Small:v.dataset.mp4,'video/mp4');
+    v.load(); wired=true;
+  }
+  function state(playing){
+    btn.dataset.state=playing?'playing':'paused';
+    label.textContent=playing?'Pause background':'Play background';
+    btn.setAttribute('aria-label',playing?'Pause the background video':'Play the background video');
+  }
+  function start(){ wire(); const p=v.play(); if(p&&p.catch) p.catch(()=>state(false)); state(true); }
+  function stop(){ v.pause(); state(false); }
+
+  let pref=null;
+  try{ pref=sessionStorage.getItem('sas-herovid'); }catch(e){}
+  if(pref==='off'||(pref!=='on'&&(reduce.matches||thin))) state(false); else start();
+
+  btn.addEventListener('click',()=>{
+    const playing=btn.dataset.state==='playing';
+    if(playing) stop(); else start();
+    try{ sessionStorage.setItem('sas-herovid',playing?'off':'on'); }catch(e){}
+  });
+  /* a mid-visit switch to reduced motion should settle the picture too */
+  reduce.addEventListener('change',e=>{ if(e.matches) stop(); });
+  /* off-screen or backgrounded, there is no reason to keep decoding frames */
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden) v.pause();
+    else if(btn.dataset.state==='playing') v.play().catch(()=>{});
+  });
+  new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){ if(btn.dataset.state==='playing') v.play().catch(()=>{}); }
+    else v.pause();
+  }),{threshold:.01}).observe(v);
+})();
+
 /* pattern cards: press one and it turns over to its shift line */
 (function(){
   const cards=document.querySelectorAll('.pcard');

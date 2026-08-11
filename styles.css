@@ -164,18 +164,34 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .hero-cta{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .trigger{font-size:var(--type-helper);color:var(--ink-sub);margin-top:14px}
 .stage{position:relative;margin-top:clamp(40px,5vw,68px)}
-/* hero with the photo as its background, text overlaid */
-.hero.has-bg{min-height:88vh;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(64px,9vw,120px) 0 clamp(140px,18vw,240px)}
-.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;z-index:0}
-.hero.has-bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.4);z-index:1}
-.hero.has-bg .wrap{position:relative;z-index:2}
-/* the long two-line headline needs the standard scale, not the display size */
-.hero.has-bg h1{color:var(--cream);font-size:clamp(2.125rem, 1.35rem + 2.5vw, 4.25rem);max-width:26ch;margin-left:auto;margin-right:auto}
-.hero.has-bg .hero-sub{color:rgba(252,252,247,.92)}
-.hero.has-bg .trigger{color:rgba(252,252,247,.8)}
-.hero.has-bg .eyebrow{color:rgba(252,252,247,.88)}
-.hero.has-bg .btn-ghost{background:rgba(252,252,247,.14);color:var(--cream);border-color:rgba(252,252,247,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.hero.has-bg .btn-ghost:hover{background:rgba(252,252,247,.28);border-color:var(--cream)}
+/* hero with the coastline clip as its background, text overlaid.
+   The video and its scrim reach 64px up so they run behind the sticky header. */
+.hero.has-video{padding-bottom:clamp(56px,7vw,96px)}
+.hero-video{position:absolute;inset:-64px 0 0;width:100%;height:calc(100% + 64px);
+  object-fit:cover;object-position:center 42%;z-index:0;
+  filter:brightness(.68) saturate(.92);background:var(--dark)}
+/* the scrim is heaviest through the middle, where the copy sits, and lifts at the
+   edges so the water still reads; it lands the cream type at 7:1 or better */
+.hero.has-video::after{content:"";position:absolute;inset:-64px 0 0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(16,32,14,.54) 0%,rgba(16,32,14,.68) 32%,rgba(16,32,14,.6) 60%,rgba(16,32,14,.44) 100%)}
+.hero.has-video .wrap{position:relative;z-index:2}
+.hero.has-video h1{color:var(--cream)}
+.hero.has-video .hero-sub,.hero.has-video .trigger,.hero.has-video .eyebrow{color:var(--cream)}
+.hero.has-video .btn-ghost{background:rgba(252,252,247,.16);color:var(--cream);border-color:rgba(252,252,247,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.hero.has-video .btn-ghost:hover{background:rgba(252,252,247,.3);border-color:var(--cream)}
+.hero.has-video .btn{background:var(--cream);color:var(--dark);border-color:var(--cream)}
+.hero.has-video .btn:hover{background:var(--gold);border-color:var(--gold);color:var(--dark)}
+/* pause control: the loop runs longer than five seconds, so it needs one (WCAG 2.2.2) */
+.vid-toggle{position:absolute;right:clamp(14px,2vw,26px);top:clamp(16px,2vw,26px);z-index:3;
+  display:inline-flex;align-items:center;gap:8px;padding:9px 16px 9px 13px;border-radius:100px;
+  background:rgba(16,32,14,.6);color:var(--cream);border:1px solid rgba(252,252,247,.5);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  font-family:var(--body);font-size:13px;font-weight:500;cursor:pointer;transition:background .2s}
+.vid-toggle:hover{background:rgba(16,32,14,.8);border-color:var(--cream)}
+.vid-toggle svg{width:15px;height:15px;flex:none}
+.vid-toggle .vid-i-play{display:none}
+.vid-toggle[data-state="paused"] .vid-i-play{display:block}
+.vid-toggle[data-state="paused"] .vid-i-pause{display:none}
 .hero-shot{width:100vw;margin-left:calc(50% - 50vw);border-left:none;border-right:none;border-radius:0}
 .flow-shot,.card-shot{border-radius:0;border:none}
 .card-shot{border-radius:20px;overflow:hidden;position:relative;width:100%;border-bottom:1px solid var(--hair)}

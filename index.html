@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=41">
+<link rel="stylesheet" href="styles.css?v=44">
 <script>
   /* runs before paint: skip the entry screen if it already played this visit */
   try {
@@ -49,8 +49,14 @@
 <main id="main">
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero has-video">
   <div class="hero-wash" aria-hidden="true"><span></span><span></span><span></span></div>
+  <video class="hero-video" id="herovid" aria-hidden="true" tabindex="-1" muted loop playsinline
+    preload="none" poster="assets/images/hero-coast-poster.webp"
+    data-webm="assets/videos/hero-coast.webm"
+    data-mp4="assets/videos/hero-coast.mp4"
+    data-webm-small="assets/videos/hero-coast-small.webm"
+    data-mp4-small="assets/videos/hero-coast-small.mp4"></video>
   <div class="wrap">
     <p class="eyebrow">For the people others rely on at work and at home</p>
     <h1>Helping others comes naturally. <br class="brk">Helping yourself is another story.</h1>
@@ -90,6 +96,12 @@
       </figure>
     </div>
   </div>
+
+  <button class="vid-toggle" id="vidtoggle" type="button">
+    <svg class="vid-i-pause" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="7" y="5" width="3.4" height="14" rx="1"/><rect x="13.6" y="5" width="3.4" height="14" rx="1"/></svg>
+    <svg class="vid-i-play" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg>
+    <span id="vidlabel">Pause background</span>
+  </button>
 </section>
 
 <!-- WHO I WORK WITH -->
