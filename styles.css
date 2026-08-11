@@ -125,8 +125,37 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .btn-ghost:hover{background:rgba(28,58,19,.06);border-color:var(--ink)}
 
 /* hero */
-.hero{padding:clamp(64px,8vw,116px) 0 clamp(48px,6vw,88px);text-align:center;position:relative;overflow:hidden}
+/* overflow stays visible so the wash can reach up behind the sticky header;
+   the wash clips its own drifting layers, so nothing else escapes */
+.hero{padding:clamp(64px,8vw,116px) 0 clamp(48px,6vw,88px);text-align:center;position:relative;isolation:isolate}
 .hero .wrap{position:relative;z-index:2}
+
+/* hero wash: a blush-to-grey field with three slow drifting layers.
+   Every tint stays light enough that the hero text keeps its AAA contrast. */
+.hero-wash{position:absolute;inset:-64px 0 0;z-index:0;pointer-events:none;overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(252,252,247,0) 74%,var(--cream) 100%),
+    linear-gradient(152deg,#f2e6dc 0%,#f6f0ea 46%,#e9ebea 100%)}
+.hero-wash span{position:absolute;display:block;border-radius:50%;will-change:transform}
+/* warm crest, top left */
+.hero-wash span:nth-child(1){width:82vw;height:54vw;left:-16vw;top:-20vw;
+  background:radial-gradient(closest-side,rgba(238,219,203,.95),rgba(238,219,203,0) 72%);
+  animation:wash-a 34s ease-in-out infinite alternate}
+/* cool crest, bottom right */
+.hero-wash span:nth-child(2){width:74vw;height:48vw;right:-18vw;bottom:-14vw;
+  background:radial-gradient(closest-side,rgba(228,233,233,.95),rgba(228,233,233,0) 74%);
+  animation:wash-b 26s ease-in-out infinite alternate}
+/* the wave: one long flat band that rolls across the middle */
+.hero-wash span:nth-child(3){width:150%;height:34vw;left:-25%;top:22%;border-radius:46%;
+  background:radial-gradient(closest-side,rgba(249,241,233,.85),rgba(249,241,233,0) 70%);
+  animation:wash-wave 22s ease-in-out infinite alternate}
+@keyframes wash-a{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(8vw,4vw,0) scale(1.14)}}
+@keyframes wash-b{from{transform:translate3d(0,0,0) scale(1.06)}to{transform:translate3d(-7vw,-5vw,0) scale(1)}}
+@keyframes wash-wave{from{transform:translate3d(-4%,0,0) rotate(-2.5deg)}to{transform:translate3d(4%,-3%,0) rotate(2.5deg)}}
+@media(prefers-reduced-motion:reduce){.hero-wash span{animation:none}}
+/* the muted hero text darkens a notch to hold 7:1 over the warmest part of the wash */
+.hero .eyebrow{color:#3f4445}
+.hero .hero-sub,.hero .trigger{color:rgba(28,58,19,.92)}
 /* the home headline carries the page on its own now, so it runs large */
 .hero h1{max-width:none;margin:18px auto 0;text-wrap:balance;
   font-size:clamp(2.375rem, 1.3rem + 3.6vw, 4.75rem)} /* 38px → 76px */
