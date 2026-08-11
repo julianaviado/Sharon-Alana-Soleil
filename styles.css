@@ -72,7 +72,8 @@ h1,h2,.mark,.d-word,.d-term i,.brand{font-stretch:condensed;font-synthesis-weigh
 p{color:var(--ink-60)}
 .lead{font-size:clamp(18px,1.6vw,21px);line-height:1.58}
 /* chip section label (Fixa): a quiet rounded tag instead of uppercase tracking */
-.eyebrow{display:inline-flex;align-items:center;padding:8px 14px;border-radius:10px;background:rgba(28,58,19,.06);font-size:var(--type-eyebrow);letter-spacing:.01em;text-transform:none;font-weight:700;color:rgba(28,58,19,.92);opacity:1}
+/* a plain gray label, no chip: #4f5355 clears 7.4:1 on the cream ground */
+.eyebrow{display:block;font-size:var(--type-eyebrow);letter-spacing:.01em;text-transform:none;font-weight:500;color:#4f5355;opacity:1}
 .lead b{color:var(--ink);font-weight:500}
 .say{font-family:var(--body);font-style:italic;font-size:clamp(19px,2vw,24px);line-height:1.24;letter-spacing:-.02em;color:var(--ink);margin-top:16px}
 .tm{font-size:.5em;vertical-align:super;letter-spacing:0;color:var(--terra)}
@@ -144,7 +145,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .hero.has-bg h1{color:var(--cream);font-size:clamp(2.125rem, 1.35rem + 2.5vw, 4.25rem);max-width:26ch;margin-left:auto;margin-right:auto}
 .hero.has-bg .hero-sub{color:rgba(252,252,247,.92)}
 .hero.has-bg .trigger{color:rgba(252,252,247,.8)}
-.hero.has-bg .eyebrow{background:rgba(252,252,247,.14);color:rgba(252,252,247,.85)}
+.hero.has-bg .eyebrow{color:rgba(252,252,247,.88)}
 .hero.has-bg .btn-ghost{background:rgba(252,252,247,.14);color:var(--cream);border-color:rgba(252,252,247,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .hero.has-bg .btn-ghost:hover{background:rgba(252,252,247,.28);border-color:var(--cream)}
 .hero-shot{width:100vw;margin-left:calc(50% - 50vw);border-left:none;border-right:none;border-radius:0}
@@ -173,7 +174,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .band-img>.band-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .band-img::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:1}
 .band-img .wrap{position:relative;z-index:2}
-.band-img .eyebrow{background:rgba(252,252,247,.16);color:rgba(252,252,247,.88)}
+.band-img .eyebrow{color:rgba(252,252,247,.9)}
 .band-img h2{color:var(--cream)}
 .band-img .recog-state{color:var(--cream)}
 .band-img .recog-state.dim{color:rgba(252,252,247,.88)}
@@ -352,7 +353,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 
 /* what it's like to work together: dark card with statement + item menu (Fixa AI section) */
 .band-work{background:var(--dark);color:var(--cream);border-radius:32px;margin:8px}
-.band-work .eyebrow,.band-ink .eyebrow{background:rgba(252,252,247,.08);color:rgba(252,252,247,.75)}
+.band-work .eyebrow,.band-ink .eyebrow{color:rgba(252,252,247,.8)}
 /* on the dark grounds the pull quote goes cream and the trademark takes the yellow */
 .band-work .say,.band-ink .say{color:var(--cream)}
 .band-work .tm,.band-ink .tm{color:var(--on-dark)}
