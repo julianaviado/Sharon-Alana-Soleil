@@ -310,6 +310,43 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .recog-state.dim{color:rgba(28,58,19,.72);margin-top:14px;max-width:44ch} /* 5:1, AAA for large text */
 .recog .say{margin-top:30px}
 
+/* "Any of these sound familiar?": four statements hand-placed rather than gridded.
+   Each card carries its own tilt and offset; they arrive one after another on scroll
+   and settle into that resting scatter. */
+#familiar{padding-bottom:clamp(48px,6vw,84px)}   /* the offsets already add depth below */
+.fam-title{max-width:24ch;margin-bottom:clamp(40px,5vw,68px)}
+.fam-scatter{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.6vw,24px);
+  align-items:start;padding-bottom:70px}
+.fam-card{--r:0deg;--y:0px;--x:0px;
+  margin:0;background:var(--paper);border:1px solid var(--hair-jade);border-radius:20px;
+  padding:clamp(24px,2.4vw,32px) clamp(20px,2vw,28px);
+  font-size:clamp(16px,1.5vw,18.5px);line-height:1.5;color:var(--ink);
+  box-shadow:0 18px 40px rgba(28,58,19,.07);
+  transform:translate3d(var(--x),var(--y),0) rotate(var(--r))}
+.fam-card:nth-child(even){background:var(--wash-sun)}
+/* the reveal comes from lower down and over-rotated, then relaxes into place */
+.fam-card.rv{opacity:0;transform:translate3d(var(--x),calc(var(--y) + 54px),0) rotate(calc(var(--r) * 2.6));
+  transition:opacity .75s ease,transform .85s cubic-bezier(.2,.8,.2,1)}
+.fam-card.rv.in{opacity:1;transform:translate3d(var(--x),var(--y),0) rotate(var(--r))}
+.fam-scatter .fam-card:nth-child(1){transition-delay:.02s}
+.fam-scatter .fam-card:nth-child(2){transition-delay:.14s}
+.fam-scatter .fam-card:nth-child(3){transition-delay:.26s}
+.fam-scatter .fam-card:nth-child(4){transition-delay:.38s}
+@media(max-width:1000px){
+  .fam-scatter{grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,26px);padding-bottom:60px}
+  .fam-card{--y:0px!important}
+  .fam-card:nth-child(2),.fam-card:nth-child(4){margin-top:clamp(26px,4vw,44px)}
+}
+@media(max-width:600px){
+  .fam-scatter{grid-template-columns:1fr;padding-bottom:0}
+  .fam-card{--x:0px!important}
+  .fam-card:nth-child(2),.fam-card:nth-child(4){margin-top:0}
+}
+/* no tilt, no travel, and they simply appear */
+@media(prefers-reduced-motion:reduce){
+  .fam-card,.fam-card.rv,.fam-card.rv.in{transform:none;opacity:1;transition:none}
+}
+
 /* persona grid: four static cards */
 .persona-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(36px,4.5vw,60px)}
 @media(max-width:900px){.persona-grid{grid-template-columns:1fr 1fr}}
