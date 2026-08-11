@@ -201,13 +201,18 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
    The video and its scrim reach 64px up so they run behind the sticky header. */
 .hero.has-video{min-height:min(88vh,820px);display:flex;flex-direction:column;justify-content:center;
   padding:clamp(96px,12vw,150px) 0 clamp(96px,12vw,150px)}
+/* two clips share the slot and take turns, crossfading as each one ends */
 .hero-video{position:absolute;inset:-72px 0 0;width:100%;height:calc(100% + 72px);
   object-fit:cover;object-position:center 42%;z-index:0;
-  filter:brightness(.63) saturate(.9);background:var(--dark)}
+  filter:brightness(.63) saturate(.9);background:var(--dark);
+  opacity:0;transition:opacity 1.1s ease}
+.hero-video.is-on{opacity:1}
+#herovid2{object-position:center 50%;filter:brightness(.74) saturate(.98)}
+@media(prefers-reduced-motion:reduce){.hero-video{transition:none}}
 /* the scrim is heaviest through the middle, where the copy sits, and lifts at the
    edges so the water still reads; it lands the cream type at 7:1 or better */
 .hero.has-video::after{content:"";position:absolute;inset:-72px 0 0;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(16,32,14,.62) 0%,rgba(16,32,14,.74) 32%,rgba(16,32,14,.68) 60%,rgba(16,32,14,.5) 100%)}
+  background:linear-gradient(180deg,rgba(16,32,14,.72) 0%,rgba(16,32,14,.74) 32%,rgba(16,32,14,.68) 60%,rgba(16,32,14,.5) 100%)}
 .hero.has-video .wrap{position:relative;z-index:2}
 .hero.has-video h1{color:var(--cream)}
 .hero.has-video .hero-sub,.hero.has-video .trigger,.hero.has-video .eyebrow{color:var(--cream)}

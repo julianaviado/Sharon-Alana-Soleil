@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=60">
+<link rel="stylesheet" href="styles.css?v=64">
 <script>
   /* runs before paint: skip the entry screen if it already played this visit */
   try {
@@ -51,16 +51,22 @@
 <!-- HERO -->
 <section class="hero has-video">
   <div class="hero-wash" aria-hidden="true"><span></span><span></span><span></span></div>
-  <video class="hero-video" id="herovid" aria-hidden="true" tabindex="-1" muted loop playsinline
+  <video class="hero-video is-on" id="herovid" aria-hidden="true" tabindex="-1" muted playsinline
     preload="none" poster="assets/images/hero-coast-poster.webp"
     data-webm="assets/videos/hero-coast.webm"
     data-mp4="assets/videos/hero-coast.mp4"
     data-webm-small="assets/videos/hero-coast-small.webm"
     data-mp4-small="assets/videos/hero-coast-small.mp4"></video>
+  <video class="hero-video" id="herovid2" aria-hidden="true" tabindex="-1" muted playsinline
+    preload="none" poster="assets/images/hero-family-poster.webp"
+    data-webm="assets/videos/hero-family-clip.webm"
+    data-mp4="assets/videos/hero-family-clip.mp4"
+    data-webm-small="assets/videos/hero-family-clip-small.webm"
+    data-mp4-small="assets/videos/hero-family-clip-small.mp4"></video>
   <div class="wrap">
     <p class="eyebrow">For the people others rely on at work and at home</p>
     <h1>Helping others comes naturally. <br class="brk">Helping yourself is another story.</h1>
-    <p class="lead hero-sub">Less pressure. More presence. Do more for yourself.</p>
+    <p class="lead hero-sub">I help you get your time, energy, and presence back for what matters most.</p>
     <div class="hero-cta">
       <a class="btn" href="over-syndrome-quiz.html">Take the Quiz</a>
     </div>
