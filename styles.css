@@ -319,7 +319,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
    Each card carries its own tilt and offset; they arrive one after another on scroll
    and settle into that resting scatter. */
 #familiar{padding-bottom:clamp(48px,6vw,84px)}   /* the offsets already add depth below */
-.fam-title{max-width:24ch;margin-bottom:clamp(40px,5vw,68px)}
+.fam-title{max-width:24ch;margin:0 auto clamp(40px,5vw,68px);text-align:center}
 .fam-scatter{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.6vw,24px);
   align-items:start;padding-bottom:70px}
 .fam-card{--r:0deg;--y:0px;--x:0px;
