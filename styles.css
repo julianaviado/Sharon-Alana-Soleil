@@ -85,8 +85,10 @@ header{position:sticky;top:0;z-index:60;
   transition:background .4s ease,border-color .4s ease;
   background:rgba(252,252,247,.72);-webkit-backdrop-filter:blur(19px) saturate(1.5);backdrop-filter:blur(19px) saturate(1.5);
   border-bottom:1px solid var(--hair)}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;
-  height:64px;padding:0 28px;max-width:1200px;margin:0 auto;position:relative}
+/* the bar runs wider than the 1200px page and sits closer to the edges, with the
+   links pulled over to the buttons rather than centred */
+.nav{display:flex;align-items:center;justify-content:space-between;gap:clamp(10px,1.6vw,26px);
+  height:64px;padding:0 clamp(16px,2vw,34px);max-width:1720px;margin:0 auto;position:relative}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){header{background:rgba(252,252,247,.97)}}
 /* over the film hero: no ground, cream type. It settles back the moment the hero leaves. */
 header.on-hero{background:transparent;border-bottom-color:transparent;
@@ -108,10 +110,11 @@ header.on-hero .tm{color:var(--on-dark)}
 /* the mobile menu panel is light, so the cream treatment comes off while it is open */
 header.on-hero.open{background:rgba(252,252,247,.72);border-bottom-color:var(--hair);
   -webkit-backdrop-filter:blur(19px) saturate(1.5);backdrop-filter:blur(19px) saturate(1.5)}
-header.on-hero.open .mark,header.on-hero.open .nav-links a{color:var(--ink)}
+header.on-hero.open .mark,header.on-hero.open .nav-links a:not(.nav-cta){color:var(--ink)}
 header.on-hero.open .nav-toggle span{background:var(--ink)}
 .mark{font-family:var(--display);font-size:20px;letter-spacing:.01em;display:flex;align-items:center;gap:9px;line-height:1;white-space:nowrap;color:var(--ink);transition:color .4s ease,font-size .45s cubic-bezier(.2,.8,.2,1),letter-spacing .45s ease}
-.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links{display:flex;gap:6px;align-items:center;margin-left:auto}
+.nav-links .nav-cta{display:none}  /* only inside the mobile menu */
 .nav-links a{color:var(--ink);text-decoration:none;font-size:13.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;
   padding:8px 12px;border-radius:99px;transition:background .2s,color .4s ease}
 .nav-links a:hover{background:rgba(28,58,19,.07)}
@@ -129,7 +132,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
   .nav-links{
     display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;
     flex-direction:column;align-items:stretch;gap:0;
-    background:rgba(252,252,247,.94);-webkit-backdrop-filter:blur(19px);backdrop-filter:blur(19px);
+    background:rgba(252,252,247,.985);-webkit-backdrop-filter:blur(19px);backdrop-filter:blur(19px);
     border:1px solid rgba(28,58,19,.1);border-radius:20px;
     padding:12px 20px;box-shadow:0 20px 40px rgba(28,58,19,.12)
   }
@@ -139,6 +142,14 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
     opacity:1;padding:14px 0;border-bottom:1px solid var(--hair);white-space:normal
   }
   .nav-links a:last-child{border-bottom:none}
+  /* the two pills crowd the bar at this width, so they move into the menu */
+  .nav-right .btn{display:none}
+  /* the panel is light whatever the header is doing, so the pills keep their own
+     colours here; .nav-links a would otherwise paint the filled one ink on green */
+  .nav-links a.nav-cta{display:inline-flex;justify-content:center;text-align:center;
+    font-size:15px;padding:14px 26px;border-bottom:none;margin-top:18px;
+    background:var(--btn);color:var(--cream);border-color:var(--dark)}
+  .nav-links a.btn-ghost.nav-cta{margin-top:10px;background:transparent;color:var(--ink);border-color:var(--ink-30)}
 }
 @media(max-width:420px){.mark{font-size:19px}.nav-links a{font-size:21px}}
 
