@@ -325,11 +325,24 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .recog-state.dim{color:rgba(28,58,19,.72);margin-top:14px;max-width:44ch} /* 5:1, AAA for large text */
 .recog .say{margin-top:30px}
 
+/* a two-up: photograph on one side, the copy on the other, centred to each other */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4.5vw,72px);align-items:center}
+.split-img{margin:0;border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:var(--wash-jade-2)}
+.split-img img{width:100%;height:100%;object-fit:cover;display:block}
+.split-copy h2{margin-top:22px;max-width:20ch}
+.split-copy .lead{margin-top:20px;max-width:46ch}
+@media(max-width:900px){
+  .split{grid-template-columns:1fr;gap:clamp(26px,4vw,40px)}
+  .split-img{aspect-ratio:16/10}
+  .split-copy .lead{max-width:58ch}
+}
+
 /* "Any of these sound familiar?": four statements hand-placed rather than gridded.
    Each card carries its own tilt and offset; they arrive one after another on scroll
    and settle into that resting scatter. */
 #familiar{padding-bottom:clamp(48px,6vw,84px)}   /* the offsets already add depth below */
-.fam-title{max-width:24ch;margin:0 auto clamp(40px,5vw,68px);text-align:center}
+.fam-title{max-width:30ch;margin:0 auto;text-align:center}
+.fam-intro{max-width:40ch;margin:18px auto clamp(40px,5vw,68px);text-align:center}
 .fam-scatter{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.6vw,24px);
   align-items:start;padding-bottom:70px}
 .fam-card{--r:0deg;--y:0px;--x:0px;
