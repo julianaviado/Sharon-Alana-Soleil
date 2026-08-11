@@ -34,6 +34,20 @@
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 })();
 
+/* pattern cards: press one and it turns over to its shift line */
+(function(){
+  const cards=document.querySelectorAll('.pcard');
+  if(!cards.length) return;
+  cards.forEach(card=>{
+    card.addEventListener('click',()=>{
+      const open=card.getAttribute('aria-expanded')==='true';
+      /* only one open at a time, so the row never reads as five separate answers */
+      if(!open) cards.forEach(c=>c.setAttribute('aria-expanded','false'));
+      card.setAttribute('aria-expanded',open?'false':'true');
+    });
+  });
+})();
+
 /* closing form */
 (function(){
   const form=document.getElementById('form');

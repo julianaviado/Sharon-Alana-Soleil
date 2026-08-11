@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=39">
+<link rel="stylesheet" href="styles.css?v=41">
 <script>
   /* runs before paint: skip the entry screen if it already played this visit */
   try {
@@ -136,31 +136,76 @@
 
   <div class="wrap">
     <div class="pattern-grid rv">
-      <article class="pcard">
-        <h3 class="pcard-name">Overthinking</h3>
-        <p class="pcard-state">You replay every conversation, and can&rsquo;t turn your brain off.</p>
-        <p class="pcard-shift">Quiet enough to hear yourself think, and let it be good enough.</p>
-      </article>
-      <article class="pcard">
-        <h3 class="pcard-name">Overgiving</h3>
-        <p class="pcard-state">You give until you&rsquo;re <em>naubos</em>: poured out, nothing left for you.</p>
-        <p class="pcard-shift">Give from a full cup, so there&rsquo;s still some left for you.</p>
-      </article>
-      <article class="pcard">
-        <h3 class="pcard-name">Overachieving</h3>
-        <p class="pcard-state">Nothing ever feels like enough, no matter what you accomplish.</p>
-        <p class="pcard-shift">Enough, without having to earn it first.</p>
-      </article>
-      <article class="pcard">
-        <h3 class="pcard-name">Overextending</h3>
-        <p class="pcard-state">You say yes before you&rsquo;ve asked yourself whether you can.</p>
-        <p class="pcard-shift">A yes you mean, because you&rsquo;re allowed to say no.</p>
-      </article>
-      <article class="pcard">
-        <h3 class="pcard-name">Over-independent</h3>
-        <p class="pcard-state">You&rsquo;d rather do it all yourself than risk needing anyone.</p>
-        <p class="pcard-shift">Still strong, and finally able to be held too.</p>
-      </article>
+      <button class="pcard" type="button" aria-expanded="false">
+        <span class="pcard-inner">
+          <span class="pcard-face pcard-front">
+            <span class="pcard-name">Overthinking</span>
+            <span class="pcard-state">You replay every conversation, and can&rsquo;t turn your brain off.</span>
+            <span class="pcard-hint">Tap for the shift</span>
+          </span>
+          <span class="pcard-face pcard-back">
+            <span class="pcard-back-name">Overthinking</span>
+            <span class="pcard-shift">Quiet enough to hear yourself think, and let it be good enough.</span>
+            <span class="pcard-hint">Tap to go back</span>
+          </span>
+        </span>
+      </button>
+      <button class="pcard" type="button" aria-expanded="false">
+        <span class="pcard-inner">
+          <span class="pcard-face pcard-front">
+            <span class="pcard-name">Overgiving</span>
+            <span class="pcard-state">You give until you&rsquo;re <em>naubos</em>: poured out, nothing left for you.</span>
+            <span class="pcard-hint">Tap for the shift</span>
+          </span>
+          <span class="pcard-face pcard-back">
+            <span class="pcard-back-name">Overgiving</span>
+            <span class="pcard-shift">Give from a full cup, so there&rsquo;s still some left for you.</span>
+            <span class="pcard-hint">Tap to go back</span>
+          </span>
+        </span>
+      </button>
+      <button class="pcard" type="button" aria-expanded="false">
+        <span class="pcard-inner">
+          <span class="pcard-face pcard-front">
+            <span class="pcard-name">Overachieving</span>
+            <span class="pcard-state">Nothing ever feels like enough, no matter what you accomplish.</span>
+            <span class="pcard-hint">Tap for the shift</span>
+          </span>
+          <span class="pcard-face pcard-back">
+            <span class="pcard-back-name">Overachieving</span>
+            <span class="pcard-shift">Enough, without having to earn it first.</span>
+            <span class="pcard-hint">Tap to go back</span>
+          </span>
+        </span>
+      </button>
+      <button class="pcard" type="button" aria-expanded="false">
+        <span class="pcard-inner">
+          <span class="pcard-face pcard-front">
+            <span class="pcard-name">Overextending</span>
+            <span class="pcard-state">You say yes before you&rsquo;ve asked yourself whether you can.</span>
+            <span class="pcard-hint">Tap for the shift</span>
+          </span>
+          <span class="pcard-face pcard-back">
+            <span class="pcard-back-name">Overextending</span>
+            <span class="pcard-shift">A yes you mean, because you&rsquo;re allowed to say no.</span>
+            <span class="pcard-hint">Tap to go back</span>
+          </span>
+        </span>
+      </button>
+      <button class="pcard" type="button" aria-expanded="false">
+        <span class="pcard-inner">
+          <span class="pcard-face pcard-front">
+            <span class="pcard-name">Over-independent</span>
+            <span class="pcard-state">You&rsquo;d rather do it all yourself than risk needing anyone.</span>
+            <span class="pcard-hint">Tap for the shift</span>
+          </span>
+          <span class="pcard-face pcard-back">
+            <span class="pcard-back-name">Over-independent</span>
+            <span class="pcard-shift">Still strong, and finally able to be held too.</span>
+            <span class="pcard-hint">Tap to go back</span>
+          </span>
+        </span>
+      </button>
     </div>
     <div class="rv" style="margin-top:clamp(36px,4vw,52px)">
       <a class="btn" href="over-syndrome-quiz.html">Discover Your Pressure Pattern</a>

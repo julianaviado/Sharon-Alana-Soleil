@@ -267,18 +267,38 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 @media(max-width:1080px){.pattern-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:760px){.pattern-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.pattern-grid{grid-template-columns:1fr}}
-.pcard{position:relative;border-radius:20px;overflow:hidden;background:var(--wash-jade-2);
-  min-height:clamp(300px,26vw,360px);padding:24px 22px;
-  display:flex;flex-direction:column;justify-content:flex-end;gap:12px}
+/* each card is a button that flips on press: pressure on the front, the shift behind it */
+.pcard{position:relative;display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;
+  font-family:inherit;text-align:left;border-radius:20px;
+  min-height:clamp(300px,26vw,360px);perspective:1200px}
+.pcard-inner{position:absolute;inset:0;transform-style:preserve-3d;
+  transition:transform .62s cubic-bezier(.2,.8,.2,1)}
+.pcard[aria-expanded="true"] .pcard-inner{transform:rotateY(180deg)}
+.pcard-face{position:absolute;inset:0;border-radius:20px;padding:24px 22px;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:12px;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden}
+.pcard-front{background:var(--wash-jade-2)}
+.pcard-back{background:var(--dark);transform:rotateY(180deg)}
+.pcard:hover .pcard-front{background:#dfe6d6}
+.pcard:focus-visible{outline:3px solid var(--dark);outline-offset:3px}
 /* the five columns are a fixed 216px inside .wrap, so the name is sized to the
    longest one-word label rather than to the viewport; it grows once they stack */
 .pcard-name{font-size:24px;font-weight:600;line-height:1.05;letter-spacing:-.03em;color:var(--ink);
   overflow-wrap:break-word;hyphens:auto}
 @media(max-width:1080px){.pcard-name{font-size:clamp(24px,2.6vw,30px)}}
 .pcard-state{font-size:14.5px;line-height:1.46;color:rgba(28,58,19,.82)}
-.pcard-shift{font-size:14.5px;line-height:1.46;font-weight:500;color:var(--dark);
+.pcard-back-name{font-size:13px;font-weight:600;letter-spacing:.01em;color:var(--on-dark);margin-top:auto}
+.pcard-shift{font-size:clamp(16px,1.5vw,19px);line-height:1.4;font-weight:500;color:var(--cream)}
+.pcard-hint{font-size:12.5px;letter-spacing:.01em;color:rgba(28,58,19,.7);
   padding-top:12px;border-top:1px solid var(--hair-jade)}
-@media(max-width:520px){.pcard{min-height:0}}
+.pcard-back .pcard-hint{color:rgba(252,252,247,.72);border-top-color:rgba(252,252,247,.28)}
+@media(prefers-reduced-motion:reduce){
+  .pcard-inner{transition:none}
+  .pcard[aria-expanded="true"] .pcard-inner{transform:none}
+  .pcard[aria-expanded="true"] .pcard-front{visibility:hidden}
+  .pcard-back{transform:none;visibility:hidden}
+  .pcard[aria-expanded="true"] .pcard-back{visibility:visible}
+}
 
 /* persona carousel: auto-scrolling row of image cards with role badges */
 .personas{margin-top:clamp(36px,4.5vw,60px);overflow:hidden;position:relative}
