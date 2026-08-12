@@ -95,8 +95,11 @@ header{position:sticky;top:0;z-index:60;
   border-bottom:1px solid var(--hair)}
 /* the bar runs wider than the 1200px page and sits closer to the edges, with the
    links pulled over to the buttons rather than centred */
+/* min-height rather than height, and allowed to wrap: at 200% text the wordmark,
+   four links and two pills no longer fit one line, and a fixed height would push
+   them out of the bar instead of letting it grow (WCAG 1.4.4) */
 .nav{display:flex;align-items:center;justify-content:space-between;gap:clamp(10px,1.6vw,26px);
-  height:64px;padding:0 clamp(16px,2vw,34px);max-width:1720px;margin:0 auto;position:relative}
+  flex-wrap:wrap;min-height:64px;padding:0 clamp(16px,2vw,34px);max-width:1720px;margin:0 auto;position:relative}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){header{background:rgba(243,237,225,.97)}}
 /* over the film hero: no ground, cream type. It settles back the moment the hero leaves. */
 header.on-hero{background:transparent;border-bottom-color:transparent;
@@ -111,9 +114,11 @@ header.on-hero .nav-links a:hover{background:rgba(243,237,225,.18)}
 header.on-hero .nav-toggle span{background:var(--cream)}
 header.on-hero .btn{background:var(--cream);color:var(--dark);border-color:var(--cream)}
 header.on-hero .btn:hover{background:var(--gold);border-color:var(--gold);color:var(--dark)}
-header.on-hero .btn-ghost{background:rgba(243,237,225,.14);color:var(--cream);border-color:rgba(243,237,225,.62);
+/* smoked, not milky, and for the same reason as the hero's ghost pill: a cream veil
+   lightens the photo under cream type. It also keeps the two ghosts matching. */
+header.on-hero .btn-ghost{background:rgba(16,32,14,.26);color:var(--cream);border-color:rgba(243,237,225,.62);
   -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-header.on-hero .btn-ghost:hover{background:rgba(243,237,225,.3);border-color:var(--cream)}
+header.on-hero .btn-ghost:hover{background:rgba(16,32,14,.42);border-color:var(--cream)}
 header.on-hero .tm{color:var(--on-dark)}
 /* the mobile menu panel is light, so the cream treatment comes off while it is open */
 header.on-hero.open{background:rgba(243,237,225,.72);border-bottom-color:var(--hair);
@@ -208,50 +213,43 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .hero-cta{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .trigger{font-size:var(--type-helper);color:var(--ink-sub);margin-top:14px}
 .stage{position:relative;margin-top:clamp(40px,5vw,68px)}
-/* hero with the coastline clip as its background, text overlaid.
-   The video and its scrim reach 64px up so they run behind the sticky header. */
-.hero.has-video{min-height:min(88vh,820px);display:flex;flex-direction:column;justify-content:center;
+/* hero split in two: the office on the left, the flowers on the right, text over
+   both. The panels and their scrim reach 72px up so they run behind the header. */
+.hero.has-split{min-height:min(88vh,820px);display:flex;flex-direction:column;justify-content:center;
   padding:clamp(96px,12vw,150px) 0 clamp(96px,12vw,150px)}
-/* two clips share the slot and take turns, crossfading as each one ends */
-.hero-video{position:absolute;inset:-72px 0 0;width:100%;height:calc(100% + 72px);
-  object-fit:cover;object-position:center 42%;z-index:0;
-  filter:brightness(.63) saturate(.9);background:var(--dark);
-  opacity:0;transition:opacity 1.1s ease}
-.hero-video.is-on{opacity:1}
-#herovid2{object-position:center 50%;filter:brightness(.74) saturate(.98)}
-@media(prefers-reduced-motion:reduce){.hero-video{transition:none}}
-/* the scrim is heaviest through the middle, where the copy sits, and lifts at the
-   edges so the water still reads; it lands the cream type at 7:1 or better */
-.hero.has-video::after{content:"";position:absolute;inset:-72px 0 0;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(16,32,14,.78) 0%,rgba(16,32,14,.79) 32%,rgba(16,32,14,.68) 60%,rgba(16,32,14,.5) 100%)}
-.hero.has-video .wrap{position:relative;z-index:2}
-.hero.has-video h1{color:var(--cream)}
-.hero.has-video .hero-sub,.hero.has-video .trigger{color:var(--cream)}
-.hero.has-video .eyebrow{color:var(--on-dark)}
-/* .hero.has-video .btn below matches this element too, at the same specificity and
+.hero-split{position:absolute;inset:-72px 0 0;z-index:0;
+  display:grid;grid-template-columns:1fr 1fr;background:var(--dark)}
+.hero-split img{width:100%;height:100%;object-fit:cover;display:block}
+/* the two frames are nowhere near each other in exposure - the office is already
+   dim and the flower shot is high key - so each is brought down by its own amount
+   before the shared scrim goes on, or the right half would blow out the type */
+.hero-split img:first-child{filter:brightness(.84) saturate(.94)}
+.hero-split img:last-child{filter:brightness(.72) saturate(.97)}
+/* Darkening the whole frame enough for centred type flattens both photographs and
+   costs the very thing the pair is for - the dim office against the bright table.
+   So the weight is pooled where the copy actually sits: an ellipse over the middle,
+   plus a lighter veil that holds the top for the header. Lands cream type at 7:1+. */
+.hero.has-split::after{content:"";position:absolute;inset:-72px 0 0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 68% 48% at 50% 50%,rgba(16,32,14,.86) 0%,rgba(16,32,14,.83) 52%,rgba(16,32,14,.34) 100%),
+    linear-gradient(180deg,rgba(16,32,14,.66) 0%,rgba(16,32,14,.46) 20%,rgba(16,32,14,.3) 60%,rgba(16,32,14,.36) 100%)}
+.hero.has-split .wrap{position:relative;z-index:2}
+.hero.has-split h1{color:var(--cream)}
+.hero.has-split .hero-sub,.hero.has-split .trigger{color:var(--cream)}
+.hero.has-split .eyebrow{color:var(--on-dark)}
+/* .hero.has-split .btn below matches this element too, at the same specificity and
    later in the file, so without the :not() there it wins and paints the ghost pill
    solid cream - two identical buttons and no hierarchy */
-/* smoked rather than milky: a cream veil lightens the film under cream type and
-   costs contrast, where a dark one buys it back and holds up whatever the clip is */
-.hero.has-video .btn-ghost{background:rgba(16,32,14,.22);color:var(--cream);border-color:rgba(243,237,225,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.hero.has-video .btn-ghost:hover{background:rgba(16,32,14,.38);border-color:var(--cream)}
-.hero.has-video .btn:not(.btn-ghost){background:var(--cream);color:var(--dark);border-color:var(--cream)}
-.hero.has-video .btn:not(.btn-ghost):hover{background:var(--gold);border-color:var(--gold);color:var(--dark)}
-/* The loop runs longer than five seconds, so a way to stop it is still required
-   (WCAG 2.2.2). It just does not need to sit on the design: the control is clipped
-   away until someone tabs to it, and reduced motion stops the video in script. */
-.vid-toggle:not(:focus){position:absolute;width:1px;height:1px;padding:0;margin:0;border:0;
-  overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.vid-toggle{position:absolute;right:clamp(14px,2vw,26px);top:clamp(16px,2vw,26px);z-index:3;
-  display:inline-flex;align-items:center;gap:8px;padding:9px 16px 9px 13px;border-radius:100px;
-  background:rgba(16,32,14,.6);color:var(--cream);border:1px solid rgba(243,237,225,.5);
-  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-  font-family:var(--body);font-size:var(--type-micro);font-weight:500;cursor:pointer;transition:background .2s}
-.vid-toggle:hover{background:rgba(16,32,14,.8);border-color:var(--cream)}
-.vid-toggle svg{width:15px;height:15px;flex:none}
-.vid-toggle .vid-i-play{display:none}
-.vid-toggle[data-state="paused"] .vid-i-play{display:block}
-.vid-toggle[data-state="paused"] .vid-i-pause{display:none}
+/* smoked rather than milky: a cream veil lightens the photo under cream type and
+   costs contrast, where a dark one buys it back and holds up over either half */
+.hero.has-split .btn-ghost{background:rgba(16,32,14,.22);color:var(--cream);border-color:rgba(243,237,225,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.hero.has-split .btn-ghost:hover{background:rgba(16,32,14,.38);border-color:var(--cream)}
+.hero.has-split .btn:not(.btn-ghost){background:var(--cream);color:var(--dark);border-color:var(--cream)}
+.hero.has-split .btn:not(.btn-ghost):hover{background:var(--gold);border-color:var(--gold);color:var(--dark)}
+/* side by side gives each panel a sliver on a phone, so the split turns to stack */
+@media(max-width:700px){
+  .hero-split{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
+}
 .hero-shot{width:100vw;margin-left:calc(50% - 50vw);border-left:none;border-right:none;border-radius:0}
 .flow-shot,.card-shot{border-radius:0;border:none}
 .card-shot{border-radius:20px;overflow:hidden;position:relative;width:100%;border-bottom:1px solid var(--hair)}
