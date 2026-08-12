@@ -105,9 +105,11 @@ header{position:sticky;top:0;z-index:60;
 header.on-hero{background:transparent;border-bottom-color:transparent;
   -webkit-backdrop-filter:none;backdrop-filter:none}
 header.on-hero .mark,header.on-hero .nav-links a{color:var(--cream)}
-/* the wordmark plays big over the film and shrinks back once the hero is past.
-   It stays inside the 64px bar, so nothing on the page shifts when it changes. */
-@media(min-width:701px){
+/* the wordmark plays big over the hero and shrinks back once the hero is past.
+   It stays inside the 64px bar, so nothing on the page shifts when it changes.
+   Only where there is room for it: below this the big mark crowds four links and
+   two pills into wrapping, and a two row bar is worse than a smaller wordmark. */
+@media(min-width:1041px){
   header.on-hero .mark{font-size:clamp(1.75rem, 1.25rem + 2.1vw, 2.875rem);letter-spacing:-.012em}
 }
 header.on-hero .nav-links a:hover{background:rgba(243,237,225,.18)}
