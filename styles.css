@@ -228,10 +228,15 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .hero.has-video h1{color:var(--cream)}
 .hero.has-video .hero-sub,.hero.has-video .trigger{color:var(--cream)}
 .hero.has-video .eyebrow{color:var(--on-dark)}
-.hero.has-video .btn-ghost{background:rgba(243,237,225,.16);color:var(--cream);border-color:rgba(243,237,225,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.hero.has-video .btn-ghost:hover{background:rgba(243,237,225,.3);border-color:var(--cream)}
-.hero.has-video .btn{background:var(--cream);color:var(--dark);border-color:var(--cream)}
-.hero.has-video .btn:hover{background:var(--gold);border-color:var(--gold);color:var(--dark)}
+/* .hero.has-video .btn below matches this element too, at the same specificity and
+   later in the file, so without the :not() there it wins and paints the ghost pill
+   solid cream - two identical buttons and no hierarchy */
+/* smoked rather than milky: a cream veil lightens the film under cream type and
+   costs contrast, where a dark one buys it back and holds up whatever the clip is */
+.hero.has-video .btn-ghost{background:rgba(16,32,14,.22);color:var(--cream);border-color:rgba(243,237,225,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.hero.has-video .btn-ghost:hover{background:rgba(16,32,14,.38);border-color:var(--cream)}
+.hero.has-video .btn:not(.btn-ghost){background:var(--cream);color:var(--dark);border-color:var(--cream)}
+.hero.has-video .btn:not(.btn-ghost):hover{background:var(--gold);border-color:var(--gold);color:var(--dark)}
 /* The loop runs longer than five seconds, so a way to stop it is still required
    (WCAG 2.2.2). It just does not need to sit on the design: the control is clipped
    away until someone tabs to it, and reduced motion stops the video in script. */
