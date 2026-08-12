@@ -7,21 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=77">
-<script>
-  /* runs before paint: skip the entry screen if it already played this visit */
-  try {
-    if (sessionStorage.getItem('sas-entry')) document.documentElement.classList.add('preloaded');
-    else document.documentElement.classList.add('preloading');
-  } catch (e) { document.documentElement.classList.add('preloading'); }
-</script>
+<link rel="stylesheet" href="styles.css?v=78">
 </head>
 <body>
-
-<div class="preload" id="preload" aria-hidden="true">
-  <p class="preload-line preload-1">Someday isn&rsquo;t part of the plan.</p>
-  <p class="preload-line preload-2">The time is now.</p>
-</div>
 
 <a class="skip" href="#main">Skip to content</a>
 
@@ -95,13 +83,6 @@
   </div>
 </section>
 
-<!-- OPENING QUOTE -->
-<section class="band band-cream" id="pressure">
-  <div class="wrap rv">
-    <p class="pivot" style="max-width:34ch">We all live with pressure at work, at home, in our relationships, and often, loudest in our own minds.</p>
-  </div>
-</section>
-
 <!-- WHO I WORK WITH -->
 <section class="band band-cream" id="who">
   <div class="wrap recog rv">
@@ -117,7 +98,7 @@
 <section class="band band-jade" id="over">
   <div class="wrap split">
     <figure class="split-img rv">
-      <img src="assets/images/over-together.webp" alt="An older woman and a younger woman sitting close together outdoors in the evening light, hands held, mid-conversation" style="object-position:56% 45%">
+      <img src="assets/images/over-together.webp" alt="Elderly woman and adult daughter share a joyful, affectionate moment in a sunny garden, holding hands with the daughter&rsquo;s arm around her shoulder" style="object-position:56% 45%">
     </figure>
     <div class="split-copy rv">
       <p class="eyebrow">Why it feels this way</p>
@@ -129,7 +110,7 @@
 
 <!-- THE DEFINITION, IN ITS OWN PHOTO BOX -->
 <section class="band band-img" id="define">
-  <img class="band-bg" src="assets/images/define-bg.webp" alt="" aria-hidden="true" style="object-position:center 55%">
+  <img class="band-bg" src="assets/images/define-bg.webp" alt="Sunlit turquoise lake framed by overhanging green leaves, with two small sailboats and a village on the far shore" style="object-position:center 55%">
   <div class="wrap">
     <div class="define rv">
       <div class="d-term">
@@ -229,10 +210,14 @@
   </div>
 </section>
 
-<!-- QUOTE -->
-<section class="band band-cream">
-  <div class="wrap rv">
-    <p class="pivot" style="max-width:38ch">&ldquo;You&rsquo;re allowed to come first. <br class="brk">You don&rsquo;t have to hold it all alone.&rdquo;</p>
+<!-- ON TIMING: the pane holds still while the three lines arrive one at a time -->
+<section class="stack" id="timing" aria-label="On timing">
+  <div class="stack-inner">
+    <div class="stack-track">
+      <p class="stack-line is-on">The right time doesn&rsquo;t always just show up.</p>
+      <p class="stack-line">More often than we realize, <br class="brk"> we get to decide when that right time is.</p>
+      <p class="stack-line">The moments we cherish aren&rsquo;t created through pressure. <br class="brk"> They&rsquo;re created through presence.</p>
+    </div>
   </div>
 </section>
 
@@ -364,7 +349,7 @@
 
 <!-- CLOSING -->
 <section class="band closing band-img" id="call">
-  <img class="band-bg" src="assets/images/closing-bg.webp" alt="" aria-hidden="true" style="object-position:center 30%">
+  <img class="band-bg" src="assets/images/closing-bg.webp" alt="Large monstera leaf and its soft shadow falling across a warm cream wall in low evening light" style="object-position:center 30%">
   <div class="closing-bg" aria-hidden="true"></div>
   <div class="wrap rv">
     <h2>You take care of everyone. Let&rsquo;s take care of you.</h2>

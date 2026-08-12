@@ -1,13 +1,3 @@
-/* entry screen: clear it once the sequence finishes, remember for this session */
-(function(){
-  const el=document.getElementById('preload'), root=document.documentElement;
-  const done=()=>{root.classList.remove('preloading');if(el&&el.parentNode)el.remove();};
-  if(!el||root.classList.contains('preloaded')){done();return;}
-  try{sessionStorage.setItem('sas-entry','1');}catch(e){}
-  el.addEventListener('animationend',e=>{if(e.animationName==='preload-out')done();});
-  setTimeout(done,4200); /* safety net if the animation never fires */
-})();
-
 /* nav */
 (function(){
   const h=document.querySelector('header'), t=document.getElementById('navtoggle');
@@ -129,6 +119,56 @@
       card.setAttribute('aria-expanded',open?'false':'true');
     });
   });
+})();
+
+/* on timing: while the tall section passes, each third of the scroll lights one line.
+   with reduced motion the CSS unpins the pane and shows all three, so we stay out. */
+(function(){
+  const sec=document.getElementById('timing');
+  if(!sec) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const lines=[...sec.querySelectorAll('.stack-line')];
+  if(!lines.length) return;
+  let queued=false, at=-1, flat=false;
+
+  /* the pinned pane is one viewport tall, so if the longest line needs more room
+     than that we unpin the whole thing rather than clip a word off the end */
+  const fit=()=>{
+    sec.classList.remove('static');
+    const room=innerHeight-40;
+    const tall=Math.max(...lines.map(l=>l.getBoundingClientRect().height));
+    flat=tall>room;
+    if(flat){
+      sec.classList.add('static');
+      lines.forEach(l=>l.classList.remove('is-on'));
+      at=-1;
+    }
+  };
+
+  const step=()=>{
+    queued=false;
+    if(flat) return;
+    const r=sec.getBoundingClientRect();
+    const travel=r.height-innerHeight;
+    /* 0 as the pane pins, 1 as it lets go */
+    const p=travel>0?Math.min(Math.max(-r.top/travel,0),1):0;
+    const i=Math.min(Math.floor(p*lines.length),lines.length-1);
+    if(i===at) return;
+    at=i;
+    lines.forEach((l,n)=>l.classList.toggle('is-on',n===i));
+  };
+  const onScroll=()=>{ if(!queued){ queued=true; requestAnimationFrame(step); } };
+  const remeasure=()=>{ fit(); step(); };
+  remeasure();
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',remeasure);
+  /* the lines can change height after this runs - the webfont lands, the window
+     turns, the reader scales the text up - so re-measure whenever they do */
+  if(window.ResizeObserver){
+    let first=true;
+    new ResizeObserver(()=>{ if(first){first=false;return;} remeasure(); }).observe(lines[lines.length-1]);
+  }
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(remeasure);
 })();
 
 /* closing form */

@@ -57,20 +57,6 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 [hidden]{display:none!important}   /* beats display rules on the same element */
-/* ---------- entry screen ---------- */
-.preload{position:fixed;inset:0;z-index:999;background:var(--dark);display:grid;place-items:center;padding:24px;
-  animation:preload-out .5s ease 2.85s forwards}
-.preload-line{position:absolute;max-width:20ch;text-align:center;font-family:var(--body);font-weight:700;
-  font-size:clamp(1.75rem, 1.1rem + 2.6vw, 3.25rem);line-height:1.14;letter-spacing:-.022em;color:var(--cream);opacity:0}
-.preload-1{animation:preload-1 1.8s ease forwards}
-.preload-2{animation:preload-2 1.3s ease 1.55s forwards}
-@keyframes preload-1{0%{opacity:0;transform:translateY(10px)}25%{opacity:1;transform:none}72%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-8px)}}
-@keyframes preload-2{0%{opacity:0;transform:translateY(10px)}35%{opacity:1;transform:none}100%{opacity:1;transform:none}}
-@keyframes preload-out{to{opacity:0;visibility:hidden}}
-html.preloading,html.preloading body{overflow:hidden}
-/* already seen this session, or reduced motion: never show it */
-html.preloaded .preload{display:none}
-@media(prefers-reduced-motion:reduce){.preload{display:none}}
 html{scroll-behavior:smooth;overflow-x:clip}
 body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:var(--type-body);line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:clip}
 .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
@@ -317,14 +303,42 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .deep-card h3{color:var(--cream);font-size:var(--type-lead);letter-spacing:-.02em}
 .deep-card p{color:rgba(243,237,225,.82);font-size:var(--type-small);line-height:1.55;max-width:52ch}
 
-/* the pinned time section. one beat on screen at a time. */
-.t-line{font-family:var(--body);font-size:clamp(1.75rem, 1.15rem + 2.5vw, 3.25rem);line-height:1.14;letter-spacing:-.03em}
-.t-gold{color:var(--gold)}
-.t-big{font-size:clamp(2.75rem, 1.9rem + 3.4vw, 5.875rem);letter-spacing:-.04em}
-.t-body{color:rgba(243,237,225,.8);font-size:clamp(1.1875rem, 1.05rem + .8vw, 1.75rem);line-height:1.55;max-width:24ch;margin:14px auto 0;text-wrap:balance}
-.t-rule{width:1px;height:clamp(60px,7vw,88px);background:linear-gradient(var(--gold),rgba(234,143,153,0));margin:clamp(34px,4.5vw,54px) auto}
-.pivot-dark{color:var(--cream);max-width:26ch}
-.pivot{text-align:center;font-family:var(--body);font-style:italic;font-size:var(--type-display);line-height:1.2;letter-spacing:-.028em;max-width:24ch;margin:0 auto;color:var(--ink)}
+/* ---------- on timing: a held pane, three lines arriving one at a time ----------
+   the section is tall, the pane inside it is pinned, and script.js hands the .is-on
+   class down the three lines as the scroll crosses each third. */
+.stack{position:relative;height:300vh;background:var(--wash-jade)}
+.stack-inner{position:sticky;top:0;height:100vh;height:100svh;
+  display:grid;place-items:center;overflow:hidden}
+.stack-track{display:grid;width:100%;max-width:1200px;margin:0 auto;padding:0 28px}
+/* all three share one grid cell, so the tallest sets the height and none of them
+   shifts the others as it fades in */
+.stack-line{grid-area:1/1;align-self:center;
+  text-align:center;font-family:var(--body);font-size:var(--type-display);
+  line-height:1.22;letter-spacing:-.028em;color:var(--ink);
+  max-width:34ch;margin:0 auto;text-wrap:balance;
+  opacity:0;transform:translateY(16px);
+  /* leaving is quicker than arriving, so the two never sit on top of each other
+     long enough to read as one blurred line */
+  transition:opacity .4s ease,transform .5s ease}
+.stack-line.is-on{opacity:1;transform:none;
+  transition:opacity .8s ease .2s,transform 1s cubic-bezier(.2,.7,.2,1) .2s}
+@media(max-width:700px){.stack{height:280vh}.stack-line{max-width:26ch}}
+/* the fallback: no pinning, no fade, the three lines simply sit in the page in
+   order. script.js switches to it whenever the longest line outgrows the pinned
+   pane - a short window, or text scaled well up - so nothing is ever cut off. */
+.stack.static{height:auto;padding:clamp(88px,10vw,150px) 0}
+.stack.static .stack-inner{position:static;height:auto;display:block;overflow:visible}
+.stack.static .stack-track{display:block}
+.stack.static .stack-line{opacity:1;transform:none;transition:none}
+.stack.static .stack-line+.stack-line{margin-top:clamp(30px,4vw,52px)}
+/* and it is the only layout when the visitor has asked for less movement */
+@media(prefers-reduced-motion:reduce){
+  .stack{height:auto;padding:clamp(88px,10vw,150px) 0}
+  .stack-inner{position:static;height:auto;display:block;overflow:visible}
+  .stack-track{display:block}
+  .stack-line{opacity:1;transform:none}
+  .stack-line+.stack-line{margin-top:clamp(30px,4vw,52px)}
+}
 
 /* who: the page's first split spine after five centred sections */
 .who-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,6vw,80px);align-items:center}
