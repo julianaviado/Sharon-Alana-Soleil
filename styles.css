@@ -29,6 +29,9 @@
   --wash-jade:#eae5d3;      /* the light band, olive-tinted cream */
   --wash-jade-2:#e3ddc8;
   --linen:#e2ded3;          /* the photographed paper sheet */
+  --scrim:38,25,13;         /* the hero overlay, warm brown. an rgb triplet so the
+                               gradients can set their own alpha. matched in luminance
+                               to the dark green it replaced, so contrast is unchanged. */
   --hair-jade:#8b8266;      /* warm hairline */
   --hair:rgba(28,58,19,.14);
   --ink:#1c3a13; --ink-60:rgba(28,58,19,.92); --ink-30:rgba(28,58,19,.55);
@@ -118,9 +121,9 @@ header.on-hero .btn{background:var(--cream);color:var(--dark);border-color:var(-
 header.on-hero .btn:hover{background:var(--gold);border-color:var(--gold);color:var(--dark)}
 /* smoked, not milky, and for the same reason as the hero's ghost pill: a cream veil
    lightens the photo under cream type. It also keeps the two ghosts matching. */
-header.on-hero .btn-ghost{background:rgba(16,32,14,.26);color:var(--cream);border-color:rgba(243,237,225,.62);
+header.on-hero .btn-ghost{background:rgba(var(--scrim),.26);color:var(--cream);border-color:rgba(243,237,225,.62);
   -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-header.on-hero .btn-ghost:hover{background:rgba(16,32,14,.42);border-color:var(--cream)}
+header.on-hero .btn-ghost:hover{background:rgba(var(--scrim),.42);border-color:var(--cream)}
 header.on-hero .tm{color:var(--on-dark)}
 /* the mobile menu panel is light, so the cream treatment comes off while it is open */
 header.on-hero.open{background:rgba(243,237,225,.72);border-bottom-color:var(--hair);
@@ -233,8 +236,8 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
    plus a lighter veil that holds the top for the header. Lands cream type at 7:1+. */
 .hero.has-split::after{content:"";position:absolute;inset:-72px 0 0;z-index:1;pointer-events:none;
   background:
-    radial-gradient(ellipse 68% 48% at 50% 50%,rgba(16,32,14,.86) 0%,rgba(16,32,14,.83) 52%,rgba(16,32,14,.34) 100%),
-    linear-gradient(180deg,rgba(16,32,14,.66) 0%,rgba(16,32,14,.46) 20%,rgba(16,32,14,.3) 60%,rgba(16,32,14,.36) 100%)}
+    radial-gradient(ellipse 68% 48% at 50% 50%,rgba(var(--scrim),.86) 0%,rgba(var(--scrim),.83) 52%,rgba(var(--scrim),.34) 100%),
+    linear-gradient(180deg,rgba(var(--scrim),.66) 0%,rgba(var(--scrim),.46) 20%,rgba(var(--scrim),.3) 60%,rgba(var(--scrim),.36) 100%)}
 .hero.has-split .wrap{position:relative;z-index:2}
 .hero.has-split h1{color:var(--cream)}
 .hero.has-split .hero-sub,.hero.has-split .trigger{color:var(--cream)}
@@ -244,8 +247,8 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
    solid cream - two identical buttons and no hierarchy */
 /* smoked rather than milky: a cream veil lightens the photo under cream type and
    costs contrast, where a dark one buys it back and holds up over either half */
-.hero.has-split .btn-ghost{background:rgba(16,32,14,.22);color:var(--cream);border-color:rgba(243,237,225,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.hero.has-split .btn-ghost:hover{background:rgba(16,32,14,.38);border-color:var(--cream)}
+.hero.has-split .btn-ghost{background:rgba(var(--scrim),.22);color:var(--cream);border-color:rgba(243,237,225,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.hero.has-split .btn-ghost:hover{background:rgba(var(--scrim),.38);border-color:var(--cream)}
 .hero.has-split .btn:not(.btn-ghost){background:var(--cream);color:var(--dark);border-color:var(--cream)}
 .hero.has-split .btn:not(.btn-ghost):hover{background:var(--gold);border-color:var(--gold);color:var(--dark)}
 /* side by side gives each panel a sliver on a phone, so the split turns to stack */
