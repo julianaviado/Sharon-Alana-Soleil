@@ -29,6 +29,7 @@
   --wash-amber:#e9e1cf;     /* warmer block */
   --wash-jade:#eae5d3;      /* the light band, olive-tinted cream */
   --wash-jade-2:#e3ddc8;
+  --linen:#e2ded3;          /* the paper sheet: flat colour under the tiled texture */
   --hair-jade:#8b8266;      /* warm hairline */
   --hair:rgba(28,58,19,.14);
   --ink:#1c3a13; --ink-60:rgba(28,58,19,.92); --ink-30:rgba(28,58,19,.55);
@@ -265,6 +266,13 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .band-cream{background:var(--cream)}
 .band-honey{background:var(--wash-sun)}
 .band-cognac{background-color:var(--wash-amber);color:var(--ink)}
+/* the paper band: a photographed sheet of linen stock. it is big enough to cover a
+   band at roughly native scale, so it is set rather than tiled - a repeat of a real
+   sheet reads as a motif, since the eye finds the fibre specks again and again. the
+   flat colour underneath is what shows before it loads, or if it never does. */
+.band-paper{background-color:var(--linen);color:var(--ink);
+  background-image:url('assets/images/paper-linen.webp');
+  background-repeat:no-repeat;background-size:cover;background-position:center}
 /* photo bands: the yellow blocks carry imagery behind a dark veil */
 .band-img{position:relative;overflow:hidden;color:var(--cream);border-radius:32px;margin:8px}
 .band-img>.band-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
@@ -306,7 +314,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 /* ---------- on timing: a held pane, three lines arriving one at a time ----------
    the section is tall, the pane inside it is pinned, and script.js hands the .is-on
    class down the three lines as the scroll crosses each third. */
-.stack{position:relative;height:300vh;background:var(--wash-jade)}
+.stack{position:relative;height:300vh}
 .stack-inner{position:sticky;top:0;height:100vh;height:100svh;
   display:grid;place-items:center;overflow:hidden}
 .stack-track{display:grid;width:100%;max-width:1200px;margin:0 auto;padding:0 28px}
