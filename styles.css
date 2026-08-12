@@ -1,4 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap');
+
+/* Gambarino, self-hosted from assets/fonts. One weight, no italic cut. */
+@font-face{
+  font-family:'Gambarino';
+  src:url('assets/fonts/Gambarino-Regular.woff2') format('woff2'),
+      url('assets/fonts/Gambarino-Regular.woff') format('woff');
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
 
 :root{
   /* Seed's real design tokens (from their production CSS) */
@@ -22,8 +32,8 @@
   --hair-jade:#8b8266;      /* warm hairline */
   --hair:rgba(28,58,19,.14);
   --ink:#1c3a13; --ink-60:rgba(28,58,19,.92); --ink-30:rgba(28,58,19,.55);
-  /* Tinos for display, Instrument Sans for everything else */
-  --display:'Tinos','Times New Roman',Times,'Liberation Serif',serif;
+  /* Gambarino for display, Instrument Sans for everything else */
+  --display:'Gambarino','Times New Roman',Times,'Liberation Serif',serif;
   --body:'Instrument Sans', system-ui, sans-serif;
   --wonk:normal;
   --heading:#1e3a2b;                                 /* 10.8:1 on cream */
@@ -75,7 +85,7 @@ h3{font-family:var(--body);font-weight:600;line-height:1.3;letter-spacing:-.02em
 em{font-style:italic}
 
 /* every display surface gets the condensed width where the cut exists */
-/* Tinos ships real bold and italic, so no synthesis is needed */
+/* Gambarino ships one weight, so never let the browser fake a bolder one */
 h1,h2,.mark,.d-word,.d-term i,.brand{font-synthesis-weight:none}
 .brand{font-family:var(--display);font-weight:400;letter-spacing:-.028em}
 p{color:var(--ink-60)}
@@ -677,7 +687,7 @@ footer p{color:rgba(243,237,225,.85)}
 /* the define card is always a light glass surface, even inside photo bands */
 .define .d-word{color:var(--ink)}
 .d-word .tm{font-size:.3em;vertical-align:.9em;letter-spacing:.02em}
-.d-term i{font-family:var(--display);font-style:italic;font-size:var(--type-body);color:var(--ink-60);letter-spacing:.01em}
+.d-term i{font-family:var(--body);font-style:italic;font-size:var(--type-body);color:var(--ink-60);letter-spacing:.01em}
 .d-def{margin:22px auto 0;font-size:var(--type-sub);line-height:1.42;color:var(--ink);max-width:42ch}
 /* compact callout variant of the definition entry */
 /* on a photo the frosted card needs a near-solid ground to keep the ink legible */
