@@ -19,17 +19,16 @@
   --btn:#1c3a13;            /* pill button, snow label, INVERTS on hover */
   --btn-hover:#f3ede1;      /* hover = cream bg / green text */
   --jade:#3d5b34;           /* soft green, checkmarks and rules on light */
-  --jade-light:#a4b0a1;     /* faded green, icons on the dark green */
-  --gold:#f3e29a;           /* light yellow, filled chips + accents on dark grounds */
-  --on-dark:#f3e29a;
+  --jade-light:#78b800;     /* oil green, C53 M28 Y100 K0: icons on the dark green */
+  --gold:#ffb852;           /* cream yellow, C0 M28 Y68 K0: the accent */
+  --on-dark:#ffb852;
   --terra:#3d5b34;          /* soft green, links and trademarks */
-  --wheat:#f3e29a;
   --wash-sun:#f0e9da;       /* soft brown-cream block */
   --wash-honey:#f0e9da;
   --wash-amber:#e9e1cf;     /* warmer block */
   --wash-jade:#eae5d3;      /* the light band, olive-tinted cream */
   --wash-jade-2:#e3ddc8;
-  --linen:#e2ded3;          /* the paper sheet: flat colour under the tiled texture */
+  --linen:#e2ded3;          /* the photographed paper sheet */
   --hair-jade:#8b8266;      /* warm hairline */
   --hair:rgba(28,58,19,.14);
   --ink:#1c3a13; --ink-60:rgba(28,58,19,.92); --ink-30:rgba(28,58,19,.55);
@@ -89,7 +88,7 @@ h1 .tm,h2 .tm{font-size:.34em;vertical-align:.95em} /* half an em is heavy at di
 
 
 .announce{background:var(--dark);color:var(--cream);text-align:center;font-size:var(--type-micro);letter-spacing:.005em;padding:11px 20px;font-weight:400}
-.announce a{color:var(--on-dark);text-decoration:none;border-bottom:1px solid rgba(215,192,128,.5)}
+.announce a{color:var(--on-dark);text-decoration:none;border-bottom:1px solid rgba(255,184,82,.5)}
 header{position:sticky;top:0;z-index:60;
   transition:background .4s ease,border-color .4s ease;
   background:rgba(243,237,225,.72);-webkit-backdrop-filter:blur(19px) saturate(1.5);backdrop-filter:blur(19px) saturate(1.5);
@@ -221,7 +220,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 /* the scrim is heaviest through the middle, where the copy sits, and lifts at the
    edges so the water still reads; it lands the cream type at 7:1 or better */
 .hero.has-video::after{content:"";position:absolute;inset:-72px 0 0;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(16,32,14,.72) 0%,rgba(16,32,14,.74) 32%,rgba(16,32,14,.68) 60%,rgba(16,32,14,.5) 100%)}
+  background:linear-gradient(180deg,rgba(16,32,14,.78) 0%,rgba(16,32,14,.79) 32%,rgba(16,32,14,.68) 60%,rgba(16,32,14,.5) 100%)}
 .hero.has-video .wrap{position:relative;z-index:2}
 .hero.has-video h1{color:var(--cream)}
 .hero.has-video .hero-sub,.hero.has-video .trigger{color:var(--cream)}
@@ -624,7 +623,9 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,6vw,80px);align-items:center}
 @media(max-width:900px){.about{grid-template-columns:1fr}}
 
-.closing{text-align:center;background:var(--gold);position:relative;overflow:hidden}
+/* the ground here is the photo behind a veil, and the type on it is cream, so the
+   base colour has to be dark: it is what shows if the photo never arrives. */
+.closing{text-align:center;background:var(--dark);position:relative;overflow:hidden}
 .closing-bg{position:absolute;inset:0;opacity:.4;
   -webkit-mask-image:radial-gradient(ellipse 60% 70% at 50% 50%, #000 10%, transparent 70%);
           mask-image:radial-gradient(ellipse 60% 70% at 50% 50%, #000 10%, transparent 70%)}
