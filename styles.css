@@ -212,47 +212,46 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 @media(prefers-reduced-motion:reduce){.hero-wash span{animation:none}}
 /* the muted hero text darkens a notch to hold 7:1 over the warmest part of the wash */
 .hero .eyebrow{color:var(--on-dark)}
-.hero .hero-sub,.hero .trigger{color:rgba(28,58,19,.92)}
+.hero .trigger{color:rgba(28,58,19,.92)}
 /* the home headline carries the page on its own now, so it runs large */
 .hero h1{max-width:none;margin:18px auto 0;text-wrap:balance;
   font-size:var(--type-hero)} /* 38px → 76px */
 .hero .lead{max-width:54ch;margin:22px auto 0}
-.hero-sub{font-size:var(--type-lead);line-height:1.5;font-weight:400;max-width:46ch;color:var(--ink-sub)}
 .hero-cta{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .trigger{font-size:var(--type-helper);color:var(--ink-sub);margin-top:14px}
 .stage{position:relative;margin-top:clamp(40px,5vw,68px)}
-/* hero split in two: the office on the left, the flowers on the right, text over
-   both. The panels and their scrim reach 72px up so they run behind the header. */
+/* one photograph across the hero, the headline broken over it on the diagonal:
+   the first clause up at the left, the second down at the right, the clasped hands
+   in the gap between them. Photo and scrim reach 72px up to run behind the header. */
 .hero.has-split{min-height:min(88vh,820px);display:flex;flex-direction:column;justify-content:center;
   padding:clamp(96px,12vw,150px) 0 clamp(96px,12vw,150px)}
-.hero-split{position:absolute;inset:-72px 0 0;z-index:0;
-  display:grid;grid-template-columns:1fr 1fr;background:var(--dark)}
-.hero-split img{width:100%;height:100%;object-fit:cover;display:block}
-/* the two frames are nowhere near each other in exposure - the office is already
-   dim and the flower shot is high key - so each is brought down by its own amount
-   before the shared scrim goes on, or the right half would blow out the type */
-.hero-split img:first-child{filter:brightness(.84) saturate(.94)}
-.hero-split img:last-child{filter:brightness(.72) saturate(.97)}
-/* Darkening the whole frame enough for centred type flattens both photographs and
-   costs the very thing the pair is for - the dim office against the bright table.
-   So the weight is pooled where the copy actually sits: an ellipse over the middle,
-   plus a lighter veil that holds the top for the header. Lands cream type at 7:1+.
-
-   The overlay is split like the photographs, brown over the office and green over
-   the table. The pool cannot simply be two flat halves though: it is centred ON the
-   seam, so each side carries its own half of one ellipse rather than an ellipse of
-   its own. Each layer is sized to half the box, and the ellipse inside it is given
-   double the horizontal radius and re-centred on the seam edge - which reproduces
-   exactly the field a single full-width ellipse would lay down, in two hues. */
+.hero-split{position:absolute;inset:-72px 0 0;z-index:0;background:var(--dark)}
+.hero-split img{width:100%;height:100%;object-fit:cover;display:block;
+  object-position:center 46%;filter:brightness(.62) saturate(.86)}
+/* The overlay stays split - brown down the left, green down the right - but the
+   weight follows the copy rather than the middle: the left half pools its darkness
+   up where the first clause sits, the right half pools it down where the second
+   does, and a veil underneath holds the top for the header. Each pair of layers is
+   sized to half the box so the hue changes on the centre line. */
 .hero.has-split::after{content:"";position:absolute;inset:-72px 0 0;z-index:1;pointer-events:none;
   background:
-    radial-gradient(ellipse 136% 48% at 100% 50%,rgba(var(--scrim-l),.86) 0%,rgba(var(--scrim-l),.83) 52%,rgba(var(--scrim-l),.34) 100%) left center/50% 100% no-repeat,
-    radial-gradient(ellipse 136% 48% at 0% 50%,rgba(var(--scrim-r),.86) 0%,rgba(var(--scrim-r),.83) 52%,rgba(var(--scrim-r),.34) 100%) right center/50% 100% no-repeat,
-    linear-gradient(180deg,rgba(var(--scrim-l),.66) 0%,rgba(var(--scrim-l),.46) 20%,rgba(var(--scrim-l),.3) 60%,rgba(var(--scrim-l),.36) 100%) left center/50% 100% no-repeat,
-    linear-gradient(180deg,rgba(var(--scrim-r),.66) 0%,rgba(var(--scrim-r),.46) 20%,rgba(var(--scrim-r),.3) 60%,rgba(var(--scrim-r),.36) 100%) right center/50% 100% no-repeat}
-.hero.has-split .wrap{position:relative;z-index:2}
+    radial-gradient(ellipse 96% 52% at 42% 27%,rgba(var(--scrim-l),.88) 0%,rgba(var(--scrim-l),.84) 46%,rgba(var(--scrim-l),.26) 100%) left center/50% 100% no-repeat,
+    radial-gradient(ellipse 96% 52% at 58% 75%,rgba(var(--scrim-r),.88) 0%,rgba(var(--scrim-r),.84) 46%,rgba(var(--scrim-r),.26) 100%) right center/50% 100% no-repeat,
+    linear-gradient(180deg,rgba(var(--scrim-l),.62) 0%,rgba(var(--scrim-l),.4) 26%,rgba(var(--scrim-l),.34) 60%,rgba(var(--scrim-l),.4) 100%) left center/50% 100% no-repeat,
+    linear-gradient(180deg,rgba(var(--scrim-r),.62) 0%,rgba(var(--scrim-r),.4) 26%,rgba(var(--scrim-r),.34) 60%,rgba(var(--scrim-r),.4) 100%) right center/50% 100% no-repeat}
+/* the headline breaks over the photograph on the diagonal, one clause to a corner */
+.hero-lede{display:flex;flex-direction:column;gap:clamp(140px,26vh,300px);margin:18px 0 0}
+.lede-a{max-width:15ch}
+.lede-b{align-self:flex-end;text-align:right;max-width:15ch}
+.hero-copy{text-align:left}
+.hero-copy .eyebrow{max-width:34ch}
+.hero-copy .hero-cta{justify-content:flex-end;margin-top:26px}
+/* the hero is a flex column, and .wrap's margin:0 auto is a cross-axis auto margin
+   in here - which stops it stretching and shrinks it to max-content. It has to span
+   the bar for the two clauses to reach opposite sides. */
+.hero.has-split .wrap{position:relative;z-index:2;width:100%}
 .hero.has-split h1{color:var(--cream)}
-.hero.has-split .hero-sub,.hero.has-split .trigger{color:var(--cream)}
+.hero.has-split .trigger{color:var(--cream)}
 .hero.has-split .eyebrow{color:var(--on-dark)}
 /* .hero.has-split .btn below matches this element too, at the same specificity and
    later in the file, so without the :not() there it wins and paints the ghost pill
@@ -263,17 +262,20 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .hero.has-split .btn-ghost:hover{background:rgba(var(--scrim-r),.38);border-color:var(--cream)}
 .hero.has-split .btn:not(.btn-ghost){background:var(--cream);color:var(--dark);border-color:var(--cream)}
 .hero.has-split .btn:not(.btn-ghost):hover{background:var(--gold);border-color:var(--gold);color:var(--dark)}
-/* side by side gives each panel a sliver on a phone, so the split turns to stack */
+/* on a phone the two clauses cannot sit in opposite corners without stranding the
+   copy, so the diagonal folds back to a single left aligned column. The overlay
+   stays split left and right - there is one photograph now, not two stacked. */
 @media(max-width:700px){
-  .hero-split{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
-  /* same trick turned ninety degrees: double the vertical radius, re-centre each
-     half's ellipse on the seam. The vertical veil is not uniform down the frame,
-     so each half also takes its own slice of that gradient's stops. */
+  /* the copy is one full width column here, not two opposite corners, so the
+     diagonal pools are in the wrong places: an even veil per half instead, still
+     brown on the left and green on the right */
   .hero.has-split::after{background:
-    radial-gradient(ellipse 68% 96% at 50% 100%,rgba(var(--scrim-l),.86) 0%,rgba(var(--scrim-l),.83) 52%,rgba(var(--scrim-l),.34) 100%) center top/100% 50% no-repeat,
-    radial-gradient(ellipse 68% 96% at 50% 0%,rgba(var(--scrim-r),.86) 0%,rgba(var(--scrim-r),.83) 52%,rgba(var(--scrim-r),.34) 100%) center bottom/100% 50% no-repeat,
-    linear-gradient(180deg,rgba(var(--scrim-l),.66) 0%,rgba(var(--scrim-l),.46) 40%,rgba(var(--scrim-l),.34) 100%) center top/100% 50% no-repeat,
-    linear-gradient(180deg,rgba(var(--scrim-r),.34) 0%,rgba(var(--scrim-r),.3) 20%,rgba(var(--scrim-r),.36) 100%) center bottom/100% 50% no-repeat}
+    linear-gradient(180deg,rgba(var(--scrim-l),.85) 0%,rgba(var(--scrim-l),.79) 45%,rgba(var(--scrim-l),.62) 100%) left center/50% 100% no-repeat,
+    linear-gradient(180deg,rgba(var(--scrim-r),.85) 0%,rgba(var(--scrim-r),.79) 45%,rgba(var(--scrim-r),.62) 100%) right center/50% 100% no-repeat}
+  .hero-lede{gap:clamp(56px,12vh,110px)}
+  .lede-a,.lede-b{max-width:none}
+  .lede-b{align-self:flex-start;text-align:left}
+  .hero-copy .hero-cta{justify-content:flex-start}
 }
 .hero-shot{width:100vw;margin-left:calc(50% - 50vw);border-left:none;border-right:none;border-radius:0}
 .flow-shot,.card-shot{border-radius:0;border:none}
