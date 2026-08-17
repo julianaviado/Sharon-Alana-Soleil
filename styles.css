@@ -231,45 +231,46 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .hero-sub{font-size:var(--type-lead);line-height:1.5;font-weight:400;max-width:46ch;color:var(--ink-sub)}
 .trigger{font-size:var(--type-helper);color:var(--ink-sub);margin-top:14px}
 .stage{position:relative;margin-top:clamp(40px,5vw,68px)}
-/* one photograph across the hero, the headline broken over it on the diagonal:
-   the first clause up at the left, the second down at the right, the clasped hands
-   in the gap between them. Photo and scrim reach 72px up to run behind the header. */
+/* one photograph across the hero, the copy stacked and centred over it: the
+   headline, then the second clause quieter beneath it, then the line and the
+   button. Photo and scrim reach 72px up to run behind the header. */
 .hero.has-split{min-height:min(88vh,820px);display:flex;flex-direction:column;justify-content:center;
   padding:clamp(72px,8vw,112px) 0}
 .hero-split{position:absolute;inset:-72px 0 0;z-index:0;background:var(--dark)}
 .hero-split img{width:100%;height:100%;object-fit:cover;display:block;
   object-position:center 46%;filter:brightness(.62) saturate(.86)}
 /* The overlay stays split - brown down the left, green down the right - but the
-   weight follows the copy rather than the middle: the left half pools its darkness
-   up where the first clause sits, the right half pools it down where the second
-   does, and a veil underneath holds the top for the header. Each pair of layers is
-   sized to half the box so the hue changes on the centre line. */
+   weight is back under the middle now that the copy is centred. The pool straddles
+   the centre line, so each half carries its own half of one ellipse: the layer is
+   sized to half the box and the ellipse inside it gets double the horizontal radius
+   and is re-centred on the seam, which lays down the field a single full width
+   ellipse would. A veil underneath holds the top for the header. */
 .hero.has-split::after{content:"";position:absolute;inset:-72px 0 0;z-index:1;pointer-events:none;
   background:
-    radial-gradient(ellipse 96% 52% at 42% 27%,rgba(var(--scrim-l),.88) 0%,rgba(var(--scrim-l),.84) 46%,rgba(var(--scrim-l),.26) 100%) left center/50% 100% no-repeat,
-    radial-gradient(ellipse 96% 52% at 58% 75%,rgba(var(--scrim-r),.88) 0%,rgba(var(--scrim-r),.84) 46%,rgba(var(--scrim-r),.26) 100%) right center/50% 100% no-repeat,
-    linear-gradient(180deg,rgba(var(--scrim-l),.62) 0%,rgba(var(--scrim-l),.4) 26%,rgba(var(--scrim-l),.34) 60%,rgba(var(--scrim-l),.4) 100%) left center/50% 100% no-repeat,
-    linear-gradient(180deg,rgba(var(--scrim-r),.62) 0%,rgba(var(--scrim-r),.4) 26%,rgba(var(--scrim-r),.34) 60%,rgba(var(--scrim-r),.4) 100%) right center/50% 100% no-repeat}
-/* the headline breaks over the photograph on the diagonal, one clause to a corner */
-.hero-lede{display:flex;flex-direction:column;gap:clamp(76px,12vh,170px);margin:16px 0 0}
-.lede-a{max-width:15ch}
-.lede-b{align-self:flex-end;text-align:right;max-width:15ch}
-.hero-copy{text-align:left}
-.hero-copy .eyebrow{max-width:34ch}
-/* the subtitle belongs with the second clause, so it sits under it on the right */
-.hero-copy .hero-sub{margin:20px 0 0 auto;text-align:right;max-width:44ch}
-.hero-copy .hero-cta{justify-content:flex-end;margin-top:26px}
-/* the hero holds a good deal of copy now, and on a short window the diagonal gap
-   plus the padding push the button off the first screen. Both give way there. */
+    radial-gradient(ellipse 136% 50% at 100% 50%,rgba(var(--scrim-l),.88) 0%,rgba(var(--scrim-l),.84) 50%,rgba(var(--scrim-l),.3) 100%) left center/50% 100% no-repeat,
+    radial-gradient(ellipse 136% 50% at 0% 50%,rgba(var(--scrim-r),.88) 0%,rgba(var(--scrim-r),.84) 50%,rgba(var(--scrim-r),.3) 100%) right center/50% 100% no-repeat,
+    linear-gradient(180deg,rgba(var(--scrim-l),.64) 0%,rgba(var(--scrim-l),.4) 26%,rgba(var(--scrim-l),.34) 60%,rgba(var(--scrim-l),.42) 100%) left center/50% 100% no-repeat,
+    linear-gradient(180deg,rgba(var(--scrim-r),.64) 0%,rgba(var(--scrim-r),.4) 26%,rgba(var(--scrim-r),.34) 60%,rgba(var(--scrim-r),.42) 100%) right center/50% 100% no-repeat}
+/* the two clauses stack, and the second is the aside: smaller, lighter on the page,
+   and set in the display face so it reads as a turn rather than a second headline */
+.hero-lede{display:block;margin:14px 0 0}
+.lede-a{display:block;max-width:16ch;margin:0 auto}   /* breaks to two lines, as in the reference */
+.lede-b{display:block;max-width:30ch;margin:.22em auto 0;
+  font-size:clamp(1.5rem, 1.05rem + 2vw, 2.75rem);line-height:1.12;
+  letter-spacing:-.02em;color:var(--on-dark)}
+.hero-copy{text-align:center}
+.hero-copy .eyebrow{max-width:44ch;margin-left:auto;margin-right:auto}
+.hero-copy .hero-sub{margin:clamp(20px,2.4vw,30px) auto 0;max-width:38ch}
+.hero-copy .hero-cta{justify-content:center;margin-top:clamp(24px,2.8vw,34px)}
+/* the hero holds a good deal of copy, and on a short window the padding pushes the
+   button off the first screen, so it gives way there */
 @media(max-height:830px) and (min-width:701px){
-  .hero.has-split{padding:clamp(44px,4.5vw,68px) 0;min-height:0}
-  .hero-lede{gap:clamp(32px,6.5vh,110px)}
+  .hero.has-split{padding:clamp(40px,4.2vw,64px) 0;min-height:0}
   .hero-copy .hero-sub{margin-top:16px}
   .hero-copy .hero-cta{margin-top:20px}
 }
 /* the hero is a flex column, and .wrap's margin:0 auto is a cross-axis auto margin
-   in here - which stops it stretching and shrinks it to max-content. It has to span
-   the bar for the two clauses to reach opposite sides. */
+   in here, which stops it stretching and shrinks it to max-content. */
 .hero.has-split .wrap{position:relative;z-index:2;width:100%}
 .hero.has-split h1{color:var(--cream)}
 .hero.has-split .hero-sub,.hero.has-split .trigger{color:var(--cream)}
@@ -283,20 +284,14 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .hero.has-split .btn-ghost:hover{background:rgba(var(--scrim-r),.38);border-color:var(--cream)}
 .hero.has-split .btn:not(.btn-ghost){background:var(--cream);color:var(--dark);border-color:var(--cream)}
 .hero.has-split .btn:not(.btn-ghost):hover{background:var(--gold);border-color:var(--gold);color:var(--dark)}
-/* on a phone the two clauses cannot sit in opposite corners without stranding the
-   copy, so the diagonal folds back to a single left aligned column. The overlay
-   stays split left and right - there is one photograph now, not two stacked. */
+/* on a phone an ellipse tuned to a wide frame leaves the edges too light, so an
+   even veil per half takes over - still brown on the left, green on the right. */
 @media(max-width:700px){
-  /* the copy is one full width column here, not two opposite corners, so the
-     diagonal pools are in the wrong places: an even veil per half instead, still
-     brown on the left and green on the right */
   .hero.has-split::after{background:
     linear-gradient(180deg,rgba(var(--scrim-l),.85) 0%,rgba(var(--scrim-l),.79) 45%,rgba(var(--scrim-l),.62) 100%) left center/50% 100% no-repeat,
     linear-gradient(180deg,rgba(var(--scrim-r),.85) 0%,rgba(var(--scrim-r),.79) 45%,rgba(var(--scrim-r),.62) 100%) right center/50% 100% no-repeat}
-  .hero-lede{gap:clamp(56px,12vh,110px)}
-  .lede-a,.lede-b{max-width:none}
-  .lede-b{align-self:flex-start;text-align:left}
-  .hero-copy .hero-cta{justify-content:flex-start}
+  .lede-a{max-width:none}
+  .lede-b{max-width:none}
 }
 .hero-shot{width:100vw;margin-left:calc(50% - 50vw);border-left:none;border-right:none;border-radius:0}
 .flow-shot,.card-shot{border-radius:0;border:none}
