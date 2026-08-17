@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=104">
+<link rel="stylesheet" href="styles.css?v=105">
 </head>
 <body>
 
@@ -25,10 +25,8 @@
       <a href="freedom-to-flow.html">Freedom to Flow Method<span class="tm">&trade;</span></a>
       <a href="about.html">Meet Sharon</a>
       <a class="btn nav-cta" href="over-syndrome-quiz.html">Take the Quiz</a>
-      <a class="btn btn-ghost nav-cta" href="#waitlist">Join Waitlist</a>
     </nav>
     <div class="nav-right">
-      <a class="btn btn-ghost" href="#waitlist">Join Waitlist</a>
       <a class="btn" href="over-syndrome-quiz.html">Take the Quiz</a>
       <button class="nav-toggle" id="navtoggle" aria-expanded="false" aria-controls="navmenu" aria-label="Open menu">
         <span></span><span></span><span></span>
@@ -324,7 +322,6 @@
     <div class="form" style="justify-content:center">
       <a class="btn" href="mailto:hello@sharonalanasoleil.com">Take the first, small step</a>
     </div>
-    <p class="trigger">Sharon replies personally, usually within one business day.</p>
   </div>
 </section>
 
@@ -339,19 +336,33 @@
 
 <footer>
   <div class="wrap">
-    <div class="foot-news" id="waitlist" style="margin:0 0 clamp(40px,5vw,56px)">
-      <div class="news-copy">
-        <strong>Join the newsletter</strong>
-        <p class="news-benefits">One short note a month: a pressure pattern to notice, one small step back to yourself, and first word on new workshops and retreats.</p>
+    <div class="foot-contact" style="margin:0 0 clamp(40px,5vw,56px)">
+      <div class="contact-copy">
+        <strong>Get in touch</strong>
+        <p class="contact-note">Tell me a little about what&rsquo;s going on, and what you&rsquo;re hoping for.</p>
       </div>
-      <div class="news-fields">
-        <form id="newsform" novalidate>
-          <input type="email" id="newsemail" placeholder="you@email.com" aria-label="Email address" autocomplete="email" required>
-          <button class="btn btn-news" type="submit" id="newssubmit">Join</button>
-        </form>
-        <p class="news-consent">By signing up you consent to receive emails from Sharon.</p>
-        <span class="news-note" id="newsnote" role="status" aria-live="polite"></span>
-      </div>
+      <form class="contact-form" id="contactform" novalidate>
+        <p class="cf-field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" required>
+        </p>
+        <p class="cf-field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" required>
+        </p>
+        <p class="cf-field">
+          <label for="cf-phone">Phone <span class="cf-opt">(optional)</span></label>
+          <input type="tel" id="cf-phone" name="phone" autocomplete="tel">
+        </p>
+        <p class="cf-field cf-wide">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="4" required></textarea>
+        </p>
+        <div class="cf-send">
+          <button class="btn btn-news" type="submit" id="cf-submit">Send message</button>
+          <span class="cf-status" id="cf-status" role="status" aria-live="polite"></span>
+        </div>
+      </form>
     </div>
 
     <div class="foot-grid">

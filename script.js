@@ -15,7 +15,7 @@
   document.addEventListener('click',e=>{
     if(h.classList.contains('open')&&!h.contains(e.target)) close();
   });
-  matchMedia('(min-width:1240px)').addEventListener('change',e=>{if(e.matches) close();});
+  matchMedia('(min-width:1100px)').addEventListener('change',e=>{if(e.matches) close();});
 })();
 
 /* scroll reveal */
@@ -118,26 +118,38 @@
     }
     email.removeAttribute('aria-invalid');
     document.getElementById('submit').innerHTML='Sent';
-    note.textContent='Got it. Sharon will send times to '+email.value.trim()+', usually within one business day.';
+    note.textContent='Got it. Your note is on its way to '+email.value.trim()+'.';
     email.disabled=true;
   });
 })();
 
-/* footer newsletter */
+/* footer contact form. Client side checks only - it still needs an endpoint on the
+   form before anything actually leaves the page. */
 (function(){
-  const form=document.getElementById('newsform');
+  const form=document.getElementById('contactform');
   if(!form) return;
+  const status=document.getElementById('cf-status');
+  const fields=[
+    {el:document.getElementById('cf-name'),   msg:'Please add your name.'},
+    {el:document.getElementById('cf-email'),  msg:'That email looks incomplete. Check it and send again.',
+     ok:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+    {el:document.getElementById('cf-message'),msg:'Let me know what you would like to talk about.'}
+  ];
   form.addEventListener('submit',(e)=>{
     e.preventDefault();
-    const email=document.getElementById('newsemail'), note=document.getElementById('newsnote');
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){
-      email.setAttribute('aria-invalid','true');
-      note.textContent='That email looks incomplete. Check it and send again.';
-      email.focus(); return;
+    for(const f of fields){
+      const v=f.el.value.trim();
+      const good = v && (f.ok ? f.ok(v) : true);
+      if(!good){
+        f.el.setAttribute('aria-invalid','true');
+        status.textContent=f.msg;
+        f.el.focus();
+        return;
+      }
+      f.el.removeAttribute('aria-invalid');
     }
-    email.removeAttribute('aria-invalid');
-    document.getElementById('newssubmit').textContent='Joined';
-    note.textContent='You’re in. The newsletter will land at '+email.value.trim()+'.';
-    email.disabled=true;
+    document.getElementById('cf-submit').textContent='Sent';
+    status.textContent='Thank you, '+fields[0].el.value.trim()+'. Your message is on its way.';
+    fields.forEach(f=>f.el.disabled=true);
   });
 })();
