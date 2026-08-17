@@ -83,7 +83,7 @@
       shift:'Presence here often begins with letting a limit be a limit.'
     }
   };
-  const ORDER = ['achieve','give','indep','think','extend'];
+  const ORDER = ['give','achieve','think','extend','indep'];   /* the canonical order, matching the home page */
 
   /* ---------- state ---------- */
   const answers = new Array(STATEMENTS.length).fill(null);

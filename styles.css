@@ -86,6 +86,10 @@ em{font-style:italic}
 h1,h2,.mark,.d-word,.d-term i,.brand{font-synthesis-weight:none}
 .brand{font-family:var(--display);font-weight:400;letter-spacing:-.028em}
 p{color:var(--ink-60)}
+/* that rule beats inheritance, so paragraphs on the dark bands need their own or
+   they come out ink on green. The older sections each carried an inline colour to
+   work around it; this states it once. */
+.band-ink p,.band-work p,.promise-bar p{color:rgba(243,237,225,.82)}
 .lead{font-size:var(--type-lead);line-height:1.58}
 /* chip section label (Fixa): a quiet rounded tag instead of uppercase tracking */
 /* section label: uppercase sans, wide tracking, soft green on light grounds and the
@@ -415,6 +419,16 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .split-img img{width:100%;height:100%;object-fit:cover;display:block}
 .split-copy h2{margin-top:22px;max-width:26ch;font-size:clamp(1.875rem, 1.4rem + 2vw, 2.75rem)}
 .split-copy .lead{margin-top:20px;max-width:46ch}
+/* the two lines where the strength turns into the cost. They are the pivot of the
+   section, so they step up from the body copy and carry a rule of the primary. */
+.split-copy .turn{margin-top:22px;max-width:44ch;padding-left:clamp(14px,1.4vw,20px);
+  border-left:2px solid var(--palm);
+  font-size:var(--type-h3);line-height:1.4;letter-spacing:-.015em;color:var(--heading)}
+.split-copy .turn+.turn{margin-top:14px}
+/* and the line that names it */
+.split-copy .name-it{margin-top:clamp(26px,3vw,36px);max-width:36ch;
+  font-family:var(--display);font-size:var(--type-sub);line-height:1.25;
+  letter-spacing:-.02em;color:var(--heading)}
 @media(max-width:900px){
   .split{grid-template-columns:1fr;gap:clamp(26px,4vw,40px)}
   .split-img{aspect-ratio:16/10}
@@ -435,6 +449,60 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .close-list li::before{content:"";position:absolute;left:2px;top:.42em;
   width:.62em;height:.34em;border-left:2px solid var(--soft);border-bottom:2px solid var(--soft);
   transform:rotate(-45deg)}
+/* ---------- the five patterns, in their canonical order ---------- */
+.pat-list{list-style:none;counter-reset:pat;margin:clamp(38px,4.6vw,58px) auto clamp(40px,4.6vw,60px);
+  max-width:64ch;padding:0}
+.pat-list li{counter-increment:pat;position:relative;display:grid;
+  grid-template-columns:auto 1fr;column-gap:clamp(14px,1.6vw,22px);align-items:baseline;
+  padding:clamp(16px,1.8vw,22px) 0;border-top:1px solid var(--hair)}
+.pat-list li:last-child{border-bottom:1px solid var(--hair)}
+.pat-list li::before{content:counter(pat);grid-row:1/span 2;align-self:start;
+  font-family:var(--body);font-size:var(--type-micro);font-weight:600;
+  color:var(--palm);padding-top:.35em;min-width:1.4em}
+.pat-name{font-family:var(--body);font-size:var(--type-h3);font-weight:600;
+  letter-spacing:.02em;text-transform:uppercase;color:var(--heading)}
+.pat-note{grid-column:2;font-size:var(--type-body);line-height:1.5;color:var(--ink-60);margin-top:4px}
+@media(max-width:560px){
+  .pat-list li{grid-template-columns:1fr}
+  .pat-list li::before{grid-row:auto;display:block;margin-bottom:2px}
+  .pat-name,.pat-note{grid-column:1}
+}
+
+/* ---------- moment cards, shared by the moments grid and the flow grid ---------- */
+.moment-grid{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(16px,2vw,28px);margin:clamp(38px,4.6vw,58px) 0 0;padding:0}
+@media(max-width:900px){.moment-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.moment-grid{grid-template-columns:1fr}}
+.moment{display:flex;flex-direction:column;gap:14px}
+.moment span{font-size:var(--type-body);line-height:1.4;color:var(--ink);text-wrap:balance}
+/* the picture is not in yet, so the slot holds its shape rather than collapsing.
+   Swap each of these for an <img> and the grid does not move. */
+.card-ph{aspect-ratio:4/3;border-radius:20px;background:var(--wash-jade-2);
+  background-image:radial-gradient(circle at 30% 30%,rgba(80,124,58,.14),transparent 60%);
+  border:1px dashed var(--hair-jade)}
+.flow-cards{grid-template-columns:repeat(5,1fr)}
+@media(max-width:1100px){.flow-cards{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.flow-cards{grid-template-columns:repeat(2,1fr)}}
+.band-ink .moment span{color:var(--cream)}
+.band-ink .card-ph{background:rgba(243,237,225,.08);border-color:rgba(243,237,225,.3)}
+
+/* ---------- the welcome line ---------- */
+/* the dark-band paragraph rule outranks a bare class, and this line wants full
+   strength cream rather than the 82% body tone */
+.band-ink .welcome{font-family:var(--display);font-size:var(--type-h2);line-height:1.1;
+  letter-spacing:-.026em;color:var(--cream)}
+.brand-line{margin-top:10px;font-family:var(--body);font-style:italic;
+  font-size:var(--type-lead);color:var(--on-dark)}
+
+/* ---------- the two ways in ---------- */
+.offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,48px)}
+@media(max-width:860px){.offer-grid{grid-template-columns:1fr}}
+.offer{background:var(--paper);border:1px solid var(--hair-jade);border-radius:24px;
+  padding:clamp(26px,3vw,40px);display:flex;flex-direction:column}
+.offer h3{margin-top:16px;font-size:var(--type-h3);max-width:26ch;color:var(--heading)}
+.offer p{margin-top:14px;font-size:var(--type-body);line-height:1.6;flex:1}
+.offer .btn{margin-top:clamp(22px,2.4vw,30px);align-self:flex-start}
+
 .close-tail{max-width:52ch;margin:clamp(34px,4.5vw,54px) auto 0;text-align:center;
   font-size:var(--type-sub);line-height:1.35;letter-spacing:-.02em;color:var(--ink);
   text-wrap:balance}
