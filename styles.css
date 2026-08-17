@@ -118,10 +118,10 @@ header.on-hero{background:transparent;border-bottom-color:transparent;
 header.on-hero .mark,header.on-hero .nav-links a{color:var(--cream)}
 /* the wordmark plays big over the hero and shrinks back once the hero is past.
    It stays inside the 64px bar, so nothing on the page shifts when it changes.
-   Only where there is room: measured, the big mark crowds four links and two
-   pills into a second row anywhere below about 1140px, and a two row bar is
-   worse than a smaller wordmark. */
-@media(min-width:1181px){
+   Only where there is room. Measured with the five current labels: the bar needs
+   about 1400px with the big mark and about 1206px with the small one, so the big
+   one waits for 1441 and the inline nav itself waits for 1240. */
+@media(min-width:1441px){
   header.on-hero .mark{font-size:clamp(1.75rem, 1.25rem + 2.1vw, 2.875rem);letter-spacing:-.012em}
 }
 header.on-hero .nav-links a:hover{background:rgba(243,237,225,.18)}
@@ -154,7 +154,7 @@ header.open .nav-toggle span:nth-child(1){transform:translateY(6.5px) rotate(45d
 header.open .nav-toggle span:nth-child(2){opacity:0}
 header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
-@media(max-width:980px){
+@media(max-width:1239px){
   .nav-toggle{display:flex}
   .nav-links{
     display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;
@@ -224,13 +224,14 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
   font-size:var(--type-hero)} /* 38px → 76px */
 .hero .lead{max-width:54ch;margin:22px auto 0}
 .hero-cta{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-sub{font-size:var(--type-lead);line-height:1.5;font-weight:400;max-width:46ch;color:var(--ink-sub)}
 .trigger{font-size:var(--type-helper);color:var(--ink-sub);margin-top:14px}
 .stage{position:relative;margin-top:clamp(40px,5vw,68px)}
 /* one photograph across the hero, the headline broken over it on the diagonal:
    the first clause up at the left, the second down at the right, the clasped hands
    in the gap between them. Photo and scrim reach 72px up to run behind the header. */
 .hero.has-split{min-height:min(88vh,820px);display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(96px,12vw,150px) 0 clamp(96px,12vw,150px)}
+  padding:clamp(72px,8vw,112px) 0}
 .hero-split{position:absolute;inset:-72px 0 0;z-index:0;background:var(--dark)}
 .hero-split img{width:100%;height:100%;object-fit:cover;display:block;
   object-position:center 46%;filter:brightness(.62) saturate(.86)}
@@ -246,18 +247,28 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
     linear-gradient(180deg,rgba(var(--scrim-l),.62) 0%,rgba(var(--scrim-l),.4) 26%,rgba(var(--scrim-l),.34) 60%,rgba(var(--scrim-l),.4) 100%) left center/50% 100% no-repeat,
     linear-gradient(180deg,rgba(var(--scrim-r),.62) 0%,rgba(var(--scrim-r),.4) 26%,rgba(var(--scrim-r),.34) 60%,rgba(var(--scrim-r),.4) 100%) right center/50% 100% no-repeat}
 /* the headline breaks over the photograph on the diagonal, one clause to a corner */
-.hero-lede{display:flex;flex-direction:column;gap:clamp(140px,26vh,300px);margin:18px 0 0}
+.hero-lede{display:flex;flex-direction:column;gap:clamp(76px,12vh,170px);margin:16px 0 0}
 .lede-a{max-width:15ch}
 .lede-b{align-self:flex-end;text-align:right;max-width:15ch}
 .hero-copy{text-align:left}
 .hero-copy .eyebrow{max-width:34ch}
+/* the subtitle belongs with the second clause, so it sits under it on the right */
+.hero-copy .hero-sub{margin:20px 0 0 auto;text-align:right;max-width:44ch}
 .hero-copy .hero-cta{justify-content:flex-end;margin-top:26px}
+/* the hero holds a good deal of copy now, and on a short window the diagonal gap
+   plus the padding push the button off the first screen. Both give way there. */
+@media(max-height:830px) and (min-width:701px){
+  .hero.has-split{padding:clamp(44px,4.5vw,68px) 0;min-height:0}
+  .hero-lede{gap:clamp(32px,6.5vh,110px)}
+  .hero-copy .hero-sub{margin-top:16px}
+  .hero-copy .hero-cta{margin-top:20px}
+}
 /* the hero is a flex column, and .wrap's margin:0 auto is a cross-axis auto margin
    in here - which stops it stretching and shrinks it to max-content. It has to span
    the bar for the two clauses to reach opposite sides. */
 .hero.has-split .wrap{position:relative;z-index:2;width:100%}
 .hero.has-split h1{color:var(--cream)}
-.hero.has-split .trigger{color:var(--cream)}
+.hero.has-split .hero-sub,.hero.has-split .trigger{color:var(--cream)}
 .hero.has-split .eyebrow{color:var(--on-dark)}
 /* .hero.has-split .btn below matches this element too, at the same specificity and
    later in the file, so without the :not() there it wins and paints the ghost pill
@@ -415,6 +426,40 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
    and settle into that resting scatter. */
 #familiar{padding-bottom:clamp(48px,6vw,84px)}   /* the offsets already add depth below */
 .fam-title{max-width:30ch;margin:0 auto;text-align:center}
+/* the four statements as a checklist. The tick is drawn by CSS rather than typed
+   into the markup, so a screen reader reads the sentence and not a decoration. */
+.close-list{list-style:none;margin:clamp(34px,4.5vw,54px) auto 0;max-width:62ch;padding:0}
+.close-list li{position:relative;padding:0 0 0 clamp(34px,3.4vw,44px);
+  font-size:var(--type-lead);line-height:1.55;color:var(--ink-60)}
+.close-list li+li{margin-top:clamp(18px,2vw,26px)}
+.close-list li::before{content:"";position:absolute;left:2px;top:.42em;
+  width:.62em;height:.34em;border-left:2px solid var(--soft);border-bottom:2px solid var(--soft);
+  transform:rotate(-45deg)}
+.close-tail{max-width:52ch;margin:clamp(34px,4.5vw,54px) auto 0;text-align:center;
+  font-size:var(--type-sub);line-height:1.35;letter-spacing:-.02em;color:var(--ink);
+  text-wrap:balance}
+
+/* the pull quote band */
+/* the size lives here, not on the paragraphs: a ch measure has to resolve against
+   the display size or it comes out at body scale and the column ends up a sliver */
+.big-quote{margin:0 auto;max-width:26ch;text-align:center;font-family:var(--display);
+  color:var(--heading);font-size:var(--type-display)}
+.big-quote p{font-size:inherit;line-height:1.18;letter-spacing:-.026em;color:inherit}
+.big-quote p+p{margin-top:.5em}
+
+/* the promise bar: one line of three, sitting between the page and the footer */
+.promise-bar{background:var(--dark);color:var(--on-dark);padding:clamp(20px,2.4vw,30px) 0}
+/* the global p rule sets an ink colour, which on this ground is invisible, so the
+   bar states its own rather than relying on inheritance */
+.promise-bar p{color:var(--on-dark);display:flex;flex-wrap:wrap;justify-content:center;
+  gap:clamp(12px,2.2vw,34px);margin:0;
+  font-family:var(--body);font-size:var(--type-micro);font-weight:600;
+  letter-spacing:.15em;text-transform:uppercase;text-align:center}
+/* the separators are decoration, so they are drawn rather than typed */
+.promise-bar span+span::before{content:"";display:inline-block;vertical-align:middle;
+  width:5px;height:5px;border-radius:50%;background:var(--palm);
+  margin-right:clamp(12px,2.2vw,34px)}
+
 .fam-intro{max-width:40ch;margin:18px auto clamp(40px,5vw,68px);text-align:center}
 .fam-scatter{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.6vw,24px);
   align-items:start;padding-bottom:70px}

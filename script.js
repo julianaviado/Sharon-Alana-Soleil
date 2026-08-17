@@ -15,7 +15,7 @@
   document.addEventListener('click',e=>{
     if(h.classList.contains('open')&&!h.contains(e.target)) close();
   });
-  matchMedia('(min-width:981px)').addEventListener('change',e=>{if(e.matches) close();});
+  matchMedia('(min-width:1240px)').addEventListener('change',e=>{if(e.matches) close();});
 })();
 
 /* scroll reveal */
