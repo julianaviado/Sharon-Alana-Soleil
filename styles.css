@@ -204,7 +204,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 /* rem, not ch: a ch on these wrappers resolves against their own inherited body size,
    not against the 92px headline inside, which boxed the head far narrower than intended */
 .hero-head{width:min(100%,42rem)}
-.hero-tail{align-self:flex-end;width:min(100%,36rem)}
+.hero-tail{align-self:flex-end;width:fit-content;max-width:min(100%,36rem)}
 .hero-head .eyebrow{max-width:none}
 /* the break after "on" only where the first half fits on one line: forcing it on a
    phone strands "ON" by itself, which is worse than letting the measure decide */
@@ -246,22 +246,8 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
    It clips its own video rather than letting the section clip the overhang away. */
 .hero-film{position:absolute;inset:-72px 0 0;z-index:0;background:var(--dark);overflow:hidden}
 .hero-film video{width:100%;height:100%;object-fit:cover;display:block}
-/* the scrim. Nothing lies over the whole frame: the middle band is fully transparent,
-   so the picture there is untouched, and only the top and bottom edges - where the copy
-   sits - are taken down. Black rather than a tint, so it deepens without moving the hue.
-   The alphas are the lightest that still hold AAA across every frame of both clips, and
-   they let through about twice as much picture as the flat wash they replace. Corner
-   pools were tried first and cannot do this: each copy block spans too much of the
-   frame, so the far end of every line ends up over clean footage. */
-.hero.has-film::after{content:"";position:absolute;inset:-72px 0 0;z-index:1;
-  pointer-events:none;
-  background:
-    linear-gradient(180deg,rgba(var(--scrim-l),.88) 0%,rgba(var(--scrim-l),.72) 40%,
-      rgba(var(--scrim-l),0) 50%,rgba(var(--scrim-l),.72) 60%,
-      rgba(var(--scrim-l),.88) 100%)}
-/* the copy runs to the same gutters as the bar above it rather than to the 1200px
-   text measure, so the headline starts on the wordmark's left edge and the tail block
-   ends on the CTA's right edge */
+/* No scrim. The copy sits straight on the footage, which is what the brief asks for;
+   the numbers this costs are in the commit message. */
 .hero.has-film .wrap{position:relative;z-index:2;width:100%;
   max-width:1720px;padding-left:clamp(16px,2vw,34px);padding-right:clamp(16px,2vw,34px)}
 /* over the film every colour swaps to its dark-ground pairing */
@@ -930,8 +916,6 @@ footer p{color:var(--cream)}
 input,textarea,select{font-size:max(1rem,var(--type-small))}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:4px}
 .band-ink a:focus-visible,.band-ink button:focus-visible{outline-color:var(--on-dark)}
-.skip{position:absolute;left:-9999px;top:8px;z-index:200;background:var(--dark);color:var(--on-dark);padding:12px 20px;border-radius:100px;font-size:var(--type-micro);text-decoration:none}
-.skip:focus{left:16px}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   .rv{opacity:1;transform:none}
