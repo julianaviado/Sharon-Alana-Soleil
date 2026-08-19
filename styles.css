@@ -60,7 +60,6 @@
   --label:'Work Sans','Instrument Sans', system-ui, sans-serif;
   --wonk:normal;
   --heading:var(--dark-brown);                                 /* 10.9:1 on cream */
-  --ink-sub:rgba(35,19,15,.92);                      /* 8.0:1 on the brown-cream ground */
   /* One ladder, nine steps, roughly a 1.2 ratio at the top and tighter at the bottom.
      Every step is a rem + vw hybrid so browser text-resize keeps scaling it (WCAG 1.4.4),
      and nothing sits below 14px: this audience reads it on tired eyes. */
@@ -129,33 +128,6 @@ header{position:sticky;top:0;z-index:60;
 .nav{display:flex;align-items:center;justify-content:space-between;gap:clamp(10px,1.6vw,26px);
   flex-wrap:wrap;min-height:64px;padding:0 clamp(16px,2vw,34px);max-width:1720px;margin:0 auto;position:relative}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){header{background:rgba(238,228,218,.97)}}
-/* over the film hero: no ground, cream type. It settles back the moment the hero leaves. */
-header.on-hero{background:transparent;border-bottom-color:transparent;
-  -webkit-backdrop-filter:none;backdrop-filter:none}
-header.on-hero .mark,header.on-hero .nav-links a{color:var(--cream)}
-/* the wordmark plays big over the hero and shrinks back once the hero is past.
-   It stays inside the 64px bar, so nothing on the page shifts when it changes.
-   Only where there is room. Measured with the five current labels: the bar needs
-   about 1284px with the big mark and about 1090px with the small one, so the big
-   one waits for 1301 and the inline nav itself waits for 1100. */
-@media(min-width:1301px){
-  header.on-hero .mark{font-size:clamp(1.75rem, 1.25rem + 2.1vw, 2.875rem);letter-spacing:-.012em}
-}
-header.on-hero .nav-links a:hover{background:rgba(243,237,225,.18)}
-header.on-hero .nav-toggle span{background:var(--cream)}
-header.on-hero .btn{background:var(--cream);color:var(--dark);border-color:var(--cream)}
-header.on-hero .btn:hover{background:var(--gold);border-color:var(--gold);color:var(--dark)}
-/* smoked, not milky, and for the same reason as the hero's ghost pill: a cream veil
-   lightens the photo under cream type. It also keeps the two ghosts matching. */
-header.on-hero .btn-ghost{background:rgba(var(--scrim-r),.26);color:var(--cream);border-color:var(--cream);
-  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-header.on-hero .btn-ghost:hover{background:rgba(var(--scrim-r),.42);border-color:var(--cream)}
-header.on-hero .tm{color:var(--on-dark)}
-/* the mobile menu panel is light, so the cream treatment comes off while it is open */
-header.on-hero.open{background:var(--cream);border-bottom-color:var(--hair);
-  -webkit-backdrop-filter:blur(19px) saturate(1.5);backdrop-filter:blur(19px) saturate(1.5)}
-header.on-hero.open .mark,header.on-hero.open .nav-links a:not(.nav-cta){color:var(--ink)}
-header.on-hero.open .nav-toggle span{background:var(--ink)}
 .mark{font-family:var(--display);font-size:clamp(1.1875rem, 1.1rem + .35vw, 1.375rem);letter-spacing:.01em;display:flex;align-items:center;gap:9px;line-height:1;white-space:nowrap;color:var(--ink);transition:color .4s ease,font-size .45s cubic-bezier(.2,.8,.2,1),letter-spacing .45s ease}
 .nav-links{display:flex;gap:6px;align-items:center;margin-left:auto}
 .nav-links .nav-cta{display:none}  /* only inside the mobile menu */
@@ -204,35 +176,12 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 /* hero */
 /* overflow stays visible so the wash can reach up behind the sticky header;
    the wash clips its own drifting layers, so nothing else escapes */
-.hero{padding:clamp(64px,8vw,116px) 0 clamp(48px,6vw,88px);text-align:center;position:relative;isolation:isolate}
-.hero .wrap{position:relative;z-index:2}
+/* no ground of its own: the hero opens on the page's off white, so every colour
+   here is one of the pairings approved against it */
+.hero{padding:clamp(72px,9vw,132px) 0 clamp(56px,7vw,100px);text-align:center;position:relative}
+.hero .wrap{position:relative}
 
-/* hero wash: a blush-to-grey field with three slow drifting layers.
-   Every tint stays light enough that the hero text keeps its AAA contrast. */
-.hero-wash{position:absolute;inset:-72px 0 0;z-index:0;pointer-events:none;overflow:hidden;
-  background:
-    linear-gradient(180deg,rgba(243,237,225,0) 74%,var(--cream) 100%),
-    linear-gradient(152deg,#f2e6dc 0%,#f6f0ea 46%,#e9ebea 100%)}
-.hero-wash span{position:absolute;display:block;border-radius:50%;will-change:transform}
-/* warm crest, top left */
-.hero-wash span:nth-child(1){width:82vw;height:54vw;left:-16vw;top:-20vw;
-  background:radial-gradient(closest-side,rgba(238,219,203,.95),rgba(238,219,203,0) 72%);
-  animation:wash-a 34s ease-in-out infinite alternate}
-/* cool crest, bottom right */
-.hero-wash span:nth-child(2){width:74vw;height:48vw;right:-18vw;bottom:-14vw;
-  background:radial-gradient(closest-side,rgba(228,233,233,.95),rgba(228,233,233,0) 74%);
-  animation:wash-b 26s ease-in-out infinite alternate}
-/* the wave: one long flat band that rolls across the middle */
-.hero-wash span:nth-child(3){width:150%;height:34vw;left:-25%;top:22%;border-radius:46%;
-  background:radial-gradient(closest-side,rgba(249,241,233,.85),rgba(249,241,233,0) 70%);
-  animation:wash-wave 22s ease-in-out infinite alternate}
-@keyframes wash-a{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(8vw,4vw,0) scale(1.14)}}
-@keyframes wash-b{from{transform:translate3d(0,0,0) scale(1.06)}to{transform:translate3d(-7vw,-5vw,0) scale(1)}}
-@keyframes wash-wave{from{transform:translate3d(-4%,0,0) rotate(-2.5deg)}to{transform:translate3d(4%,-3%,0) rotate(2.5deg)}}
-@media(prefers-reduced-motion:reduce){.hero-wash span{animation:none}}
-/* the muted hero text darkens a notch to hold 7:1 over the warmest part of the wash */
-.hero .eyebrow{color:var(--on-dark)}
-.hero .trigger{color:rgba(35,19,15,.92)}
+.hero .eyebrow{color:var(--soft)}   /* 9.31:1 on the off white */
 /* the home headline carries the page on its own now, so it runs large */
 .hero h1{max-width:none;margin:18px auto 0;text-wrap:balance;
   font-size:var(--type-hero)} /* 38px → 76px */
@@ -244,65 +193,18 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 /* one photograph across the hero, the copy stacked and centred over it: the
    headline, then the second clause quieter beneath it, then the line and the
    button. Photo and scrim reach 72px up to run behind the header. */
-.hero.has-split{min-height:min(88vh,820px);display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(72px,8vw,112px) 0}
-.hero-split{position:absolute;inset:-72px 0 0;z-index:0;background:var(--dark)}
-.hero-split img{width:100%;height:100%;object-fit:cover;display:block;
-  object-position:center 46%;filter:brightness(.62) saturate(.86)}
-/* The overlay stays split - brown down the left, green down the right - but the
-   weight is back under the middle now that the copy is centred. The pool straddles
-   the centre line, so each half carries its own half of one ellipse: the layer is
-   sized to half the box and the ellipse inside it gets double the horizontal radius
-   and is re-centred on the seam, which lays down the field a single full width
-   ellipse would. A veil underneath holds the top for the header. */
-.hero.has-split::after{content:"";position:absolute;inset:-72px 0 0;z-index:1;pointer-events:none;
-  background:
-    radial-gradient(ellipse 136% 50% at 100% 50%,rgba(var(--scrim-l),.9) 0%,rgba(var(--scrim-l),.86) 50%,rgba(var(--scrim-l),.34) 100%) left center/50% 100% no-repeat,
-    radial-gradient(ellipse 136% 50% at 0% 50%,rgba(var(--scrim-r),.9) 0%,rgba(var(--scrim-r),.86) 50%,rgba(var(--scrim-r),.34) 100%) right center/50% 100% no-repeat,
-    linear-gradient(180deg,rgba(var(--scrim-l),.64) 0%,rgba(var(--scrim-l),.4) 26%,rgba(var(--scrim-l),.34) 60%,rgba(var(--scrim-l),.42) 100%) left center/50% 100% no-repeat,
-    linear-gradient(180deg,rgba(var(--scrim-r),.66) 0%,rgba(var(--scrim-r),.44) 26%,rgba(var(--scrim-r),.38) 60%,rgba(var(--scrim-r),.46) 100%) right center/50% 100% no-repeat}
-/* the two clauses stack, and the second is the aside: smaller, lighter on the page,
-   and set in the display face so it reads as a turn rather than a second headline */
+/* the two clauses stack, and the second is the aside: smaller, quieter, and set in
+   the display face so it reads as a turn rather than a second headline */
 .hero-lede{display:block;margin:14px 0 0}
 .lede-a{display:block;max-width:16ch;margin:0 auto}   /* breaks to two lines, as in the reference */
 .lede-b{display:block;max-width:30ch;margin:.22em auto 0;
   font-size:clamp(1.5rem, 1.05rem + 2vw, 2.75rem);line-height:1.12;
-  letter-spacing:-.02em;color:var(--on-dark)}
+  letter-spacing:-.02em;color:var(--soft)}            /* the yellow needs a dark ground; this is 9.31:1 */
 .hero-copy{text-align:center}
 .hero-copy .eyebrow{max-width:44ch;margin-left:auto;margin-right:auto}
 .hero-copy .hero-sub{margin:clamp(20px,2.4vw,30px) auto 0;max-width:38ch}
 .hero-copy .hero-cta{justify-content:center;margin-top:clamp(24px,2.8vw,34px)}
-/* the hero holds a good deal of copy, and on a short window the padding pushes the
-   button off the first screen, so it gives way there */
-@media(max-height:830px) and (min-width:701px){
-  .hero.has-split{padding:clamp(40px,4.2vw,64px) 0;min-height:0}
-  .hero-copy .hero-sub{margin-top:16px}
-  .hero-copy .hero-cta{margin-top:20px}
-}
-/* the hero is a flex column, and .wrap's margin:0 auto is a cross-axis auto margin
-   in here, which stops it stretching and shrinks it to max-content. */
-.hero.has-split .wrap{position:relative;z-index:2;width:100%}
-.hero.has-split h1{color:var(--cream)}
-.hero.has-split .hero-sub,.hero.has-split .trigger{color:var(--cream)}
-/* the yellow is only comfortable on the dark brown (10.97:1); against the blue and
-   green it is 7.15 and 5.62, which a photograph showing through eats into. The
-   eyebrow takes the off white here and the yellow keeps its accent role elsewhere. */
-.hero.has-split .eyebrow{color:var(--cream)}
-/* .hero.has-split .btn below matches this element too, at the same specificity and
-   later in the file, so without the :not() there it wins and paints the ghost pill
-   solid cream - two identical buttons and no hierarchy */
-/* smoked rather than milky: a cream veil lightens the photo under cream type and
-   costs contrast, where a dark one buys it back and holds up over either half */
-.hero.has-split .btn-ghost{background:rgba(var(--scrim-r),.22);color:var(--cream);border-color:var(--cream);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.hero.has-split .btn-ghost:hover{background:rgba(var(--scrim-r),.38);border-color:var(--cream)}
-.hero.has-split .btn:not(.btn-ghost){background:var(--cream);color:var(--dark);border-color:var(--cream)}
-.hero.has-split .btn:not(.btn-ghost):hover{background:var(--gold);border-color:var(--gold);color:var(--dark)}
-/* on a phone an ellipse tuned to a wide frame leaves the edges too light, so an
-   even veil per half takes over - still brown on the left, green on the right. */
 @media(max-width:700px){
-  .hero.has-split::after{background:
-    linear-gradient(180deg,rgba(var(--scrim-l),.88) 0%,rgba(var(--scrim-l),.84) 45%,rgba(var(--scrim-l),.7) 100%) left center/50% 100% no-repeat,
-    linear-gradient(180deg,rgba(var(--scrim-r),.93) 0%,rgba(var(--scrim-r),.9) 45%,rgba(var(--scrim-r),.78) 100%) right center/50% 100% no-repeat}
   .lede-a{max-width:none}
   .lede-b{max-width:none}
 }

@@ -24,22 +24,6 @@
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 })();
 
-/* the header floats over the split hero and settles into its glass once it is past */
-(function(){
-  const hero=document.querySelector('.hero.has-split'), head=document.querySelector('header');
-  if(!hero||!head) return;
-  let queued=false;
-  const flip=()=>{
-    queued=false;
-    /* the hero still sits under the bar while its bottom edge is below the bar */
-    head.classList.toggle('on-hero',hero.getBoundingClientRect().bottom>head.offsetHeight);
-  };
-  const onScroll=()=>{ if(!queued){ queued=true; requestAnimationFrame(flip); } };
-  flip();
-  addEventListener('scroll',onScroll,{passive:true});
-  addEventListener('resize',onScroll);
-})();
-
 /* pattern cards: press one and it turns over to its shift line */
 (function(){
   const cards=document.querySelectorAll('.pcard');
