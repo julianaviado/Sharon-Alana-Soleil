@@ -32,12 +32,14 @@
   const vid=document.getElementById('herofilm');
   if(!vid) return;
   /* only the formats that actually exist are listed, so nothing 404s on the way
-     down the list. VP9 beat H.264 on the wide cut and lost on the tall one. */
+     down the list. VP9 came out larger than H.264 on both of these clips, so
+     neither carries a webm - a format that loses its own comparison is not worth
+     the extra request. */
   const CLIPS={
     small:{src:'assets/videos/laughing-beach-wheelchair',poster:'assets/videos/hero-tall-poster.webp',
            formats:['mp4']},
-    large:{src:'assets/videos/beach-hugging-wheelchair', poster:'assets/videos/hero-wide-poster.webp',
-           formats:['webm','mp4']}
+    large:{src:'assets/videos/hero-wide', poster:'assets/videos/hero-wide-poster.webp',
+           formats:['mp4']}
   };
   const MIME={webm:'video/webm',mp4:'video/mp4'};
   const wide=matchMedia('(min-width:701px)');
