@@ -195,7 +195,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
    headline, then the second clause quieter beneath it, then the line and the
    button. Photo and scrim reach 72px up to run behind the header. */
 /* Hero copy, in the reference's arrangement: the headline tucked up under the wordmark
-   at the top left, the clause that answers it at the bottom left, and the frame left
+   at the top left, the clause that answers it at the bottom right, and the frame left
    open between them so the picture carries the middle. All of it
    in the sans - the display serif carries the rest of the site, but this block reads as
    one voice only if the two headings share a face. */
@@ -204,7 +204,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 /* rem, not ch: a ch on these wrappers resolves against their own inherited body size,
    not against the 92px headline inside, which boxed the head far narrower than intended */
 .hero-head{width:min(100%,42rem)}
-.hero-tail{align-self:flex-start;width:min(100%,36rem)}
+.hero-tail{align-self:flex-end;width:min(100%,36rem)}
 .hero-head .eyebrow{max-width:none}
 /* the break after "on" only where the first half fits on one line: forcing it on a
    phone strands "ON" by itself, which is worse than letting the measure decide */
@@ -229,6 +229,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 @media(max-width:860px){
   .hero.has-film .hero-copy{min-height:0;gap:clamp(30px,5vh,48px)}
   .hero-head,.hero-tail{max-width:none}
+  .hero-tail{align-self:flex-start}
 }
 /* ── the film hero ──────────────────────────────────────────────────────────────
    One clip across the hero with the copy centred over it. Bed and scrim reach
@@ -253,7 +254,11 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
     linear-gradient(180deg,rgba(var(--scrim-l),.74) 0%,rgba(var(--scrim-l),.40) 46%,
       rgba(var(--scrim-l),.40) 54%,rgba(var(--scrim-l),.74) 100%),
     linear-gradient(rgba(var(--scrim-l),.42),rgba(var(--scrim-l),.42))}
-.hero.has-film .wrap{position:relative;z-index:2;width:100%}
+/* the copy runs to the same gutters as the bar above it rather than to the 1200px
+   text measure, so the headline starts on the wordmark's left edge and the tail block
+   ends on the CTA's right edge */
+.hero.has-film .wrap{position:relative;z-index:2;width:100%;
+  max-width:1720px;padding-left:clamp(16px,2vw,34px);padding-right:clamp(16px,2vw,34px)}
 /* over the film every colour swaps to its dark-ground pairing */
 .hero.has-film .eyebrow{color:var(--cream)}
 .hero.has-film h1{color:var(--cream)}
