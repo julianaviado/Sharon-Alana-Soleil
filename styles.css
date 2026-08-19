@@ -194,22 +194,27 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 /* one photograph across the hero, the copy stacked and centred over it: the
    headline, then the second clause quieter beneath it, then the line and the
    button. Photo and scrim reach 72px up to run behind the header. */
-/* Hero copy, in the reference's arrangement: the headline in the top left, the clause
-   that answers it in the bottom right, and the frame left open between them. All of it
+/* Hero copy, in the reference's arrangement: the headline tucked up under the wordmark
+   at the top left, the clause that answers it at the bottom left, and the frame left
+   open between them so the picture carries the middle. All of it
    in the sans - the display serif carries the rest of the site, but this block reads as
    one voice only if the two headings share a face. */
-.hero.has-film .hero-copy{display:flex;flex-direction:column;justify-content:space-between;
-  gap:clamp(48px,9vh,120px);text-align:left;min-height:min(66vh,560px)}
+.hero.has-film .hero-copy{flex:1;display:flex;flex-direction:column;
+  justify-content:space-between;gap:clamp(48px,9vh,120px);text-align:left}
 /* rem, not ch: a ch on these wrappers resolves against their own inherited body size,
    not against the 92px headline inside, which boxed the head far narrower than intended */
 .hero-head{width:min(100%,42rem)}
-.hero-tail{align-self:flex-end;width:min(100%,36rem)}
-.hero-head .eyebrow{max-width:26rem}
+.hero-tail{align-self:flex-start;width:min(100%,36rem)}
+.hero-head .eyebrow{max-width:none}
+/* the break after "on" only where the first half fits on one line: forcing it on a
+   phone strands "ON" by itself, which is worse than letting the measure decide */
+@media(min-width:861px){ .hero-head .eyebrow>span{display:block} }
 
 .hero-lede{display:block;margin:clamp(14px,1.6vh,22px) 0 0;
   font-family:var(--body);font-weight:500;
   font-size:clamp(2.75rem, 1.5rem + 4.6vw, 5.75rem);   /* 44px → 92px */
   line-height:.96;letter-spacing:-.028em}
+.lede-b>span{display:block}   /* the break lands after "yourself", not on the measure */
 .lede-b{display:block;margin:0;
   font-family:var(--body);font-weight:500;
   font-size:clamp(1.75rem, 1.1rem + 2.3vw, 3.25rem);   /* 28px → 52px */
@@ -224,7 +229,6 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 @media(max-width:860px){
   .hero.has-film .hero-copy{min-height:0;gap:clamp(30px,5vh,48px)}
   .hero-head,.hero-tail{max-width:none}
-  .hero-tail{align-self:flex-start}
 }
 /* ── the film hero ──────────────────────────────────────────────────────────────
    One clip across the hero with the copy centred over it. Bed and scrim reach
@@ -232,7 +236,8 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
    script.js by viewport, not by CSS, because a <video> will not re-pick its own
    source on a rotation. */
 .hero.has-film{min-height:min(88vh,820px);display:flex;flex-direction:column;
-  justify-content:center;position:relative;isolation:isolate}
+  justify-content:flex-start;position:relative;isolation:isolate;
+  padding:clamp(26px,3.2vh,44px) 0 clamp(38px,5vh,72px)}
 /* the bed reaches 72px above the section so the film runs behind the sticky header.
    It clips its own video rather than letting the section clip the overhang away. */
 .hero-film{position:absolute;inset:-72px 0 0;z-index:0;background:var(--dark);overflow:hidden}
@@ -267,8 +272,15 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 @media(prefers-reduced-motion:reduce){.hero-film video{display:block}}
 
 /* the header floats over the film and settles back into its glass once past */
-header.on-hero{background:transparent;border-bottom-color:transparent;
-  -webkit-backdrop-filter:none;backdrop-filter:none}
+/* over the film the bar is frosted glass rather than clear: a black tint matching the
+   hero's own overlay, blurred, so the wordmark and links sit on an even ground instead
+   of on whatever the footage happens to be doing behind them */
+header.on-hero{background:rgba(0,0,0,.30);border-bottom-color:rgba(238,228,218,.16);
+  -webkit-backdrop-filter:blur(16px) saturate(1.25);backdrop-filter:blur(16px) saturate(1.25)}
+/* without backdrop-filter the tint has to carry it alone */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  header.on-hero{background:rgba(0,0,0,.52)}
+}
 header.on-hero .mark,header.on-hero .nav-links a{color:var(--cream)}
 header.on-hero .nav-links a:hover{background:rgba(238,228,218,.18)}
 header.on-hero .nav-toggle span{background:var(--cream)}
