@@ -51,10 +51,8 @@
   --ink-60:var(--dark-brown);
   --ink-sub:var(--dark-brown);
   --ink-30:rgba(35,19,15,.55);
-  --scrim-l:35,19,15;       /* hero overlay, dark brown over the left half */
-  --scrim-r:25,56,102;      /* hero overlay, dark blue over the right half. The dark
-                               green cannot hold the yellow eyebrow at 7:1 - that pair
-                               is 5.62:1 - where on the dark blue it is 7.15:1. */
+  --scrim-l:35,19,15;       /* the hero scrim, dark brown over the film */
+  --scrim-r:25,56,102;      /* the dark blue, still used by the ghost pills on dark */
   --display:'Gambarino','Times New Roman',Times,'Liberation Serif',serif;
   --body:'DM Sans', system-ui, sans-serif;
   --label:'Work Sans','DM Sans', system-ui, sans-serif;   /* the eyebrows only */
@@ -209,6 +207,59 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
   .lede-a{max-width:none}
   .lede-b{max-width:none}
 }
+/* ── the film hero ──────────────────────────────────────────────────────────────
+   One clip across the hero with the copy centred over it. Bed and scrim reach
+   72px up so they run behind the sticky header. Which clip plays is decided in
+   script.js by viewport, not by CSS, because a <video> will not re-pick its own
+   source on a rotation. */
+.hero.has-film{min-height:min(88vh,820px);display:flex;flex-direction:column;
+  justify-content:center;position:relative;isolation:isolate}
+/* the bed reaches 72px above the section so the film runs behind the sticky header.
+   It clips its own video rather than letting the section clip the overhang away. */
+.hero-film{position:absolute;inset:-72px 0 0;z-index:0;background:var(--dark);overflow:hidden}
+.hero-film video{width:100%;height:100%;object-fit:cover;display:block}
+/* the scrim. Two stops rather than a flat wash, so the middle of the frame - where
+   the copy sits - is darkest and the edges keep some of the picture. These values
+   are a starting point: they need re-measuring against the real footage, because
+   a bright frame anywhere under the type is what decides them. */
+.hero.has-film::after{content:"";position:absolute;inset:-72px 0 0;z-index:1;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse 92% 74% at 50% 50%,rgba(var(--scrim-l),.90) 0%,
+      rgba(var(--scrim-l),.84) 46%,rgba(var(--scrim-l),.52) 100%),
+    linear-gradient(180deg,rgba(var(--scrim-l),.72) 0%,rgba(var(--scrim-l),.46) 34%,
+      rgba(var(--scrim-l),.46) 66%,rgba(var(--scrim-l),.72) 100%)}
+.hero.has-film .wrap{position:relative;z-index:2;width:100%}
+/* over the film every colour swaps to its dark-ground pairing */
+.hero.has-film .eyebrow{color:var(--cream)}
+.hero.has-film h1,.hero.has-film .lede-a{color:var(--cream)}
+.hero.has-film .lede-b{color:var(--on-dark)}
+.hero.has-film .hero-sub{color:var(--cream)}
+/* a phone holds the copy over a narrower frame, so the veil goes a little deeper */
+@media(max-width:700px){
+  .hero.has-film{min-height:min(84vh,720px)}
+  .hero.has-film::after{background:
+    radial-gradient(ellipse 130% 70% at 50% 50%,rgba(var(--scrim-l),.92) 0%,
+      rgba(var(--scrim-l),.86) 52%,rgba(var(--scrim-l),.62) 100%),
+    linear-gradient(180deg,rgba(var(--scrim-l),.74) 0%,rgba(var(--scrim-l),.54) 40%,
+      rgba(var(--scrim-l),.54) 60%,rgba(var(--scrim-l),.74) 100%)}
+}
+/* reduced motion never starts the clip; the poster stands in for it */
+@media(prefers-reduced-motion:reduce){.hero-film video{display:block}}
+
+/* the header floats over the film and settles back into its glass once past */
+header.on-hero{background:transparent;border-bottom-color:transparent;
+  -webkit-backdrop-filter:none;backdrop-filter:none}
+header.on-hero .mark,header.on-hero .nav-links a{color:var(--cream)}
+header.on-hero .nav-links a:hover{background:rgba(238,228,218,.18)}
+header.on-hero .nav-toggle span{background:var(--cream)}
+header.on-hero .tm{color:var(--on-dark)}
+/* the mobile menu panel is light, so the cream treatment comes off while it is open */
+header.on-hero.open{background:var(--cream);border-bottom-color:var(--hair);
+  -webkit-backdrop-filter:blur(19px) saturate(1.5);backdrop-filter:blur(19px) saturate(1.5)}
+header.on-hero.open .mark,header.on-hero.open .nav-links a:not(.nav-cta){color:var(--ink)}
+header.on-hero.open .nav-toggle span{background:var(--ink)}
+
 .hero-shot{width:100vw;margin-left:calc(50% - 50vw);border-left:none;border-right:none;border-radius:0}
 .flow-shot,.card-shot{border-radius:0;border:none}
 .card-shot{border-radius:20px;overflow:hidden;position:relative;width:100%;border-bottom:1px solid var(--hair)}

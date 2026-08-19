@@ -24,6 +24,63 @@
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 })();
 
+/* the hero film. A <video> picks its source once and never re-picks, so a phone
+   turned sideways would otherwise keep playing the portrait clip stretched across
+   a landscape frame. This watches the breakpoint and swaps the file instead.
+   Nothing is fetched under reduced motion - the poster is the whole hero there. */
+(function(){
+  const vid=document.getElementById('herofilm');
+  if(!vid) return;
+  const CLIPS={
+    small:{src:'assets/videos/laughing-beach-wheelchair',poster:'assets/videos/hero-tall-poster.webp'},
+    large:{src:'assets/videos/beach-hugging-wheelchair', poster:'assets/videos/hero-wide-poster.webp'}
+  };
+  const wide=matchMedia('(min-width:701px)');
+  const still=matchMedia('(prefers-reduced-motion: reduce)');
+  let at=null;
+
+  const load=()=>{
+    const key=wide.matches?'large':'small';
+    if(key===at) return;
+    at=key;
+    const clip=CLIPS[key];
+    vid.poster=clip.poster;
+    if(still.matches){ vid.removeAttribute('src'); vid.load(); return; }
+    /* webm first where it is understood, mp4 for everyone else */
+    vid.innerHTML='';
+    for(const [ext,type] of [['webm','video/webm'],['mp4','video/mp4']]){
+      const s=document.createElement('source');
+      s.src=`${clip.src}.${ext}`; s.type=type;
+      vid.appendChild(s);
+    }
+    vid.preload='auto';
+    vid.load();
+    /* autoplay can still be refused; the poster stays up if it is */
+    const go=vid.play();
+    if(go&&go.catch) go.catch(()=>{});
+  };
+
+  load();
+  wide.addEventListener('change',load);
+  still.addEventListener('change',()=>{ at=null; load(); });
+})();
+
+/* the header floats over the film hero and settles into its glass once it is past */
+(function(){
+  const hero=document.querySelector('.hero.has-film'), head=document.querySelector('header');
+  if(!hero||!head) return;
+  let queued=false;
+  const flip=()=>{
+    queued=false;
+    /* the hero still sits under the bar while its bottom edge is below the bar */
+    head.classList.toggle('on-hero',hero.getBoundingClientRect().bottom>head.offsetHeight);
+  };
+  const onScroll=()=>{ if(!queued){ queued=true; requestAnimationFrame(flip); } };
+  flip();
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',onScroll);
+})();
+
 /* pattern cards: press one and it turns over to its shift line */
 (function(){
   const cards=document.querySelectorAll('.pcard');

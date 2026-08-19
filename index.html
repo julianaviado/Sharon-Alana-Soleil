@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&amp;family=Work+Sans:wght@500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=116">
+<link rel="stylesheet" href="styles.css?v=117">
 </head>
 <body>
 
@@ -38,7 +38,14 @@
 <main id="main">
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero has-film">
+  <!-- the source is chosen in script.js, so a rotation swaps the clip rather than
+       stretching the wrong one. The poster carries the no-JS and reduced-motion
+       cases, and the dark ground carries the moment before either lands. -->
+  <div class="hero-film" aria-hidden="true">
+    <video id="herofilm" muted loop playsinline preload="none"
+           poster="assets/videos/hero-wide-poster.webp"></video>
+  </div>
   <div class="wrap hero-copy">
     <p class="eyebrow">For the go-to person people count on at work and at home</p>
     <h1 class="hero-lede">
