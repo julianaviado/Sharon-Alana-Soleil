@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Work+Sans:wght@500&display=swap');
 
 /* Gambarino, self-hosted from assets/fonts. One weight, no italic cut. */
 @font-face{
@@ -56,6 +56,8 @@
                                is 5.62:1 - where on the dark blue it is 7.15:1. */
   --display:'Gambarino','Times New Roman',Times,'Liberation Serif',serif;
   --body:'Instrument Sans', system-ui, sans-serif;
+  /* one weight, medium, and only the eyebrows take it */
+  --label:'Work Sans','Instrument Sans', system-ui, sans-serif;
   --wonk:normal;
   --heading:var(--dark-brown);                                 /* 10.9:1 on cream */
   --ink-sub:rgba(35,19,15,.92);                      /* 8.0:1 on the brown-cream ground */
@@ -105,7 +107,7 @@ p{color:var(--ink-60)}
 /* chip section label (Fixa): a quiet rounded tag instead of uppercase tracking */
 /* section label: uppercase sans, wide tracking, soft green on light grounds and the
    yellow accent on dark ones. 13px expressed in rem so browser text-resize still works. */
-.eyebrow{display:block;font-family:var(--body);font-size:var(--type-eyebrow);font-weight:600;
+.eyebrow{display:block;font-family:var(--label);font-size:var(--type-eyebrow);font-weight:500;
   letter-spacing:.15em;text-transform:uppercase;color:var(--soft);opacity:1}
 .lead b{color:var(--ink);font-weight:500}
 .say{font-family:var(--body);font-style:italic;font-size:clamp(1.1875rem, 1.1rem + .5vw, 1.5rem);line-height:1.24;letter-spacing:-.02em;color:var(--ink);margin-top:16px}
@@ -506,7 +508,8 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .offer{background:var(--paper);border:1px solid var(--hair-jade);border-radius:24px;
   padding:clamp(26px,3vw,40px);display:flex;flex-direction:column}
 .offer h3{margin-top:16px;font-size:var(--type-h3);max-width:26ch;color:var(--heading)}
-.offer p{margin-top:14px;font-size:var(--type-body);line-height:1.6;flex:1}
+/* :not(.eyebrow) so the label above the heading keeps its own 13px, not body size */
+.offer p:not(.eyebrow){margin-top:14px;font-size:var(--type-body);line-height:1.6;flex:1}
 .offer .btn{margin-top:clamp(22px,2.4vw,30px);align-self:flex-start}
 
 .close-tail{max-width:52ch;margin:clamp(34px,4.5vw,54px) auto 0;text-align:center;
@@ -704,10 +707,10 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .answer.show{display:block;animation:rise .5s cubic-bezier(.2,.8,.2,1) both}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .answer>*{position:relative;z-index:2}
-.answer .eyebrow{color:var(--ink);opacity:.5}
+.answer .eyebrow{color:var(--soft)}
 .answer h3{margin:8px 0 10px;font-size:clamp(1.4375rem, 1.3rem + .6vw, 1.75rem);letter-spacing:-.02em}
-.answer p{color:rgba(35,19,15,.74);font-size:var(--type-small);max-width:58ch}
-.answer .cost{margin-top:16px;padding-top:16px;border-top:1px solid var(--hair);font-size:var(--type-small);color:rgba(35,19,15,.74)}
+.answer p:not(.eyebrow){color:var(--ink-60);font-size:var(--type-small);max-width:58ch}
+.answer .cost{margin-top:16px;padding-top:16px;border-top:1px solid var(--hair);font-size:var(--type-small);color:var(--ink-60)}
 .answer .cost b{color:var(--ink);font-weight:500}
 .answer .foot{margin-top:22px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
 .answer .note{font-size:var(--type-micro);color:var(--ink-60)}
