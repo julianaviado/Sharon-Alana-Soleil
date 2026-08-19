@@ -31,10 +31,15 @@
 (function(){
   const vid=document.getElementById('herofilm');
   if(!vid) return;
+  /* only the formats that actually exist are listed, so nothing 404s on the way
+     down the list. VP9 beat H.264 on the wide cut and lost on the tall one. */
   const CLIPS={
-    small:{src:'assets/videos/laughing-beach-wheelchair',poster:'assets/videos/hero-tall-poster.webp'},
-    large:{src:'assets/videos/beach-hugging-wheelchair', poster:'assets/videos/hero-wide-poster.webp'}
+    small:{src:'assets/videos/laughing-beach-wheelchair',poster:'assets/videos/hero-tall-poster.webp',
+           formats:['mp4']},
+    large:{src:'assets/videos/beach-hugging-wheelchair', poster:'assets/videos/hero-wide-poster.webp',
+           formats:['webm','mp4']}
   };
+  const MIME={webm:'video/webm',mp4:'video/mp4'};
   const wide=matchMedia('(min-width:701px)');
   const still=matchMedia('(prefers-reduced-motion: reduce)');
   let at=null;
@@ -48,9 +53,9 @@
     if(still.matches){ vid.removeAttribute('src'); vid.load(); return; }
     /* webm first where it is understood, mp4 for everyone else */
     vid.innerHTML='';
-    for(const [ext,type] of [['webm','video/webm'],['mp4','video/mp4']]){
+    for(const ext of clip.formats){
       const s=document.createElement('source');
-      s.src=`${clip.src}.${ext}`; s.type=type;
+      s.src=`${clip.src}.${ext}`; s.type=MIME[ext];
       vid.appendChild(s);
     }
     vid.preload='auto';

@@ -219,16 +219,16 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .hero-film{position:absolute;inset:-72px 0 0;z-index:0;background:var(--dark);overflow:hidden}
 .hero-film video{width:100%;height:100%;object-fit:cover;display:block}
 /* the scrim. Two stops rather than a flat wash, so the middle of the frame - where
-   the copy sits - is darkest and the edges keep some of the picture. These values
-   are a starting point: they need re-measuring against the real footage, because
-   a bright frame anywhere under the type is what decides them. */
+   the copy sits - is darkest and the edges keep more of the picture. The alphas are
+   the lightest that still hold AAA across every frame of both clips: measured, not
+   judged. Lightening them further is what breaks first, at about .72. */
 .hero.has-film::after{content:"";position:absolute;inset:-72px 0 0;z-index:1;
   pointer-events:none;
   background:
-    radial-gradient(ellipse 92% 74% at 50% 50%,rgba(var(--scrim-l),.90) 0%,
-      rgba(var(--scrim-l),.84) 46%,rgba(var(--scrim-l),.52) 100%),
-    linear-gradient(180deg,rgba(var(--scrim-l),.72) 0%,rgba(var(--scrim-l),.46) 34%,
-      rgba(var(--scrim-l),.46) 66%,rgba(var(--scrim-l),.72) 100%)}
+    radial-gradient(ellipse 92% 74% at 50% 50%,rgba(var(--scrim-l),.76) 0%,
+      rgba(var(--scrim-l),.68) 46%,rgba(var(--scrim-l),.36) 100%),
+    linear-gradient(180deg,rgba(var(--scrim-l),.56) 0%,rgba(var(--scrim-l),.30) 34%,
+      rgba(var(--scrim-l),.30) 66%,rgba(var(--scrim-l),.56) 100%)}
 .hero.has-film .wrap{position:relative;z-index:2;width:100%}
 /* over the film every colour swaps to its dark-ground pairing */
 .hero.has-film .eyebrow{color:var(--cream)}
@@ -239,10 +239,10 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 @media(max-width:700px){
   .hero.has-film{min-height:min(84vh,720px)}
   .hero.has-film::after{background:
-    radial-gradient(ellipse 130% 70% at 50% 50%,rgba(var(--scrim-l),.92) 0%,
-      rgba(var(--scrim-l),.86) 52%,rgba(var(--scrim-l),.62) 100%),
-    linear-gradient(180deg,rgba(var(--scrim-l),.74) 0%,rgba(var(--scrim-l),.54) 40%,
-      rgba(var(--scrim-l),.54) 60%,rgba(var(--scrim-l),.74) 100%)}
+    radial-gradient(ellipse 130% 70% at 50% 50%,rgba(var(--scrim-l),.78) 0%,
+      rgba(var(--scrim-l),.70) 52%,rgba(var(--scrim-l),.44) 100%),
+    linear-gradient(180deg,rgba(var(--scrim-l),.58) 0%,rgba(var(--scrim-l),.36) 40%,
+      rgba(var(--scrim-l),.36) 60%,rgba(var(--scrim-l),.58) 100%)}
 }
 /* reduced motion never starts the clip; the poster stands in for it */
 @media(prefers-reduced-motion:reduce){.hero-film video{display:block}}
