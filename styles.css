@@ -51,7 +51,8 @@
   --ink-60:var(--dark-brown);
   --ink-sub:var(--dark-brown);
   --ink-30:rgba(35,19,15,.55);
-  --scrim-l:35,19,15;       /* the hero scrim, dark brown over the film */
+  --scrim-l:0,0,0;          /* the hero scrim. Black, so it deepens the picture
+                               rather than tinting it the way the brown did */
   --scrim-r:25,56,102;      /* the dark blue, still used by the ghost pills on dark */
   --display:'Gambarino','Times New Roman',Times,'Liberation Serif',serif;
   --body:'DM Sans', system-ui, sans-serif;
@@ -184,6 +185,7 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 /* the home headline carries the page on its own now, so it runs large */
 .hero h1{max-width:none;margin:18px auto 0;text-wrap:balance;
   font-size:var(--type-hero)} /* 38px → 76px */
+.hero.has-film h1{margin-left:0;margin-right:0;text-wrap:normal}
 .hero .lead{max-width:54ch;margin:22px auto 0}
 .hero-cta{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .hero-sub{font-size:var(--type-lead);line-height:1.5;font-weight:400;max-width:46ch;color:var(--ink-sub)}
@@ -192,20 +194,37 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 /* one photograph across the hero, the copy stacked and centred over it: the
    headline, then the second clause quieter beneath it, then the line and the
    button. Photo and scrim reach 72px up to run behind the header. */
-/* the two clauses stack, and the second is the aside: smaller, quieter, and set in
-   the display face so it reads as a turn rather than a second headline */
-.hero-lede{display:block;margin:14px 0 0}
-.lede-a{display:block;max-width:16ch;margin:0 auto}   /* breaks to two lines, as in the reference */
-.lede-b{display:block;max-width:30ch;margin:.22em auto 0;
-  font-size:clamp(1.5rem, 1.05rem + 2vw, 2.75rem);line-height:1.12;
-  letter-spacing:-.02em;color:var(--soft)}            /* the yellow needs a dark ground; this is 9.31:1 */
-.hero-copy{text-align:center}
-.hero-copy .eyebrow{max-width:44ch;margin-left:auto;margin-right:auto}
-.hero-copy .hero-sub{margin:clamp(20px,2.4vw,30px) auto 0;max-width:38ch}
-.hero-copy .hero-cta{justify-content:center;margin-top:clamp(24px,2.8vw,34px)}
-@media(max-width:700px){
-  .lede-a{max-width:none}
-  .lede-b{max-width:none}
+/* Hero copy, in the reference's arrangement: the headline in the top left, the clause
+   that answers it in the bottom right, and the frame left open between them. All of it
+   in the sans - the display serif carries the rest of the site, but this block reads as
+   one voice only if the two headings share a face. */
+.hero.has-film .hero-copy{display:flex;flex-direction:column;justify-content:space-between;
+  gap:clamp(48px,9vh,120px);text-align:left;min-height:min(66vh,560px)}
+/* rem, not ch: a ch on these wrappers resolves against their own inherited body size,
+   not against the 92px headline inside, which boxed the head far narrower than intended */
+.hero-head{width:min(100%,42rem)}
+.hero-tail{align-self:flex-end;width:min(100%,36rem)}
+.hero-head .eyebrow{max-width:26rem}
+
+.hero-lede{display:block;margin:clamp(14px,1.6vh,22px) 0 0;
+  font-family:var(--body);font-weight:500;
+  font-size:clamp(2.75rem, 1.5rem + 4.6vw, 5.75rem);   /* 44px → 92px */
+  line-height:.96;letter-spacing:-.028em}
+.lede-b{display:block;margin:0;
+  font-family:var(--body);font-weight:500;
+  font-size:clamp(1.75rem, 1.1rem + 2.3vw, 3.25rem);   /* 28px → 52px */
+  line-height:1.02;letter-spacing:-.022em;color:var(--on-dark)}
+/* the body copy takes the reference's small tracked uppercase */
+.hero-copy .hero-sub{margin:clamp(18px,2.2vh,26px) 0 0;max-width:none;
+  font-size:var(--type-micro);font-weight:500;line-height:1.62;
+  letter-spacing:.085em;text-transform:uppercase}
+.hero-copy .hero-cta{justify-content:flex-start;margin-top:clamp(24px,3vh,36px)}
+
+/* below the split the corners collapse into one left-aligned column */
+@media(max-width:860px){
+  .hero.has-film .hero-copy{min-height:0;gap:clamp(30px,5vh,48px)}
+  .hero-head,.hero-tail{max-width:none}
+  .hero-tail{align-self:flex-start}
 }
 /* ── the film hero ──────────────────────────────────────────────────────────────
    One clip across the hero with the copy centred over it. Bed and scrim reach
@@ -218,31 +237,31 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
    It clips its own video rather than letting the section clip the overhang away. */
 .hero-film{position:absolute;inset:-72px 0 0;z-index:0;background:var(--dark);overflow:hidden}
 .hero-film video{width:100%;height:100%;object-fit:cover;display:block}
-/* the scrim. Two stops rather than a flat wash, so the middle of the frame - where
-   the copy sits - is darkest and the edges keep more of the picture. The alphas are
-   the lightest that still hold AAA across every frame of both clips: measured, not
-   judged. Lightening them further is what breaks first, at about .72. */
+/* the scrim. Black rather than a tint: it takes the picture down without moving its
+   hue, so the frame reads as a high contrast photograph rather than a green-filtered
+   one. A flat wash carries most of it, with a vertical shape deepening the top and
+   bottom edges where the copy now sits. The alphas are the lightest that still hold
+   AAA across every frame of both clips - measured, not judged. */
 .hero.has-film::after{content:"";position:absolute;inset:-72px 0 0;z-index:1;
   pointer-events:none;
   background:
-    radial-gradient(ellipse 92% 74% at 50% 50%,rgba(var(--scrim-l),.76) 0%,
-      rgba(var(--scrim-l),.68) 46%,rgba(var(--scrim-l),.36) 100%),
-    linear-gradient(180deg,rgba(var(--scrim-l),.56) 0%,rgba(var(--scrim-l),.30) 34%,
-      rgba(var(--scrim-l),.30) 66%,rgba(var(--scrim-l),.56) 100%)}
+    linear-gradient(180deg,rgba(var(--scrim-l),.74) 0%,rgba(var(--scrim-l),.40) 46%,
+      rgba(var(--scrim-l),.40) 54%,rgba(var(--scrim-l),.74) 100%),
+    linear-gradient(rgba(var(--scrim-l),.42),rgba(var(--scrim-l),.42))}
 .hero.has-film .wrap{position:relative;z-index:2;width:100%}
 /* over the film every colour swaps to its dark-ground pairing */
 .hero.has-film .eyebrow{color:var(--cream)}
-.hero.has-film h1,.hero.has-film .lede-a{color:var(--cream)}
+.hero.has-film h1{color:var(--cream)}
 .hero.has-film .lede-b{color:var(--on-dark)}
 .hero.has-film .hero-sub{color:var(--cream)}
 /* a phone holds the copy over a narrower frame, so the veil goes a little deeper */
 @media(max-width:700px){
   .hero.has-film{min-height:min(84vh,720px)}
+  /* the portrait clip is brighter under the copy, so the flat wash goes deeper */
   .hero.has-film::after{background:
-    radial-gradient(ellipse 130% 70% at 50% 50%,rgba(var(--scrim-l),.78) 0%,
-      rgba(var(--scrim-l),.70) 52%,rgba(var(--scrim-l),.44) 100%),
-    linear-gradient(180deg,rgba(var(--scrim-l),.58) 0%,rgba(var(--scrim-l),.36) 40%,
-      rgba(var(--scrim-l),.36) 60%,rgba(var(--scrim-l),.58) 100%)}
+    linear-gradient(180deg,rgba(var(--scrim-l),.74) 0%,rgba(var(--scrim-l),.40) 46%,
+      rgba(var(--scrim-l),.40) 54%,rgba(var(--scrim-l),.74) 100%),
+    linear-gradient(rgba(var(--scrim-l),.50),rgba(var(--scrim-l),.50))}
 }
 /* reduced motion never starts the clip; the poster stands in for it */
 @media(prefers-reduced-motion:reduce){.hero-film video{display:block}}
