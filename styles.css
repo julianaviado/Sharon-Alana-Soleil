@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Work+Sans:wght@500&display=swap');
 
 /* Gambarino, self-hosted from assets/fonts. One weight, no italic cut. */
 @font-face{
@@ -56,7 +56,8 @@
                                green cannot hold the yellow eyebrow at 7:1 - that pair
                                is 5.62:1 - where on the dark blue it is 7.15:1. */
   --display:'Gambarino','Times New Roman',Times,'Liberation Serif',serif;
-  --body:'Work Sans', system-ui, sans-serif;
+  --body:'DM Sans', system-ui, sans-serif;
+  --label:'Work Sans','DM Sans', system-ui, sans-serif;   /* the eyebrows only */
   --wonk:normal;
   --heading:var(--dark-brown);                                 /* 10.9:1 on cream */
   /* One ladder, nine steps, roughly a 1.2 ratio at the top and tighter at the bottom.
@@ -102,10 +103,11 @@ p{color:var(--ink-60)}
 .band-ink p,.band-work p{color:var(--cream)}
 .promise-bar p{color:var(--dark-brown)}
 .lead{font-size:var(--type-lead);line-height:1.58}
-/* section label: uppercase, wide tracking, Work Sans medium. The dark blue on the
+/* section label: uppercase, wide tracking, Work Sans medium - the one place the
+   body face steps aside. The dark blue on the
    light grounds and the yellow on the dark ones. 13px expressed in rem so browser
    text-resize still works. */
-.eyebrow{display:block;font-family:var(--body);font-size:var(--type-eyebrow);font-weight:500;
+.eyebrow{display:block;font-family:var(--label);font-size:var(--type-eyebrow);font-weight:500;
   letter-spacing:.15em;text-transform:uppercase;color:var(--soft);opacity:1}
 .lead b{color:var(--ink);font-weight:500}
 .say{font-family:var(--body);font-style:italic;font-size:clamp(1.1875rem, 1.1rem + .5vw, 1.5rem);line-height:1.24;letter-spacing:-.02em;color:var(--ink);margin-top:16px}
