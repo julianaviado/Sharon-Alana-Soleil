@@ -208,7 +208,10 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .hero-head .eyebrow{max-width:none}
 /* the break after "on" only where the first half fits on one line: forcing it on a
    phone strands "ON" by itself, which is worse than letting the measure decide */
-@media(min-width:861px){ .hero-head .eyebrow>span{display:block} }
+@media(min-width:861px){
+  .hero-head .eyebrow>span{display:block}
+  .hero-copy .hero-sub>span{display:block}
+}
 
 .hero-lede{display:block;margin:clamp(14px,1.6vh,22px) 0 0;
   font-family:var(--body);font-weight:500;
@@ -243,17 +246,19 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
    It clips its own video rather than letting the section clip the overhang away. */
 .hero-film{position:absolute;inset:-72px 0 0;z-index:0;background:var(--dark);overflow:hidden}
 .hero-film video{width:100%;height:100%;object-fit:cover;display:block}
-/* the scrim. Black rather than a tint: it takes the picture down without moving its
-   hue, so the frame reads as a high contrast photograph rather than a green-filtered
-   one. A flat wash carries most of it, with a vertical shape deepening the top and
-   bottom edges where the copy now sits. The alphas are the lightest that still hold
-   AAA across every frame of both clips - measured, not judged. */
+/* the scrim. Nothing lies over the whole frame: the middle band is fully transparent,
+   so the picture there is untouched, and only the top and bottom edges - where the copy
+   sits - are taken down. Black rather than a tint, so it deepens without moving the hue.
+   The alphas are the lightest that still hold AAA across every frame of both clips, and
+   they let through about twice as much picture as the flat wash they replace. Corner
+   pools were tried first and cannot do this: each copy block spans too much of the
+   frame, so the far end of every line ends up over clean footage. */
 .hero.has-film::after{content:"";position:absolute;inset:-72px 0 0;z-index:1;
   pointer-events:none;
   background:
-    linear-gradient(180deg,rgba(var(--scrim-l),.74) 0%,rgba(var(--scrim-l),.40) 46%,
-      rgba(var(--scrim-l),.40) 54%,rgba(var(--scrim-l),.74) 100%),
-    linear-gradient(rgba(var(--scrim-l),.42),rgba(var(--scrim-l),.42))}
+    linear-gradient(180deg,rgba(var(--scrim-l),.88) 0%,rgba(var(--scrim-l),.72) 40%,
+      rgba(var(--scrim-l),0) 50%,rgba(var(--scrim-l),.72) 60%,
+      rgba(var(--scrim-l),.88) 100%)}
 /* the copy runs to the same gutters as the bar above it rather than to the 1200px
    text measure, so the headline starts on the wordmark's left edge and the tail block
    ends on the CTA's right edge */
@@ -267,11 +272,6 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 /* a phone holds the copy over a narrower frame, so the veil goes a little deeper */
 @media(max-width:700px){
   .hero.has-film{min-height:min(84vh,720px)}
-  /* the portrait clip is brighter under the copy, so the flat wash goes deeper */
-  .hero.has-film::after{background:
-    linear-gradient(180deg,rgba(var(--scrim-l),.74) 0%,rgba(var(--scrim-l),.40) 46%,
-      rgba(var(--scrim-l),.40) 54%,rgba(var(--scrim-l),.74) 100%),
-    linear-gradient(rgba(var(--scrim-l),.50),rgba(var(--scrim-l),.50))}
 }
 /* reduced motion never starts the clip; the poster stands in for it */
 @media(prefers-reduced-motion:reduce){.hero-film video{display:block}}
