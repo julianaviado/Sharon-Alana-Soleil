@@ -241,9 +241,16 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
    72px up so they run behind the sticky header. Which clip plays is decided in
    script.js by viewport, not by CSS, because a <video> will not re-pick its own
    source on a rotation. */
-.hero.has-film{min-height:min(88vh,820px);display:flex;flex-direction:column;
+/* one full screen, header included: the section is pulled up by the bar's own height
+   and pads that height back in, so bar + hero measure exactly 100svh between them and
+   the frosted bar floats on the film rather than sitting above it. --bar is published
+   by script.js because the bar is not a fixed height - it wraps at large text sizes.
+   svh rather than vh so a phone's collapsing URL bar cannot push the bottom off. */
+.hero.has-film{min-height:100vh;min-height:100svh;
+  margin-top:calc(-1 * var(--bar, 64px));
+  display:flex;flex-direction:column;
   justify-content:flex-start;position:relative;isolation:isolate;
-  padding:clamp(26px,3.2vh,44px) 0 clamp(38px,5vh,72px)}
+  padding:calc(var(--bar, 64px) + clamp(26px,3.2vh,44px)) 0 clamp(38px,5vh,72px)}
 /* the bed reaches 72px above the section so the film runs behind the sticky header.
    It clips its own video rather than letting the section clip the overhang away. */
 .hero-film{position:absolute;inset:-72px 0 0;z-index:0;background:var(--dark);overflow:hidden}
@@ -261,7 +268,6 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .hero.has-film .hero-sub{color:var(--cream)}
 /* a phone holds the copy over a narrower frame, so the veil goes a little deeper */
 @media(max-width:700px){
-  .hero.has-film{min-height:min(84vh,720px)}
 }
 
 /* the header floats over the film and settles back into its glass once past */

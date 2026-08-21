@@ -72,10 +72,18 @@
   still.addEventListener('change',()=>{ at=null; load(); });
 })();
 
-/* the header floats over the film hero and settles into its glass once it is past */
+/* the header floats over the film hero and settles into its glass once it is past.
+   It also publishes its own height as --bar: the hero is pulled up by exactly that
+   much so the two together measure one screen, and the bar is not a fixed height -
+   it wraps to two or three rows once the reader scales the text up. */
 (function(){
   const hero=document.querySelector('.hero.has-film'), head=document.querySelector('header');
   if(!hero||!head) return;
+  const bar=()=>document.documentElement.style.setProperty('--bar', head.offsetHeight+'px');
+  bar();
+  addEventListener('resize',bar);
+  if(window.ResizeObserver) new ResizeObserver(bar).observe(head);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(bar);
   let queued=false;
   const flip=()=>{
     queued=false;
