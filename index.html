@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&amp;family=Work+Sans:wght@500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=130">
+<link rel="stylesheet" href="styles.css?v=131">
 </head>
 <body>
 
@@ -38,13 +38,11 @@
 
 <!-- HERO -->
 <section class="hero has-film">
-  <!-- the source is chosen in script.js, so a rotation swaps the clip rather than
-       stretching the wrong one. The poster carries the no-JS and reduced-motion
-       cases, and the dark ground carries the moment before either lands.
-       hero-still.webp is on stand by in assets/images if this goes back to a still. -->
+  <!-- a still. The clips stay in assets/videos on stand by: putting the
+       <video id="herofilm" muted loop playsinline preload="none"> back here is the
+       whole job, and the source picking in script.js is untouched, waiting on it. -->
   <div class="hero-film" aria-hidden="true">
-    <video id="herofilm" muted loop playsinline preload="none"
-           poster="assets/videos/hero-wide-poster.webp"></video>
+    <img src="assets/images/hero-still.webp" alt="">
   </div>
   <!-- the headline tucked up under the wordmark at the top left, the clause that
        answers it at the bottom right, on the same gutters as the bar above -->
