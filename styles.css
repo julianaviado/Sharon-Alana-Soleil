@@ -214,6 +214,19 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
    not against the 92px headline inside, which boxed the head far narrower than intended */
 .hero-head{width:min(100%,42rem)}
 .hero-tail{align-self:flex-end;width:fit-content;max-width:min(100%,36rem)}
+/* The tail block is the one place on this image where no single text colour works:
+   it crosses the navy railing at rgb(8,24,41) and the white shirt at rgb(240,246,253)
+   within a couple of lines, so ink dies on one and cream dies on the other. It gets a
+   ground of its own instead - frosted, the same treatment as the bar - which leaves
+   the rest of the picture completely clear rather than washing the whole frame. */
+.hero.has-film .hero-tail{
+  background:rgba(255,254,253,.86);
+  -webkit-backdrop-filter:blur(18px) saturate(1.2);backdrop-filter:blur(18px) saturate(1.2);
+  border-radius:24px;padding:clamp(24px,2.6vw,34px) clamp(24px,2.8vw,36px)}
+/* without backdrop-filter the tint carries it alone */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .hero.has-film .hero-tail{background:rgba(255,254,253,.96)}
+}
 .hero-head .eyebrow{max-width:none}
 /* the break after "on" only where the first half fits on one line: forcing it on a
    phone strands "ON" by itself, which is worse than letting the measure decide */
@@ -270,11 +283,15 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
    the numbers this costs are in the commit message. */
 .hero.has-film .wrap{position:relative;z-index:2;width:100%;
   max-width:1720px;padding-left:clamp(16px,2vw,34px);padding-right:clamp(16px,2vw,34px)}
-/* over the film every colour swaps to its dark-ground pairing */
-.hero.has-film .eyebrow{color:var(--cream)}
-.hero.has-film h1{color:var(--cream)}
-.hero.has-film .lede-b{color:var(--on-dark)}
-.hero.has-film .hero-sub{color:var(--cream)}
+/* The hero image is a light one - white sky, pale sand, a white shirt - so the copy
+   takes the ink pairings rather than the cream ones. Nothing is laid over the picture
+   to make this work; the contrast comes from the type alone. That means these four
+   lines are tied to a LIGHT hero: swap in dark footage and they have to swap back to
+   --cream, --on-dark and a scrim, or the copy disappears the other way. */
+.hero.has-film .eyebrow{color:var(--soft)}      /* dark blue,  16.88:1 on the sky */
+.hero.has-film h1{color:var(--heading)}         /* dark brown, 17.62:1 */
+.hero.has-film .lede-b{color:var(--soft)}       /* dark blue,   7.14:1 on the shirt */
+.hero.has-film .hero-sub{color:var(--ink)}      /* dark brown, 16.48:1 */
 /* a phone holds the copy over a narrower frame, so the veil goes a little deeper */
 @media(max-width:700px){
 }
@@ -283,16 +300,20 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 /* over the film the bar is frosted glass rather than clear: a black tint matching the
    hero's own overlay, blurred, so the wordmark and links sit on an even ground instead
    of on whatever the footage happens to be doing behind them */
-header.on-hero{background:rgba(0,0,0,.30);border-bottom-color:rgba(255,254,253,.16);
+/* .90 rather than .62: at the lighter tint the image's mid tones read through and the
+   green pill loses its edge against them - 1.72:1, short of the 3:1 a control wants.
+   .82 got to 2.99, a hundredth short, so the glass settles here: the pill clears 3:1
+   against it and the bar still reads as glass rather than a solid strip. */
+header.on-hero{background:rgba(255,254,253,.90);border-bottom-color:rgba(35,19,15,.12);
   -webkit-backdrop-filter:blur(16px) saturate(1.25);backdrop-filter:blur(16px) saturate(1.25)}
 /* without backdrop-filter the tint has to carry it alone */
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-  header.on-hero{background:rgba(0,0,0,.52)}
+  header.on-hero{background:rgba(255,254,253,.86)}
 }
-header.on-hero .mark,header.on-hero .nav-links a{color:var(--cream)}
-header.on-hero .nav-links a:hover{background:rgba(255,254,253,.18)}
-header.on-hero .nav-toggle span{background:var(--cream)}
-header.on-hero .tm{color:var(--on-dark)}
+header.on-hero .mark,header.on-hero .nav-links a{color:var(--ink)}
+header.on-hero .nav-links a:hover{background:rgba(35,19,15,.07)}
+header.on-hero .nav-toggle span{background:var(--ink)}
+header.on-hero .tm{color:var(--soft)}
 /* the mobile menu panel is light, so the cream treatment comes off while it is open */
 header.on-hero.open{background:var(--cream);border-bottom-color:var(--hair);
   -webkit-backdrop-filter:blur(19px) saturate(1.5);backdrop-filter:blur(19px) saturate(1.5)}
