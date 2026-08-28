@@ -249,7 +249,12 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
 .hero-copy .hero-sub{margin:clamp(18px,2.2vh,26px) 0 0;max-width:none;
   font-size:var(--type-small);font-weight:400;line-height:1.55;
   letter-spacing:0}
-.hero-sub-2{margin-top:clamp(10px,1.2vh,16px)}
+/* no paragraph gap: the two sentences run on as one block. balance rather than pretty:
+   Chromium's pretty left "to you." stranded on its own line at every desktop width,
+   where balance evens the two lines instead. */
+.hero-copy .hero-sub-2{margin-top:0}   /* .hero-copy .hero-sub sets the margin, so this
+                                          has to match its specificity to win */
+.hero-copy .hero-sub{text-wrap:balance}
 .hero-copy .hero-cta{justify-content:flex-start;margin-top:clamp(24px,3vh,36px)}
 
 /* below the split the corners collapse into one left-aligned column */
