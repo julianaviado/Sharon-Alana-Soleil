@@ -173,11 +173,11 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
      colours here; .nav-links a would otherwise paint the filled one ink on green */
   .nav-links a.nav-cta{display:inline-flex;justify-content:center;text-align:center;
     font-size:var(--type-small);padding:14px 26px;border-bottom:none;margin-top:18px;
-    background:var(--btn);color:var(--btn-ink);border-color:var(--dark)}
+    background:var(--btn);color:var(--btn-ink);border-color:transparent}
 }
 @media(max-width:420px){.mark{font-size:var(--type-h3)}.nav-links a{font-size:var(--type-lead)}}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--btn);color:var(--btn-ink);text-decoration:none;padding:13px 26px;border-radius:100px;font-size:var(--type-small);font-weight:500;letter-spacing:.02em;border:1px solid var(--dark);cursor:pointer;font-family:var(--body);transition:transform .25s cubic-bezier(.2,.8,.2,1),background .4s,color .4s,border-color .4s;text-align:left}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--btn);color:var(--btn-ink);text-decoration:none;padding:13px 26px;border-radius:100px;font-size:var(--type-small);font-weight:500;letter-spacing:.02em;border:1px solid transparent;cursor:pointer;font-family:var(--body);transition:transform .25s cubic-bezier(.2,.8,.2,1),background .4s,color .4s,border-color .4s;text-align:left}
 .btn:hover{transform:translateY(-2px);background:var(--btn-hover);color:var(--dark)}
 .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--ink-30)}
 .btn-ghost:hover{background:rgba(35,19,15,.06);border-color:var(--ink)}
