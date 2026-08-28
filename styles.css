@@ -39,8 +39,12 @@
                                       which the chart flags even above 24px */
   --gold:var(--yellow);
   --on-dark:var(--yellow);
-  --btn:var(--green);              /* the primary pill */
-  --btn-ink:var(--dark-brown);     /* the only label the green takes at any size. 4.58:1 */
+  /* the pill runs a shade deeper than the chart's primary green so it can carry the
+     white: #6E8A3F holds white at only 3.88:1, this holds it at 4.53. That is AA for
+     normal text but not the 7:1 the rest of the site keeps, and the margin over the
+     4.5 floor is three hundredths - it is as light as this pairing can go. */
+  --btn:#60801C;                   /* button ground only; --palm stays the chart green */
+  --btn-ink:var(--white);          /* 4.53:1 on it */
   --btn-hover:var(--white);        /* dark brown on it, 17.8:1 */
   --jade-light:var(--yellow);      /* the icons on the deep green band */
   --wash-sun:var(--off-white);
