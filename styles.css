@@ -244,12 +244,12 @@ header.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-4
   font-family:var(--body);font-weight:500;
   font-size:clamp(1.75rem, 1.1rem + 2.3vw, 3.25rem);   /* 28px → 52px */
   line-height:1.02;letter-spacing:-.022em;color:var(--on-dark)}
-/* the body copy takes the reference's small tracked uppercase */
+/* sentence case, not the reference's uppercase: that treatment was chosen when this
+   line was short, and uppercase flattens word shapes badly over a paragraph */
 .hero-copy .hero-sub{margin:clamp(18px,2.2vh,26px) 0 0;max-width:none;
-  font-size:var(--type-micro);font-weight:500;line-height:1.62;
-  letter-spacing:.085em;text-transform:uppercase}
-.hero-sub-2{margin-top:clamp(12px,1.4vh,18px)}
-.hero-sub-2>span{display:block}
+  font-size:var(--type-small);font-weight:400;line-height:1.55;
+  letter-spacing:0}
+.hero-sub-2{margin-top:clamp(10px,1.2vh,16px)}
 .hero-copy .hero-cta{justify-content:flex-start;margin-top:clamp(24px,3vh,36px)}
 
 /* below the split the corners collapse into one left-aligned column */
